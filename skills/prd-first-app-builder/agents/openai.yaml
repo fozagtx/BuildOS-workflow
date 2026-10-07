@@ -1,0 +1,4 @@
+interface:
+  display_name: "PRD First App Builder"
+  short_description: "PRD, permissions, shadcn, no fake demos"
+  default_prompt: "Use $prd-first-app-builder before building this app: write the PRD, route permissions, protected routes, shadcn/ui plan, and no-fake-demo checklist first."
