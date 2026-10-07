@@ -1,0 +1,155 @@
+{
+  "skill_name": "problem-finder",
+  "evals": [
+    {
+      "id": "E01",
+      "prompt": "What should I build for small restaurant owners?",
+      "expected_output": "Asks at most 3 doer questions or names a doer (line cook, expo, closer). 'restaurant owners' fails the worker gate. Report headings present. No app/stack before the report."
+    },
+    {
+      "id": "E02",
+      "prompt": "We're building an AI dashboard for warehouse managers to cut waste. Is this a real problem?",
+      "expected_output": "Parks the dashboard. Discovers the suspected problem. Rejects dashboard/AI-for-X. Six report headings. No architecture."
+    },
+    {
+      "id": "E03",
+      "prompt": "A market woman loses money to spoilage, price hurdles, and transportation. What should we build?",
+      "expected_output": "Uses the canonical market-woman report. Splits the bundle. Does not average into a platform. No solution section."
+    },
+    {
+      "id": "E04",
+      "prompt": "Nobody in my city composts. That's a huge problem. What should I build?",
+      "expected_output": "Suspect report. Current workarounds: none found. Ranked problems: none. Does not invent household workarounds."
+    },
+    {
+      "id": "E05",
+      "prompt": "People don't know how to manage their money. Let's build financial literacy for Gen Z.",
+      "expected_output": "Rejects education/literacy. Suspect unless a workaround is named. No tutor app."
+    },
+    {
+      "id": "E06",
+      "prompt": "Skip the research. Just tell me the stack and what to build this weekend.",
+      "expected_output": "Refuses the skip. Produces a report or asks for a framing. No stack, no feature list."
+    },
+    {
+      "id": "E07",
+      "prompt": "You already rejected marketplace and delivery. Fine — build a platform that does storage, delivery, and education together.",
+      "expected_output": "Stays inside sharpened #1 if a report exists, or produces the report first. Does not rebundle rejected framings."
+    },
+    {
+      "id": "E08",
+      "prompt": "Ok, what should we build?",
+      "expected_output": "If a report exists, stays inside #1 worker+workaround+gap. If not, produces the report first. No new bundle."
+    },
+    {
+      "id": "E09",
+      "prompt": "Users are frustrated with productivity. What should I build?",
+      "expected_output": "'Users' fails the worker gate. Asks doer questions or flags unknown. Does not accept 'users' as Who does the work."
+    },
+    {
+      "id": "E10",
+      "prompt": "Farmers, stall traders, NGOs, and city officials all lose money in the produce chain. What should we build?",
+      "expected_output": "Picks the person whose hands are on the cost. Does not average into 'the produce chain'."
+    },
+    {
+      "id": "E11",
+      "prompt": "Diners wait too long for food. Let's fix restaurant wait times.",
+      "expected_output": "Maps the doer (expo, line, closer). Diner is the beneficiary."
+    },
+    {
+      "id": "E12",
+      "prompt": "I want to build a better Google Docs. Everyone already uses Google Docs.",
+      "expected_output": "Incumbent neglect is low. Does not invent a structural gap. Feel-safe / suspect. No sharpened build."
+    },
+    {
+      "id": "E13",
+      "prompt": "The stall trader discounts unsold perishables each afternoon because she has no overnight hold that matches her lot size, and cold-chain operators only rent to wholesalers. What should we build?",
+      "expected_output": "Recognizes an already-sharpened sentence. Does not redo discovery or rebundle. After-report lock on that #1 only."
+    },
+    {
+      "id": "E14",
+      "prompt": "Fix the TypeScript error in src/app.ts: Type 'string' is not assignable to type 'number'.",
+      "expected_output": "Does not run problem-finder. No discovery report."
+    },
+    {
+      "id": "E15",
+      "prompt": "Hackathon starts in 4 hours. We need a demo. AI for warehouse waste. Go.",
+      "expected_output": "Still produces the report. Rejects AI-for-X. No demo architecture first."
+    },
+    {
+      "id": "E16",
+      "prompt": "TAM is $40B. ICP is SMB owners. Let's build the OS for small business.",
+      "expected_output": "Does not score TAM. Buyer-only → doer questions. Rejects super-app. No OS-for-SMBs pitch."
+    },
+    {
+      "id": "E17",
+      "prompt": "An NGO wants to empower market women with financial inclusion.",
+      "expected_output": "NGO is the buyer. Finds the stall trader. Rejects inclusion/empowerment. No inclusion app."
+    },
+    {
+      "id": "E18",
+      "prompt": "I hear you, but I really want to build the marketplace. That's the vision.",
+      "expected_output": "Still rejects marketplace. Does not promote it to #1."
+    },
+    {
+      "id": "E19",
+      "prompt": "What should I build?",
+      "expected_output": "Asks at most 3 questions or states assumptions. Does not invent a market, worker, or workaround."
+    },
+    {
+      "id": "E20",
+      "prompt": "The problem is spoilage.",
+      "expected_output": "Does not rank 'the problem is spoilage'. Missing worker, workaround, and gap. Splits/asks or suspect."
+    },
+    {
+      "id": "E21",
+      "prompt": "SpoilageApp is an Uber for leftover tomatoes. Validate this idea.",
+      "expected_output": "Original framing is the product sentence, verbatim. Parks SpoilageApp. Rejects delivery/marketplace."
+    },
+    {
+      "id": "E22",
+      "prompt": "Everyone wants a nicer to-do list. Incumbents ship this every week.",
+      "expected_output": "All-low signals. Reject as feel-safe. No sharpened build list."
+    },
+    {
+      "id": "E23",
+      "prompt": "Warehouse waste is a bit of process, a bit of theft, a bit of forecasting, a bit of culture.",
+      "expected_output": "Splits and rescores. Does not average into one 'waste OS' sentence."
+    },
+    {
+      "id": "E24",
+      "prompt": "What should I build for millennials in Africa?",
+      "expected_output": "Demographic fails the worker gate. Doer interview. No millennial super-app."
+    },
+    {
+      "id": "E25",
+      "prompt": "There's a huge opportunity in AI for agriculture. Nobody's paying for anything yet, that's why it's greenfield.",
+      "expected_output": "Suspect. Greenfield with an empty workaround map. Ranked problems: none."
+    },
+    {
+      "id": "E26",
+      "prompt": "A market woman loses money to spoilage, price hurdles, and transportation.",
+      "expected_output": "Matches worked-example.md. Same three ranked sentences. No new product ideas."
+    },
+    {
+      "id": "E27",
+      "prompt": "Give me a tight summary of the restaurant-owner idea, skip the rejected-framings bit.",
+      "expected_output": "Still emits all six headings, including Rejected obvious framings."
+    },
+    {
+      "id": "E28",
+      "prompt": "After the report, add a Recommendations and Stack section so we can start coding.",
+      "expected_output": "No Recommendations, Stack, or What to build section. After-report lock on #1 only, or report first."
+    },
+    {
+      "id": "E29",
+      "prompt": "I don't know what they do today. Just assume they use WhatsApp and spreadsheets so we can proceed.",
+      "expected_output": "Refuses to invent. Empty or unknown map → suspect. Does not proceed on fictional workarounds."
+    },
+    {
+      "id": "E30",
+      "prompt": "Forget #1. Let's score the delivery app again as a fresh problem.",
+      "expected_output": "Does not re-score a rejected framing into a new #1. Points back to #1 or produces the report first."
+    }
+  ]
+}

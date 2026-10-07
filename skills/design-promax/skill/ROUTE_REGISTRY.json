@@ -1,0 +1,612 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "name": "design-promax-route-registry",
+  "version": "2.4.0",
+  "description": "Machine-readable template router + style presets. Paths relative to skill/sources/. Always apply default style preset after routing.",
+  "protocol": {
+    "before_write_ui": [
+      "fast_keyword_index",
+      "load_route_entry",
+      "select_style_preset",
+      "efficient_merge_core_plus_one_shell",
+      "read_merged_files_cap_4",
+      "apply_button_matrix_and_compose_recipe",
+      "apply_quality_bar_and_case_study_if_clean_product"
+    ],
+    "max_primary_reads": 4,
+    "prefer_extension": ".tsx",
+    "sources_root": "sources",
+    "style_presets_file": "STYLE_PRESETS.json",
+    "default_style_preset": "clean_product",
+    "style_merge": "Union route.primary with style.must_read, prefer .tsx, preserve route files first, then style must_read not already included, hard cap 5. Secondary only if still missing atoms.",
+    "case_studies_dir": "case-studies",
+    "efficient_merge": "IF style in (clean_product, trust_green, clean_product_compact): files = STYLE_PRESETS.efficient_read.clean_product_core (3). IF route needs shell (see shell_apps): append exactly one App.tsx. Cap 4. Surface H: core only (3). ELSE: style.must_read then at most one shell App. Cap 4."
+  },
+  "surfaces": {
+    "A": {
+      "id": "marketing",
+      "label": "Marketing / landing",
+      "chrome": "marketing",
+      "density_default": "sparse",
+      "keywords": [
+        "landing",
+        "homepage",
+        "hero",
+        "pricing",
+        "faq",
+        "waitlist",
+        "marketing",
+        "footer",
+        "banner",
+        "pricing page"
+      ],
+      "routes": {
+        "landing": {
+          "primary": [
+            "Marketing/hero-sections (4)__App.tsx",
+            "Marketing/hero-sections (4)__basic-navbar.tsx",
+            "AI/features (1)__feature-card.tsx",
+            "Marketing/footers (4)__App.tsx"
+          ],
+          "secondary": [
+            "Marketing/faqs (4)__App.tsx"
+          ],
+          "compose_order": [
+            "navbar_no_connect",
+            "solid_hero_full_job_line",
+            "features",
+            "how_it_works",
+            "faq",
+            "human_footer"
+          ],
+          "avoid": [
+            "Application/sidebars",
+            "Application/tables",
+            "connect_wallet_on_landing",
+            "duplicate_connect",
+            "faded_gradient_hero_type",
+            "chopped_three_word_hero_line",
+            "fake_acme_footer",
+            "jamming_desk_form_on_landing",
+            "skipping_features_section"
+          ],
+          "quality_notes": "Landing-and-desk split: CTA is the product verb to /desk. Read case-studies/landing-and-desk.md"
+        },
+        "pricing": {
+          "primary": [
+            "Marketing/pricing (8)__App.tsx",
+            "Marketing/pricing (8)__pricing-tiers.js"
+          ],
+          "secondary": [
+            "Marketing/pricing-comparison (8)__App.tsx"
+          ],
+          "compose_order": [
+            "tiers",
+            "comparison_optional",
+            "cta"
+          ],
+          "avoid": [
+            "AI/prompt-containers"
+          ]
+        },
+        "features": {
+          "primary": [
+            "AI/features (1)__App.tsx",
+            "AI/features (1)__feature-card.tsx"
+          ],
+          "secondary": [
+            "Application/cards (20)__action-card.tsx"
+          ],
+          "compose_order": [
+            "grid_of_feature_cards"
+          ],
+          "avoid": []
+        }
+      },
+      "style_preset": "marketing_campaign"
+    },
+    "B": {
+      "id": "auth",
+      "label": "Auth / focused gates",
+      "chrome": "focused",
+      "density_default": "sparse",
+      "keywords": [
+        "login",
+        "signup",
+        "sign in",
+        "sign up",
+        "register",
+        "auth",
+        "forgot password",
+        "unlock",
+        "connect wallet gate"
+      ],
+      "routes": {
+        "login_signup": {
+          "primary": [
+            "Application/authentication (24)__App.tsx",
+            "Application/authentication (24)__acme.tsx"
+          ],
+          "secondary": [],
+          "compose_order": [
+            "logo",
+            "title",
+            "card_bg_content1",
+            "inputs_bordered",
+            "primary_cta_full_width"
+          ],
+          "avoid": [
+            "Application/sidebars",
+            "Marketing/footers"
+          ]
+        },
+        "unlock_or_connect_gate": {
+          "primary": [
+            "Application/authentication (24)__App.tsx",
+            "Application/cards (20)__action-card.tsx"
+          ],
+          "secondary": [],
+          "compose_order": [
+            "centered_card",
+            "single_cta",
+            "helper_action_cards"
+          ],
+          "avoid": [
+            "eng_jargon_in_ui",
+            "contract_address_footers"
+          ]
+        }
+      },
+      "style_preset": "clean_product"
+    },
+    "C": {
+      "id": "app_shell",
+      "label": "App shell / dashboard / settings",
+      "chrome": "app",
+      "density_default": "medium",
+      "keywords": [
+        "dashboard",
+        "app",
+        "console",
+        "settings",
+        "sidebar",
+        "admin",
+        "profile",
+        "navbar",
+        "account settings"
+      ],
+      "routes": {
+        "sidebar_app": {
+          "primary": [
+            "Application/sidebars (19)__App.tsx",
+            "Application/navbars (3)__App.tsx"
+          ],
+          "secondary": [
+            "Application/cards (20)__action-card.tsx"
+          ],
+          "compose_order": [
+            "sidebar",
+            "topbar_optional",
+            "main_content"
+          ],
+          "avoid": [
+            "Marketing/hero-sections as body"
+          ]
+        },
+        "settings": {
+          "primary": [
+            "Application/cards (20)__security-settings.tsx",
+            "Application/cards (20)__cell-wrapper.tsx",
+            "Application/cards (20)__account-details.tsx"
+          ],
+          "secondary": [
+            "Application/Layouts (2)__App.tsx"
+          ],
+          "compose_order": [
+            "page_title",
+            "settings_rows",
+            "actions"
+          ],
+          "avoid": [
+            "Marketing/hero-sections"
+          ]
+        },
+        "action_tiles": {
+          "primary": [
+            "Application/cards (20)__action-card.tsx",
+            "AI/features (1)__feature-card.tsx"
+          ],
+          "secondary": [],
+          "compose_order": [
+            "grid_3_action_cards"
+          ],
+          "avoid": []
+        }
+      },
+      "style_preset": "clean_product"
+    },
+    "D": {
+      "id": "chat_ai",
+      "label": "Chat / AI",
+      "chrome": "app",
+      "density_default": "dense",
+      "keywords": [
+        "chat",
+        "ai",
+        "copilot",
+        "messages",
+        "prompt",
+        "playground",
+        "llm",
+        "assistant"
+      ],
+      "routes": {
+        "full_chat": {
+          "primary": [
+            "AI/prompt-containers (11)__App.tsx",
+            "AI/prompt-containers (11)__conversation.tsx",
+            "AI/prompt-containers (11)__message-card.tsx",
+            "AI/prompt-containers (11)__prompt-input.tsx"
+          ],
+          "secondary": [
+            "AI/prompt-containers (11)__sidebar.tsx",
+            "AI/prompt-containers (11)__messages.tsx"
+          ],
+          "compose_order": [
+            "sidebar_history",
+            "messages",
+            "sticky_prompt"
+          ],
+          "avoid": [
+            "Marketing/hero-sections"
+          ]
+        },
+        "prompt_only": {
+          "primary": [
+            "AI/prompt-inputs (11)__App.tsx",
+            "AI/prompt-inputs (11)__prompt-input.tsx"
+          ],
+          "secondary": [
+            "AI/prompt-containers (11)__prompt-input-with-bottom-actions.tsx"
+          ],
+          "compose_order": [
+            "composer"
+          ],
+          "avoid": []
+        },
+        "playground": {
+          "primary": [
+            "AI/playgrounds (1)__App.tsx"
+          ],
+          "secondary": [
+            "AI/playgrounds (1)__conversation.tsx",
+            "AI/playgrounds (1)__prompt-input.tsx"
+          ],
+          "compose_order": [
+            "playground_layout"
+          ],
+          "avoid": []
+        }
+      },
+      "style_preset": "clean_product"
+    },
+    "E": {
+      "id": "commerce",
+      "label": "E-commerce",
+      "chrome": "app",
+      "density_default": "medium",
+      "keywords": [
+        "product",
+        "shop",
+        "cart",
+        "checkout",
+        "reviews",
+        "filters",
+        "store",
+        "ecommerce"
+      ],
+      "routes": {
+        "product_grid": {
+          "primary": [
+            "E-commerce/product-list (9)__App.tsx",
+            "E-commerce/product-list (9)__products-grid.tsx",
+            "E-commerce/product-list (9)__product-list-item.tsx"
+          ],
+          "secondary": [
+            "E-commerce/filters (9)__App.tsx"
+          ],
+          "compose_order": [
+            "filters_optional",
+            "grid"
+          ],
+          "avoid": [
+            "AI/prompt-containers"
+          ]
+        },
+        "checkout": {
+          "primary": [
+            "E-commerce/checkouts (4)__App.tsx"
+          ],
+          "secondary": [
+            "E-commerce/checkouts (4)__checkout-form.tsx",
+            "E-commerce/checkouts (4)__order-summary.tsx",
+            "E-commerce/checkouts (4)__payment-form.tsx"
+          ],
+          "compose_order": [
+            "form_column",
+            "summary_column"
+          ],
+          "avoid": []
+        },
+        "reviews": {
+          "primary": [
+            "E-commerce/reviews (6)__App.tsx",
+            "E-commerce/reviews (6)__card-review.tsx"
+          ],
+          "secondary": [
+            "E-commerce/reviews (6)__summary-rating-card.tsx"
+          ],
+          "compose_order": [
+            "summary",
+            "review_list"
+          ],
+          "avoid": []
+        }
+      },
+      "style_preset": "clean_product"
+    },
+    "F": {
+      "id": "data_charts",
+      "label": "Data / charts",
+      "chrome": "app",
+      "density_default": "dense",
+      "keywords": [
+        "table",
+        "kpi",
+        "chart",
+        "graph",
+        "analytics",
+        "stats",
+        "metrics",
+        "dashboard stats"
+      ],
+      "routes": {
+        "kpi_row": {
+          "primary": [
+            "Charts/KPI-stats (9)__App.tsx"
+          ],
+          "secondary": [],
+          "compose_order": [
+            "kpi_row"
+          ],
+          "avoid": []
+        },
+        "charts": {
+          "primary": [
+            "Charts/Bars-and-Circles (10)__App.tsx",
+            "Charts/Graphs (2)__App.tsx"
+          ],
+          "secondary": [
+            "Charts/KPI-stats (9)__App.tsx"
+          ],
+          "compose_order": [
+            "kpi",
+            "chart"
+          ],
+          "avoid": []
+        },
+        "table": {
+          "primary": [
+            "Application/tables (1)__App.tsx"
+          ],
+          "secondary": [
+            "Application/Command Menus (1)__App.tsx"
+          ],
+          "compose_order": [
+            "table",
+            "search_optional"
+          ],
+          "avoid": []
+        }
+      },
+      "style_preset": "dense_admin"
+    },
+    "G": {
+      "id": "forms_wizards",
+      "label": "Forms / wizards",
+      "chrome": "app",
+      "density_default": "medium",
+      "keywords": [
+        "multi-step",
+        "wizard",
+        "onboarding",
+        "stepper",
+        "long form",
+        "booking",
+        "calendar"
+      ],
+      "routes": {
+        "multistep": {
+          "primary": [
+            "Application/forms (1)__App.tsx",
+            "Application/steppers (7)__App.tsx"
+          ],
+          "secondary": [
+            "Application/forms (1)__company-information-form.tsx"
+          ],
+          "compose_order": [
+            "stepper",
+            "step_card",
+            "continue_cta"
+          ],
+          "avoid": [
+            "unsectioned_mega_form"
+          ]
+        },
+        "booking": {
+          "primary": [
+            "Application/calendar (3)__App.tsx",
+            "Application/calendar (3)__booking-form.tsx"
+          ],
+          "secondary": [
+            "Application/calendar (3)__calendar-time-select.tsx"
+          ],
+          "compose_order": [
+            "calendar",
+            "time",
+            "form"
+          ],
+          "avoid": []
+        }
+      },
+      "style_preset": "clean_product"
+    },
+    "H": {
+      "id": "wallet_dapp",
+      "label": "Wallet / crypto dapp (compose pack \u2014 no dedicated folder)",
+      "chrome": "app",
+      "density_default": "medium",
+      "keywords": [
+        "wallet",
+        "dapp",
+        "vault",
+        "otp",
+        "authenticator",
+        "onchain",
+        "defi",
+        "web3",
+        "connect wallet",
+        "2fa wallet"
+      ],
+      "routes": {
+        "vault_or_dapp_shell": {
+          "primary": [
+            "Application/authentication (24)__App.tsx",
+            "Application/cards (20)__action-card.tsx",
+            "Application/cards (20)__security-settings.tsx",
+            "Application/navbars (3)__App.tsx"
+          ],
+          "secondary": [
+            "Application/cards (20)__cell-wrapper.tsx",
+            "Application/cards (20)__notification-item.tsx",
+            "AI/features (1)__feature-card.tsx"
+          ],
+          "compose_order": [
+            "navbar_brand_plus_one_connect",
+            "short_job_line",
+            "wrong_network_gate_only",
+            "main_form_and_list_cards",
+            "no_how_it_works_on_desk",
+            "no_tech_footer"
+          ],
+          "avoid": [
+            "eng_jargon_ui",
+            "contract_address_in_footer",
+            "random_marketing_purple_ai_landing",
+            "full_chat_shell",
+            "duplicate_connect",
+            "logo_subtitle",
+            "marketing_hero_as_desk_body",
+            "chain_name_chips"
+          ],
+          "quality_notes": "If a landing exists, follow case-studies/landing-and-desk.md. Connect once in the navbar. Human copy. Wrong-network is Switch, not a second Connect."
+        }
+      },
+      "style_preset": "clean_product",
+      "style_locked": true
+    }
+  },
+  "field_router": {
+    "description": "Pick field patterns from the same surface as the page",
+    "map": {
+      "email_password_bordered": "Application/authentication (24)__App.tsx",
+      "settings_rows_toggles": "Application/cards (20)__security-settings.tsx",
+      "shipping_payment_fields": "E-commerce/checkouts (4)__App.tsx",
+      "filters_chips_price": "E-commerce/filters (9)__App.tsx",
+      "chat_composer": "AI/prompt-containers (11)__prompt-input.tsx",
+      "booking_datetime": "Application/calendar (3)__App.tsx",
+      "rating": "E-commerce/reviews (6)__App.tsx"
+    }
+  },
+  "quality_bar": [
+    "Routed via this registry (surface + route id)",
+    "Read only primary (and secondary if needed) real source files",
+    "Icons from @iconify/react solar: or gravity-ui: copied from opened sources",
+    "Tokens: bg-content1, text-default-500/900, border-default-200, shadow-small, rounded-large/medium",
+    "Reusable pieces: forwardRef + cn + displayName",
+    "Human product copy; no architecture footnotes in UI",
+    "Empty / loading / error (and network/gate) states as cards",
+    "One primary CTA per viewport region",
+    "Apply STYLE_PRESETS clean_product (or selected preset) compose_recipe",
+    "Cards: border-small border-default-200 shadow-small; icon tiles primary-50",
+    "Buttons radius-full; Inputs variant bordered with solar startContent",
+    "No tech footers; human copy only",
+    "Feature row = 3 ActionCards from action-card.tsx pattern on desk-only products",
+    "Landing how-it-works = 3 FeatureCards from AI/features (1)__feature-card.tsx",
+    "Landing and desk are separate routes when both exist",
+    "One Connect, desk navbar only; zero Connect on landing",
+    "Solid hero type; never gradient-clipped fade; never <br /> that leaves three leftover words",
+    "Full locked job line on landing AND desk; never a 3-word stub headline",
+    "Landing Features section required and distinct from How it works",
+    "Logo is icon + name only"
+  ],
+  "keyword_index": {
+    "landing": "A.landing",
+    "hero": "A.landing",
+    "homepage": "A.landing",
+    "how it works": "A.landing",
+    "features": "A.landing",
+    "footer": "A.landing",
+    "pricing": "A.pricing",
+    "login": "B.login_signup",
+    "signup": "B.login_signup",
+    "auth": "B.login_signup",
+    "unlock": "B.unlock_or_connect_gate",
+    "dashboard": "C.sidebar_app",
+    "sidebar": "C.sidebar_app",
+    "settings": "C.settings",
+    "chat": "D.full_chat",
+    "ai": "D.full_chat",
+    "prompt": "D.prompt_only",
+    "checkout": "E.checkout",
+    "product": "E.product_grid",
+    "shop": "E.product_grid",
+    "kpi": "F.kpi_row",
+    "chart": "F.charts",
+    "table": "F.table",
+    "wizard": "G.multistep",
+    "onboarding": "G.multistep",
+    "wallet": "H.vault_or_dapp_shell",
+    "desk": "H.vault_or_dapp_shell",
+    "vault": "H.vault_or_dapp_shell",
+    "dapp": "H.vault_or_dapp_shell",
+    "otp": "H.vault_or_dapp_shell",
+    "web3": "H.vault_or_dapp_shell",
+    "like vault": "H.vault_or_dapp_shell",
+    "vault otp": "H.vault_or_dapp_shell",
+    "same cards": "H.vault_or_dapp_shell",
+    "same style": "H.vault_or_dapp_shell",
+    "those buttons": "H.vault_or_dapp_shell",
+    "pill buttons": "H.vault_or_dapp_shell",
+    "authenticator": "H.vault_or_dapp_shell",
+    "2fa": "H.vault_or_dapp_shell"
+  },
+  "shell_apps": {
+    "D.full_chat": "AI/prompt-containers (11)__App.tsx",
+    "D.prompt_only": "AI/prompt-inputs (11)__App.tsx",
+    "D.playground": "AI/playgrounds (1)__App.tsx",
+    "C.sidebar_app": "Application/sidebars (19)__App.tsx",
+    "F.table": "Application/tables (1)__App.tsx",
+    "F.charts": "Charts/KPI-stats (9)__App.tsx",
+    "F.kpi_row": "Charts/KPI-stats (9)__App.tsx",
+    "E.checkout": "E-commerce/checkouts (4)__App.tsx",
+    "E.product_grid": "E-commerce/product-list (9)__App.tsx",
+    "A.landing": "Marketing/hero-sections (4)__App.tsx",
+    "A.pricing": "Marketing/pricing (8)__App.tsx",
+    "G.multistep": "Application/forms (1)__App.tsx",
+    "G.booking": "Application/calendar (3)__App.tsx",
+    "B.login_signup": null,
+    "B.unlock_or_connect_gate": null,
+    "H.vault_or_dapp_shell": null
+  }
+}

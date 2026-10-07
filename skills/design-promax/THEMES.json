@@ -1,0 +1,184 @@
+{
+  "name": "heroui-pro-themes",
+  "version": "1.1.0",
+  "description": "HeroUI Pro themes for design-promax. Live in THIS skill: THEMES.json + themes.css. Agents MUST ask which theme before building UI.",
+  "docs": "https://heroui.pro/docs/react/getting-started/theming",
+  "skill_pack": {
+    "css": "themes.css",
+    "json": "THEMES.json",
+    "note": "Primary path for this skill (HeroUI v2 + TW3 + sources/). Copy themes.css into the project and set data-theme. Do not tell the user themes are missing when these files exist."
+  },
+  "gate": {
+    "required": true,
+    "when": "Any design-promax / HeroUI Pro UI task, unless user already named a theme in the same message",
+    "prompt": "Which HeroUI Pro theme should we use?",
+    "options": ["Default", "Brutalism", "Glass", "Mouve"],
+    "do_not": "Do not pick a theme silently. Do not start composing UI until the user answers (or already named one).",
+    "apply": {
+      "step_1": "Ask theme (or use the one user named)",
+      "step_2": "Copy skill themes.css into the project (or import from skill path)",
+      "step_3": "Set html data-theme to themes[id].data_theme_light",
+      "step_4": "Wire a theme switcher with options Default|Brutalism|Glass|Mouve",
+      "step_5": "Brutalism: load Anton + Share Tech Mono as --font-brutal-display / --font-brutal-body"
+    },
+    "optional_npm_upgrade": {
+      "when": "User has HeroUI Pro license + wants official package CSS",
+      "package": "@heroui-pro/react",
+      "login": "npx heroui-pro login",
+      "install": "npx heroui-pro install",
+      "stack": "HeroUI OSS v3 + Tailwind v4",
+      "note": "Optional. Skill pack themes.css is enough for design-promax projects."
+    }
+  },
+  "themes": {
+    "default": {
+      "id": "default",
+      "label": "Default",
+      "aliases": ["default", "oss", "stock", "heroui default"],
+      "feel": "Standard HeroUI radii, shadows, and typography. Clean product baseline.",
+      "css_import": null,
+      "data_theme_light": "default-light",
+      "data_theme_dark": "default-dark",
+      "compose_notes": [
+        "Use clean_product button matrix (pill CTAs) unless user says otherwise",
+        "border-small, shadow-sm, rounded-medium/large"
+      ]
+    },
+    "brutalism": {
+      "id": "brutalism",
+      "label": "Brutalism",
+      "aliases": ["brutalism", "brutalist", "brutal"],
+      "feel": "Bold high-contrast: sharp edges, thick borders, expressive shadows. Fonts: Anton + Share Tech Mono. Zero radius, minimal soft shadows.",
+      "css_import": "@import \"@heroui-pro/react/themes/brutalism\";",
+      "data_theme_light": "brutalism-light",
+      "data_theme_dark": "brutalism-dark",
+      "compose_notes": [
+        "Prefer radius-none / sharp corners over radius-full pills",
+        "Thick borders, high contrast type, mono accents OK",
+        "Do not soft-glass or mauve this look"
+      ],
+      "skill_css": "themes.css → [data-theme=brutalism-light]",
+      "fonts": {
+        "display": "Anton → --font-brutal-display",
+        "body": "Share Tech Mono → --font-brutal-body"
+      }
+    },
+    "glass": {
+      "id": "glass",
+      "label": "Glass",
+      "aliases": ["glass", "glassmorphism", "frosted"],
+      "feel": "Glassmorphism: backdrop blur, semi-transparent surfaces, soft overlay shadows. Default typography kept.",
+      "css_import": "@import \"@heroui-pro/react/themes/glass\";",
+      "data_theme_light": "glass-light",
+      "data_theme_dark": "glass-dark",
+      "compose_notes": [
+        "Need visible backdrop (image, gradient, or --background-gradient) behind blurred cards",
+        "Tune --glass-blur if available",
+        "Cards/modals/popovers should feel translucent, not solid chalk"
+      ],
+      "skill_css": "themes.css → [data-theme=glass-light]"
+    },
+    "mouve": {
+      "id": "mouve",
+      "label": "Mouve",
+      "aliases": ["mouve", "mauve", "warm purple", "mauve theme"],
+      "feel": "Refined mauve/warm-purple. Raised accent fills with specular highlight; tactile pressed shadows on neutral pills. Default typography.",
+      "css_import": "@import \"@heroui-pro/react/themes/mouve\";",
+      "data_theme_light": "mouve-light",
+      "data_theme_dark": "mouve-dark",
+      "tokens": [
+        "--mouve-raised-shadow",
+        "--mouve-pressed-shadow",
+        "--mouve-accent-fill-shadow"
+      ],
+      "compose_notes": [
+        "Saturated accent on filled CTAs, steppers, switches, progress",
+        "Neutral pills get inset pressed shadow on press",
+        "Spelling is Mouve (official), not Mauve"
+      ],
+      "skill_css": "themes.css → [data-theme=mouve-light]"
+    }
+  },
+  "css_import_order_skill": [
+    "@tailwind base/components/utilities",
+    "@import \"./themes.css\" or copy from skill/themes.css"
+  ],
+  "css_import_order_npm": [
+    "@import \"tailwindcss\";",
+    "@import \"@heroui/styles\";",
+    "@import \"@heroui-pro/react/css\";",
+    "@import \"@heroui-pro/react/themes/<theme>\";"
+  ],
+  "activation": "Set data-theme on <html>. Import alone is not enough.",
+  "showcase_packs": {
+    "description": "Homepage / marketing showcase blocks on heroui.pro — use as quality targets and route hints. Theme still applies across all packs.",
+    "packs": [
+      {
+        "id": "map_navigation",
+        "label": "Map navigation",
+        "signals": [
+          "Near / distance chips",
+          "Open/Closed hours",
+          "Pick-up vs Delivery rows",
+          "Place cards over a map"
+        ],
+        "route_hint": "E.maps_places or E-commerce place list",
+        "source_hints": [
+          "E-commerce/product-list (9)__place-list-item.tsx",
+          "E-commerce/product-list (9)__products-grid.tsx"
+        ]
+      },
+      {
+        "id": "pro_ai_chat",
+        "label": "Pro AI chat",
+        "signals": [
+          "Assistant answer with structured bullets",
+          "Deep search / Sources",
+          "Chat preview composer (Ask anything)"
+        ],
+        "route_hint": "D.full_chat / chat_soft",
+        "source_hints": [
+          "AI/prompt-containers (11)__App.tsx",
+          "AI/prompt-containers (11)__message-card.tsx",
+          "AI/prompt-containers (11)__prompt-input.tsx",
+          "AI/prompt-containers (11)__prompt-input-with-bottom-actions.tsx"
+        ]
+      },
+      {
+        "id": "music_player",
+        "label": "Music player",
+        "signals": [
+          "Track list with artwork",
+          "Now playing / artist",
+          "Queue rows"
+        ],
+        "route_hint": "media_player / list cards",
+        "source_hints": [
+          "Application/cards (20)__action-card.tsx",
+          "Application/cards (20)__cell-wrapper.tsx"
+        ]
+      },
+      {
+        "id": "shopping_experience",
+        "label": "Shopping experience",
+        "signals": [
+          "Product title + price",
+          "Size selector",
+          "PDP / checkout feel"
+        ],
+        "route_hint": "E.commerce / product_view / checkout",
+        "source_hints": [
+          "E-commerce/product-view (1)__product-view-item.tsx",
+          "E-commerce/product-view (1)__rating-radio-group.tsx",
+          "E-commerce/checkouts (4)__checkout-form.tsx"
+        ]
+      }
+    ]
+  },
+  "axis_model": {
+    "pro_theme": "Default | Brutalism | Glass | Mouve — from skill THEMES.json + themes.css (ask first)",
+    "style_preset": "clean_product | trust_green | chat_soft | … — compose recipe from STYLE_PRESETS.json",
+    "route": "surface from ROUTE_REGISTRY.json — which shell/components",
+    "rule": "Theme × style × route. Theme is asked; apply skill themes.css; style defaults to clean_product; route from intent."
+  }
+}

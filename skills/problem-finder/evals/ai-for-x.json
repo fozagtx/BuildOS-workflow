@@ -1,0 +1,57 @@
+{
+  "skill_name": "problem-finder",
+  "suite": "ai-for-x-default-rejects",
+  "rule": "Each prompt is an obvious, feel-safe first framing. The run must name and kill that framing, emit the six report headings (or the suspect variant), and must not emit a product, stack, or feature list before sharpening.",
+  "evals": [
+    {
+      "id": "X01",
+      "prompt": "AI for X: an AI dashboard for warehouse managers to cut waste.",
+      "reject": "dashboard / AI for X"
+    },
+    {
+      "id": "X02",
+      "prompt": "Hackathon idea: Uber for leftover food delivery.",
+      "reject": "delivery"
+    },
+    {
+      "id": "X03",
+      "prompt": "A marketplace that connects farmers directly to consumers.",
+      "reject": "marketplace / market access"
+    },
+    {
+      "id": "X04",
+      "prompt": "An app that teaches market women financial literacy.",
+      "reject": "education / literacy"
+    },
+    {
+      "id": "X05",
+      "prompt": "Cold storage as a service for African markets. That's the whole product.",
+      "reject": "storage"
+    },
+    {
+      "id": "X06",
+      "prompt": "ChatGPT for HR. We just need to wrap a model around onboarding docs.",
+      "reject": "AI for X"
+    },
+    {
+      "id": "X07",
+      "prompt": "A super-app that connects patients, doctors, pharmacies, and insurers.",
+      "reject": "super-app that connects two (or more) sides"
+    },
+    {
+      "id": "X08",
+      "prompt": "Analytics for SMEs so owners finally see their numbers.",
+      "reject": "dashboard / analytics"
+    },
+    {
+      "id": "X09",
+      "prompt": "AI tutor that makes anyone a better founder in 30 days.",
+      "reject": "education / AI for X"
+    },
+    {
+      "id": "X10",
+      "prompt": "Empowerment platform for women in supply chains. Inclusion is the moat.",
+      "reject": "inclusion / empowerment"
+    }
+  ]
+}

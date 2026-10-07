@@ -1,0 +1,229 @@
+{
+  "name": "design-promax-style-presets",
+  "version": "1.1.0",
+  "description": "Feel/theme presets. Default clean_product = Vault OTP case study. Routing picks surface; style locks quality.",
+  "default_preset": "clean_product",
+  "case_study": "case-studies/vault-otp.md",
+  "efficient_read": {
+    "description": "Prefer these 3 files for clean_product UI. Only add route App.tsx if shell differs (sidebar/chat/checkout).",
+    "clean_product_core": [
+      "Application/cards (20)__action-card.tsx",
+      "Application/authentication (24)__App.tsx",
+      "Application/cards (20)__security-settings.tsx"
+    ],
+    "max_files": 4,
+    "merge_rule": "If style is clean_product or trust_green or clean_product_compact: start from clean_product_core (3), add at most 1 route-specific App.tsx if surface needs chat/sidebar/table/checkout shell. Skip secondary unless atom missing. Cap 4."
+  },
+  "button_matrix": {
+    "primary_cta": {
+      "props": "color=\"primary\" radius=\"full\"",
+      "icon": "solar:*-bold or bold-duotone startContent width 18"
+    },
+    "primary_loading": {
+      "props": "color=\"primary\" radius=\"full\" isLoading",
+      "icon": "omit startContent while loading"
+    },
+    "secondary": {
+      "props": "variant=\"bordered\" radius=\"full\" size=\"sm\"",
+      "icon": "solar:*-linear width 16"
+    },
+    "danger": {
+      "props": "color=\"danger\" variant=\"flat\" radius=\"full\" size=\"sm\"",
+      "icon": "solar:trash-bin-trash-linear"
+    },
+    "warning": {
+      "props": "color=\"warning\" radius=\"full\" or variant=\"flat\"",
+      "icon": "solar:danger-triangle-bold / transfer-horizontal-bold"
+    },
+    "ghost": {
+      "props": "variant=\"light\" radius=\"full\" size=\"sm\"",
+      "icon": "optional"
+    }
+  },
+  "presets": {
+    "clean_product": {
+      "id": "clean_product",
+      "label": "Clean product (Vault OTP quality)",
+      "case_study": "case-studies/vault-otp.md",
+      "when": "Default for product UIs, dapps, vaults, settings tools. Prefer unless campaign landing or dense admin.",
+      "keywords": [
+        "vault otp",
+        "clean",
+        "premium",
+        "cards",
+        "dapp",
+        "polished",
+        "like vault",
+        "same style",
+        "same cards",
+        "those buttons",
+        "good quality",
+        "radius full",
+        "pill buttons"
+      ],
+      "must_read": [
+        "Application/cards (20)__action-card.tsx",
+        "Application/authentication (24)__App.tsx",
+        "Application/cards (20)__security-settings.tsx"
+      ],
+      "optional_read": [
+        "Application/cards (20)__cell-wrapper.tsx",
+        "Application/navbars (3)__App.tsx"
+      ],
+      "layout": {
+        "max_width": "max-w-3xl mx-auto",
+        "page_padding": "px-4 py-6 sm:px-6 sm:py-10",
+        "gap": "gap-6"
+      },
+      "primary_color": {
+        "DEFAULT": "#0F8A52",
+        "background": "#F4F4F5",
+        "note": "Soft green trust; radial washes ok, no purple AI full-bleed"
+      },
+      "fonts": {
+        "sans": "IBM Plex Sans",
+        "mono": "IBM Plex Mono"
+      },
+      "compose_recipe": [
+        "topbar_icon_tile_brand_wallet",
+        "status_chips_2_to_3",
+        "hero_one_headline_one_lede",
+        "three_action_cards",
+        "one_gate_card_for_current_state",
+        "main_form_card",
+        "content_card_list_or_empty",
+        "error_card_if_needed",
+        "stop_no_tech_footer"
+      ],
+      "copy_rules": [
+        "Human product language only",
+        "No ciphertext/Polybase/calldata/architecture footnotes",
+        "No contract address footers unless user asked",
+        "No chain-name or truncated-address chips in chrome",
+        "Logo is icon + name only"
+      ],
+      "anti_patterns": [
+        "Purple full-bleed AI marketing for product apps",
+        "Sticky glass mega-nav",
+        "Fake KPIs",
+        "Raw lists without cards",
+        "Default square buttons when pill CTAs expected",
+        "More than one primary filled CTA per card",
+        "Landing and desk jammed on one page",
+        "Second Connect button when navbar already has Connect",
+        "Job subtitle beside the logo",
+        "Gradient-clipped faded hero type",
+        "Engineering chips (chain name, truncated vault, Pre-flight)",
+        "Fake ACME footer / newsletter / social to #"
+      ]
+    },
+    "clean_product_compact": {
+      "id": "clean_product_compact",
+      "label": "Clean product compact (mobile-first)",
+      "inherits": "clean_product",
+      "when": "Mobile-first, tight screens, hide feature marketing row",
+      "keywords": ["compact", "mobile first", "tight", "phone ui"],
+      "must_read": [
+        "Application/cards (20)__action-card.tsx",
+        "Application/authentication (24)__App.tsx"
+      ],
+      "compose_recipe": [
+        "topbar",
+        "hero_short",
+        "gate",
+        "form",
+        "list",
+        "skip_three_feature_cards_if_space_tight"
+      ]
+    },
+    "trust_green": {
+      "id": "trust_green",
+      "label": "Trust green (finance / security)",
+      "inherits": "clean_product",
+      "when": "Finance, security, vault, savings, compliance-feeling product",
+      "keywords": [
+        "finance",
+        "security product",
+        "savings",
+        "trust",
+        "green brand",
+        "vault"
+      ],
+      "must_read": [
+        "Application/cards (20)__action-card.tsx",
+        "Application/authentication (24)__App.tsx",
+        "Application/cards (20)__security-settings.tsx"
+      ],
+      "primary_color": {
+        "DEFAULT": "#0F8A52",
+        "force": true
+      },
+      "notes": "Same structure as clean_product; force green primary tokens and security icons (shield, lock, key)."
+    },
+    "marketing_campaign": {
+      "id": "marketing_campaign",
+      "label": "Marketing campaign",
+      "when": "Landing, pricing, launch — not logged-in product shell",
+      "keywords": ["landing", "marketing site", "pricing page", "campaign", "homepage", "how it works", "hero"],
+      "must_read": [
+        "Marketing/hero-sections (4)__App.tsx",
+        "Marketing/hero-sections (4)__basic-navbar.tsx",
+        "AI/features (1)__feature-card.tsx"
+      ],
+      "optional_read": [
+        "Marketing/footers (4)__App.tsx",
+        "Marketing/faqs (4)__App.tsx",
+        "Marketing/pricing (8)__App.tsx"
+      ],
+      "case_study": "case-studies/landing-and-desk.md",
+      "compose_recipe": [
+        "navbar_brand_name_only_no_connect",
+        "solid_hero_full_job_line_text_balance_no_br",
+        "features_three_category_feature_cards",
+        "how_it_works_three_step_feature_cards",
+        "accordion_questions",
+        "human_footer_two_real_columns",
+        "cta_is_product_verb_to_desk"
+      ],
+      "inherits_button_matrix_from": "clean_product",
+      "notes": "Still pill CTAs and solar icons. Never put Connect on the landing. Never fade or <br />-chop hero type. Never skip Features. Features ≠ How it works. Same full job line on landing and desk. Never ship ACME newsletter footer. If the product also has work to do, pair with a /desk route (clean_product) — see landing-and-desk.md."
+    },
+    "dense_admin": {
+      "id": "dense_admin",
+      "label": "Dense admin / data",
+      "when": "Tables, analytics, multi-panel consoles",
+      "keywords": ["admin", "table", "analytics", "console", "dense dashboard"],
+      "must_read": [
+        "Application/tables (1)__App.tsx",
+        "Charts/KPI-stats (9)__App.tsx",
+        "Application/sidebars (19)__App.tsx"
+      ],
+      "inherits_button_matrix_from": "clean_product",
+      "notes": "Keep card borders and full-radius CTAs; allow sidebar + denser grids."
+    },
+    "chat_soft": {
+      "id": "chat_soft",
+      "label": "Chat / AI soft product",
+      "when": "Chat UIs that should still feel product-clean, not purple marketing",
+      "keywords": ["chat ui", "copilot ui", "ai product"],
+      "must_read": [
+        "AI/prompt-containers (11)__App.tsx",
+        "AI/prompt-containers (11)__message-card.tsx",
+        "AI/prompt-containers (11)__prompt-input.tsx"
+      ],
+      "inherits_button_matrix_from": "clean_product",
+      "notes": "Chat shell + pill send buttons; avoid full marketing heroes."
+    }
+  },
+  "selection_rules": [
+    "Default → clean_product",
+    "User says like Vault OTP / those cards / those buttons → clean_product + read case-studies/vault-otp.md",
+    "Surface H (wallet_dapp) → clean_product or trust_green only (never marketing_campaign)",
+    "Surface A landing → marketing_campaign + case-studies/landing-and-desk.md; CTA to /desk; zero Connect on landing",
+    "If product has landing AND work surface → two routes; never jam; theme does not collapse the split",
+    "Surface D chat → chat_soft (not random purple landing)",
+    "Surface F dense → dense_admin",
+    "Efficient: clean_product_core 3 files first; +1 route App only if needed; max 4",
+    "Always apply button_matrix for CTAs"
+  ]
+}

@@ -1,0 +1,89 @@
+{
+  "skill_name": "problem-finder",
+  "suite": "description-triggers",
+  "rule": "Should-trigger prompts must load problem-finder even if the user never says 'problem discovery'. Near-miss prompts must not steal a pure implementation or an already-routed crypto-idea search.",
+  "should_trigger": [
+    {
+      "id": "T01",
+      "prompt": "Hackathon idea: an app that helps market women reduce spoilage."
+    },
+    {
+      "id": "T02",
+      "prompt": "What should I build for small restaurant owners?"
+    },
+    {
+      "id": "T03",
+      "prompt": "We're building an AI dashboard for warehouse managers to cut waste."
+    },
+    {
+      "id": "T04",
+      "prompt": "Validate this idea: Uber for leftover tomatoes."
+    },
+    {
+      "id": "T05",
+      "prompt": "User pain: stall traders discount unsold stock every afternoon."
+    },
+    {
+      "id": "T06",
+      "prompt": "Startup idea around warehouse waste."
+    },
+    {
+      "id": "T07",
+      "prompt": "A market woman loses money to spoilage, price hurdles, and transportation. What should we build?"
+    },
+    {
+      "id": "T08",
+      "prompt": "Is this a real problem or am I solutioning?"
+    },
+    {
+      "id": "T09",
+      "prompt": "Find problems worth building for line cooks."
+    },
+    {
+      "id": "T10",
+      "prompt": "I have a solution and no problem. Help."
+    }
+  ],
+  "near_miss": [
+    {
+      "id": "N01",
+      "prompt": "Fix the TypeScript error in src/app.ts.",
+      "why": "pure implementation"
+    },
+    {
+      "id": "N02",
+      "prompt": "Refactor this React component to use useMemo.",
+      "why": "pure implementation"
+    },
+    {
+      "id": "N03",
+      "prompt": "Write a CSS hover state for the primary button.",
+      "why": "pure implementation"
+    },
+    {
+      "id": "N04",
+      "prompt": "The stall trader discounts unsold perishables each afternoon because she has no overnight hold that matches her lot size, and cold-chain operators only rent to wholesalers. Implement the overnight-hold booking API.",
+      "why": "already-sharpened plus implementation; do not redo discovery as a pitch"
+    },
+    {
+      "id": "N05",
+      "prompt": "What should I build in crypto? Search the idea bank and rank DeFi vs DePIN.",
+      "why": "crypto-idea search belongs to find-next-crypto-idea"
+    },
+    {
+      "id": "N06",
+      "prompt": "git rebase onto main and resolve the conflict in package-lock.json.",
+      "why": "pure implementation"
+    },
+    {
+      "id": "N07",
+      "prompt": "Translate this README into Spanish.",
+      "why": "not a problem-discovery task"
+    },
+    {
+      "id": "N08",
+      "prompt": "Add pagination to the /orders endpoint.",
+      "why": "pure implementation"
+    }
+  ]
+}
