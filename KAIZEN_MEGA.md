@@ -1,1040 +1,765 @@
-# KAIZEN MEGA — Complete Coding Agent Capability Report
-
-Part of the BuildOS-workflow repository.
-This report catalogs every useful skill, from UI/design through backend, crypto, infrastructure, security, research, video, and agent tooling.
-
-## Executive summary
-
-- **Total skills**: 239
-- **Repository location**: `BuildOS-workflow/skills/`
-
-### Useful skills by layer
-- **frontend/design**: 125
-- **video/media**: 8
-- **product/strategy**: 24
-- **solana/crypto**: 15
-- **agent/tools**: 27
-- **security/audit**: 11
-- **research/analytics**: 2
-- **database/infrastructure**: 9
-- **general/other**: 18
-
----
-
-## 1. Absolute rules (non-negotiable)
-
-1. **No AI co-author trailers.** Never add `Co-Authored-By: Claude/Codex/Anthropic` or `noreply@anthropic.com` to commits.
-2. **No assistant mentions in artifacts.** Never mention Claude/Codex/Anthropic in PRs, issues, code comments, or committed files unless explicitly asked.
-3. **Strip accidental trailers immediately.** If one lands, `git commit --amend` and `git push --force-with-lease`.
-4. **No mock metrics, demo data, or fake social proof.** Empty/honest > fake-complete.
-5. **Build only what is asked.** MVP first; no speculative auth/deployment/monitoring.
-6. **Read before writing.** `git status` and `git branch` at session start.
-7. **Parallelize by default.** Batch operations, use MCP tools for their designed purpose.
-
----
-
-## 2. Default prototype workflow
-
-1. **Capture intent** — user, problem, core loop, desired output.
-2. **Plan** — TodoWrite for 3+ steps, identify parallel work, pick the right skill.
-3. **Validate / research** — `validate-idea`, `competitive-landscape`, `defillama-research` if unvalidated.
-4. **Design** — `brand-design`, `frontend-design-guidelines`, `design-taste` if UI.
-5. **Build** — scaffold with `scaffold-project` (Solana) or project stack; `build-with-claude` for guidance.
-6. **Audit** — `vibe-security`, `cso`, `review-and-iterate` before ship.
-7. **Ship** — feature branch, meaningful commits, `create-readme`, pitch/grant/video if needed.
-
----
-
-## 3. Skill inventory by layer
-
-For each skill: `name` — repository path — description/triggers.
-
-### frontend/design
-
-**`"source-command-sc-brainstorm"`**
-- Repo path: `skills/"source-command-sc-brainstorm"`
-- Description: "Interactive requirements discovery through Socratic dialogue and systematic exploration"
-
-**`"source-command-sc-build"`**
-- Repo path: `skills/"source-command-sc-build"`
-- Description: "Build, compile, and package projects with intelligent error handling and optimization"
-
-**`"source-command-sc-design"`**
-- Repo path: `skills/"source-command-sc-design"`
-- Description: "Design system architecture, APIs, and component interfaces with comprehensive specifications"
-
-**`"source-command-sc-document"`**
-- Repo path: `skills/"source-command-sc-document"`
-- Description: "Generate focused documentation for components, functions, APIs, and features"
-
-**`"source-command-sc-troubleshoot"`**
-- Repo path: `skills/"source-command-sc-troubleshoot"`
-- Description: "Diagnose and resolve issues in code, builds, deployments, and system behavior"
-
-**`"source-command-sc-workflow"`**
-- Repo path: `skills/"source-command-sc-workflow"`
-- Description: "Generate structured implementation workflows from PRDs and feature requirements"
-
-**`ai-saas-app-playbook`**
-- Repo path: `skills/ai-saas-app-playbook`
-- Description: Build revenue-first AI / mobile / SaaS apps using the BusDownBonnor (Connor Burd) playbook: distribution-first ideas, competitor onboarding teardown, vibe-code core loop, frictionless onboarding + paywall, influencer/UGC then paid ads. Use when the user wants to build a consumer SaaS or subscription app with AI, mentions BusDownBonnor, vibe coding for revenue, Face Harmony-style app reviews, influencer equity apps, or "how do successful AI app founders ship."
-
-**`ai-without-brain-rot`**
-- Repo path: `skills/ai-without-brain-rot`
-- Description: Use LLM chatbots to sharpen critical thinking instead of outsourcing it. Socratic provocator, Six Thinking Hats, metacognition before prompting, effort triage, and deep-systems project stress tests (surface vs Turnstile-depth). Use when the user mentions brain rot, AI slop, critical thinking with AI, Socratic provocator, thinking hats, hackathon ideas feeling shallow, Web3 project ideation, Turnstile-depth builds, or "use AI without rotting my brain".
-
-**`analyzing-schema-change-storage-risk`**
-- Repo path: `skills/analyzing-schema-change-storage-risk`
-- Description: Estimates storage requirements for CockroachDB online schema change backfills using SHOW RANGES WITH DETAILS, KEYS, INDEXES. Use before CREATE INDEX, ADD COLUMN with INDEX/UNIQUE, ALTER PRIMARY KEY, CREATE MATERIALIZED VIEW, CREATE TABLE AS, REFRESH, or SET LOCALITY on tables with large per-index footprints, to avoid mid-backfill disk exhaustion.
-
-**`animation-vocabulary`**
-- Repo path: `skills/animation-vocabulary`
-- Description: Reverse-lookup glossary that turns a vague description of a web animation or motion effect into its exact term ("the bouncy thing when a popover opens" → Pop in; "the iOS rubber-band scroll" → Rubber-banding). Use when the user asks "what's it called when…", or describes a motion effect without knowing its name and wants the right word to prompt an AI or designer with. For naming an effect, not designing or building one.
-
-**`apple-design`**
-- Repo path: `skills/apple-design`
-- Description: Apple's approach to interface design and fluid, physical motion, translated for the web. Use when building or reviewing gesture-driven UI, spring animations, drag/swipe/sheet interactions, momentum and interruptible transitions, translucent materials and depth, typography (optical sizing, tracking, leading), reduced-motion, or the design foundations (feedback, spatial consistency, restraint) behind Apple-style interfaces.
-
-**`auditing-cis-benchmark`**
-- Repo path: `skills/auditing-cis-benchmark`
-- Description: Audits a self-hosted CockroachDB cluster against the CIS CockroachDB Benchmark v1.0.0 Level 1 controls. Supports two audit depths — quick automated scans and full CIS audit procedures. Produces a structured PASS/FAIL/MANUAL report covering installation, system hardening, logging, user access, data protection, and CockroachDB settings. Use when preparing for CIS compliance assessments, hardening self-hosted deployments, or validating security posture against industry benchmarks.
-
-**`auditing-table-statistics`**
-- Repo path: `skills/auditing-table-statistics`
-- Description: Audits optimizer table statistics for staleness, missing coverage, and data quality issues using SHOW STATISTICS. Use when diagnosing poor query performance, unexpected plan changes, or after bulk data changes to identify stale statistics requiring refresh via CREATE STATISTICS.
-
-**`benchmarking-transaction-patterns`**
-- Repo path: `skills/benchmarking-transaction-patterns`
-- Description: Guides benchmarking and comparing explicit multi-statement transactions versus single-statement CTE transactions in CockroachDB, with fair test methodology, contention analysis, and performance interpretation. Use when comparing transaction formulations, benchmarking CockroachDB workloads under contention, investigating retry pressure, or deciding whether to rewrite multi-step application flows into single SQL statements.
-
-**`better-interface`**
-- Repo path: `skills/better-interface`
-- Description: Combines all of the `better-*` skills into a single review across accessibility, layout, writing, typography, color and UI polish.
-
-**`book-to-skill`**
-- Repo path: `skills/book-to-skill`
-- Description: "Converts books and documents (PDF, EPUB, DOCX, HTML, Markdown, plain text, RTF, MOBI/AZW with Calibre) into structured agent skills, extracting frameworks, mental models, principles, techniques, and anti-patterns. Use when the user wants to study a document through GitHub Copilot CLI, Amp, or Claude Code, apply an author's frameworks while working, or build a reusable knowledge base from a file."
-
-**`bpfg-hackathon`**
-- Repo path: `skills/bpfg-hackathon`
-- Description: Run the Billion Person Focus Group (BPFG) method for fast hackathons and sprints — living questions, full research commissions, scouts, elder councils, void language, Layer-1 pre-verbal insight, village loop (sense/synthesize/shape), multi-model triangulation, and demo spines. Use when the user mentions BPFG, billion person focus group, how to see, how to build, void language, living question, pre-verbal insight, village of agents, scout/elder council, sensors and shapers, hackathon research OS, or runs /bpfg-hackathon, /bpfg, /village, /brief-builder, /living-question. Also use for 24h/48h hackathon insight → product → pitch loops that must listen to real markets before building.
-
-**`brand-design`**
-- Repo path: `skills/brand-design`
-- Description: Generate, preview, and apply a brand color palette (plus typography, gradients, and tone/voice) to a frontend project. Use when a user says "pick brand colors", "choose a color palette", "brand design", "generate a palette", "theme this project", "what colors should I use", "brand identity", "design my brand", "set up brand colors", "time to build the frontend", "let's start the UI", "make this look branded", or any time a project is about to start frontend work and has no brand.md yet. Presents 6 candidate palettes as a visual HTML preview opened in the user's browser, supports an infinite regenerate loop until the user is satisfied, then writes the chosen palette to shadcn CSS variables (light + dark), wires up typography via next/font, derives brand gradients, and writes brand.md for future reference.
-
-**`brand-guidelines`**
-- Repo path: `skills/brand-guidelines`
-- Description: Applies Anthropic's official brand colors and typography to any sort of artifact that may benefit from having Anthropic's look-and-feel. Use it when brand colors or style guidelines, visual formatting, or company design standards apply.
-
-**`brandkit`**
-- Repo path: `skills/brandkit`
-- Description: Premium brand-kit image generation skill for creating high-end brand-guidelines boards, logo systems, identity decks, and visual-world presentations. Trained for minimalist, cinematic, editorial, dark-tech, luxury, cultural, security, gaming, developer-tool, and consumer-app brand systems. Optimized for intentional logo concepting, refined composition, sparse typography, strong symbolic meaning, premium mockups, art-directed imagery, and flexible grid layouts.
-
-**`build-data-pipeline`**
-- Repo path: `skills/build-data-pipeline`
-- Description: Guide a developer through building a Solana data pipeline or indexer. Use when a user says "build an indexer", "data pipeline", "analytics", "track transactions", "monitor wallets", "webhook", "index accounts", or "real-time data". Reads build-context.md from a prior scaffold phase if available.
-
-**`build-defi-protocol`**
-- Repo path: `skills/build-defi-protocol`
-- Description: Guide a developer through building a DeFi protocol on Solana. Use when a user says "build a DEX", "AMM", "lending protocol", "vault", "yield", "liquidity pool", "DeFi protocol", "swap program", "build a DeFi app", "perpetual futures", "perps protocol", "leverage trading", or "derivatives". Reads build-context.md from a prior scaffold phase if available.
-
-**`build-mobile`**
-- Repo path: `skills/build-mobile`
-- Description: Guide a developer through building a Solana mobile app. Use when a user says "build a mobile app", "React Native Solana", "Solana mobile", "mobile wallet", "mobile dApp", "Android Solana", or "iOS Solana". Reads build-context.md from a prior scaffold phase if available.
-
-**`build-with-claude`**
-- Repo path: `skills/build-with-claude`
-- Description: Guide a developer through building their Solana MVP step by step using Claude Code. Use when a user says "help me build this", "start the MVP", "guide me through implementation", "what should I build first", or "walk me through the code". Reads build-context.md from a prior scaffold phase if available.
-
-**`bypass-slop`**
-- Repo path: `skills/bypass-slop`
-- Description: Full-session anti-slop skill (UI + agent + auth + git + local dev) distilled from a long NairaShield-style build (~10h of corrections). Use when shipping product UI, landing pages, dashboards, Cloudflare agents, Google auth, brand marks, or configs. Blocks mock metrics, demo modes, eng-jargon copy, sticky glass nav, landing-as-dashboard scroll nav, em dashes, product-photo bento junk, AI commit trailers, env-stored product policy, stress-stack overlays, and Real Talk copy pivots (truth is / not just X / let’s break it down). Triggers: /bypass-slop, bypass-slop, anti-slop, no mocks, real metrics only, PAS copy, hero-only bg, design-promax without slop, don't invent, dashboard app not landing. Apply proactively on greenfield product work when the user values honesty and craft. Scope: multi-harness user skill (~/.agents/skills, symlinked for Claude/Codex/Cursor/Grok).
-
-**`canvas-design`**
-- Repo path: `skills/canvas-design`
-- Description: Create beautiful visual art in .png and .pdf documents using design philosophy. You should use this skill when the user asks to create a poster, piece of art, design, or other static piece. Create original visual designs, never copying existing artists' work to avoid copyright violations.
-
-**`claude-agent-sdk-expert`**
-- Repo path: `skills/claude-agent-sdk-expert`
-- Description: Use when reviewing, debugging, or building AI agents with the Codex Agent SDK (TypeScript or Python). Covers the Agent class, query(), agent.stream(), tool_use, tool schemas, maxIterations, subagents, hooks (PreToolCall, PostToolCall, StopHook), MCP integration, multi-agent coordination, structured output, context window management, stop_reason handling, and agentic loop architecture. Do NOT activate for general Codex API usage without agents, simple messages.create() calls, or non-agent Anthropic SDK usage — use the Codex-api skill for those.
-
-**`claude-api`**
-- Repo path: `skills/claude-api`
-- Description: "Build, debug, and optimize Codex API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Codex API code between Codex model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements). TRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Codex API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Codex feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project. SKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML."
-
-**`cockroachdb-sql`**
-- Repo path: `skills/cockroachdb-sql`
-- Description: Use when writing, generating, or optimizing SQL for CockroachDB, designing CockroachDB schemas, or when the user asks about CockroachDB-specific SQL patterns, type mappings, and distributed database best practices. Also use when encountering CockroachDB anti-patterns like missing primary keys, sequential ID hotspots, or incorrect type usage.
-
-**`colosseum-copilot`**
-- Repo path: `skills/colosseum-copilot`
-- Description: Search and analyze 5,400+ Solana hackathon projects using Colosseum Copilot. Find similar projects, discover winner patterns, identify gaps, and explore ML clusters. Use when a user says "colosseum copilot", "hackathon projects", "winner patterns", "gap analysis hackathon", "similar Solana projects", or "colosseum landscape". Requires a Colosseum Copilot token.
-
-**`copywriting`**
-- Repo path: `skills/copywriting`
-- Description: When the user wants to write, rewrite, or improve marketing copy for any page — including homepage, landing pages, pricing pages, feature pages, about pages, or product pages. Also use when the user says "write copy for," "improve this copy," "rewrite this page," "marketing copy," "headline help," "CTA copy," "value proposition," "tagline," "subheadline," "hero section copy," "above the fold," "this copy is weak," "make this more compelling," or "help me describe my product." Use this whenever someone is working on website text that needs to persuade or convert. For email copy, see emails. For popup copy, see popups. For editing existing copy, see copy-editing. For the offer underneath the copy (bonuses, guarantees, value framing), see offers.
-
-**`create-pitch-deck`**
-- Repo path: `skills/create-pitch-deck`
-- Description: Create a structured pitch deck for a crypto project. Use when a user says "create a pitch deck", "help me pitch", "I need slides", "prepare for demo day", "investor presentation", or "grant application". Reads idea-context.md and build-context.md from prior phases if available.
-
-**`cua-skill`**
-- Repo path: `skills/cua-skill`
-- Description: "MUST USE whenever the user wants to automate a real desktop or sandbox - clicking, typing, scrolling, screenshotting, running an OS shell command, or handing a high-level 'open browser and do X' task to an autonomous computer-use agent. Wraps the trycua/cua Python toolkit via its `cua` CLI - pynput-based, cross-platform (macOS / Linux / Windows). NO custom tools are registered; you call `cua` through pi's built-in bash and read screenshots back through the Read tool. Triggers: cua, computer use, computer-use, GUI automation, screenshot the desktop, click on the screen, type into the active app, scroll the page, control my computer, drive my browser, sandbox, docker sandbox, QEMU sandbox, Lume sandbox, ComputerAgent, cua do, cua sandbox, 컴퓨터 자동화, 스크린샷 찍어, 내 컴퓨터 조작, 브라우저 열어서, 샌드박스, 화면 자동화, 마우스로 클릭, 키보드 타이핑, computer use 위임, 자동으로 클릭, 자율 에이전트로 처리."
-
-**`debug-program`**
-- Repo path: `skills/debug-program`
-- Description: Help a developer debug a failing Solana program or transaction. Use when a user says "debug my program", "program error", "transaction failed", "stuck", "help me fix", "why is this failing", "error code", or "instruction failed". Reads build-context.md if available.
-
-**`deep-systems-projects`**
-- Repo path: `skills/deep-systems-projects`
-- Description: Alias for deep project stress-testing. Canonical skill is ai-without-brain-rot (Habit 3). Use when ideating Web3/hackathon projects, roasting shallow ideas, or asking for Turnstile-depth builds.
-
-**`defillama-research`**
-- Repo path: `skills/defillama-research`
-- Description: Research DeFi protocols and market opportunities using DefiLlama data. Use when a user says "show me TVL data", "which protocols are growing", "DeFi market research", "what should I build in DeFi", "find DeFi opportunities", "analyze protocol TVL", or "which chains are trending". Uses TVL as a trust metric to suggest protocols worth building on or integrating with.
-
-**`deploy-to-mainnet`**
-- Repo path: `skills/deploy-to-mainnet`
-- Description: Guide a Solana project from devnet to mainnet production deployment. Use when a user says "deploy to mainnet", "go to production", "deployment checklist", "prepare for launch", "mainnet deployment", or "ship it". Reads build-context.md from a prior build phase if available.
-
-**`design-promax`**
-- Repo path: `skills/design-promax`
-- Description: Premium React UI via HeroUI Pro + triple-axis router (theme × route × style). MUST ask which Pro theme first: Default | Brutalism | Glass | Mouve (unless user already named one). Then clean_product compose (Vault OTP / GhostKeys) + real Pro sources. Files: THEMES.json, STYLE_PRESETS.json, ROUTE_REGISTRY.json, case-studies/vault-otp.md. Showcase packs: Map navigation, Pro AI chat, Music player, Shopping experience. Triggers: design-promax, HeroUI, Brutalism, Glass, Mouve, clean_product, Vault OTP, GhostKeys, those cards, route UI.
-
-**`design-taste`**
-- Repo path: `skills/design-taste`
-- Description: Design direction, judgment calls, and anti-AI-slop review for crypto UIs. Use when the user says "this looks generic", "this looks AI-generated", "anti-slop", "design judgment", "premium feel", "design direction", "what direction should this take", "make this feel more premium", "review for taste", "theme reference", "warm monochrome", "stark minimal", "gradient trust", "workstation dense", "soft consumer", "gallery editorial", "density", "page archetype", "design brief", "pitch deck style", "deck visual direction". Also use when building any new page-level component that needs aesthetic direction before implementation. Does NOT claim "make this look good" or "polish this" — those belong to frontend-design-guidelines.
-
-**`design-taste-frontend`**
-- Repo path: `skills/design-taste-frontend`
-- Description: Senior UI/UX Engineer. Architect digital interfaces overriding default LLM biases. Enforces metric-based rules, strict component architecture, CSS hardware acceleration, and balanced design engineering.
-
-**`designing-application-transactions`**
-- Repo path: `skills/designing-application-transactions`
-- Description: Guides application developers in designing correct and performant transaction patterns for CockroachDB, covering transaction lifetime, implicit vs explicit transactions, retry handling with exponential backoff, pushing invariants into SQL, selective pessimistic locking, set-based operations, connection pooling, prepared statements, keyset pagination, follower reads, and separating business logic from database logic. Use when building applications on CockroachDB, designing transaction workflows, handling retries, optimizing application-layer database interactions, or configuring connection pools.
-
-**`designing-multi-region-applications`**
-- Repo path: `skills/designing-multi-region-applications`
-- Description: Guides developers in selecting and implementing multi-region patterns for CockroachDB applications, covering active-passive vs active-active architectures, REGIONAL BY ROW, GLOBAL tables, manual geo-partitioning with lease preferences, and live demo setup with validation queries. Use when designing multi-region database topologies, choosing between REGIONAL BY ROW and manual partitioning, building multi-region demos, or optimizing cross-region latency.
-
-**`doc-coauthoring`**
-- Repo path: `skills/doc-coauthoring`
-- Description: Guide users through a structured workflow for co-authoring documentation. Use when user wants to write documentation, proposals, technical specs, decision docs, or similar structured content. This workflow helps users efficiently transfer context, refine content through iteration, and verify the doc works for readers. Trigger when user mentions writing docs, creating proposals, drafting specs, or similar documentation tasks.
-
-**`embedded-captions`**
-- Repo path: `skills/embedded-captions`
-- Description: Add captions or subtitles to an existing single-subject talking-head video without editing the footage. Use for plain verbatim captions, cinematic captions embedded behind the subject, VFX captions, “炸/特效/酷炫字幕,” or a named identity from the 35-style catalog. Route by visual identity, not by backend engine. The quiet `anchor` rail is the default; embed every word only when the user explicitly wants a fully cinematic treatment. The workflow runs locally end to end, including transcription and subject matting; split multi-shot footage before applying it.
-
-**`emil-design-eng`**
-- Repo path: `skills/emil-design-eng`
-- Description: This skill encodes Emil Kowalski's philosophy on UI polish, component design, animation decisions, and the invisible details that make software feel great.
-
-**`enforcing-password-policies`**
-- Repo path: `skills/enforcing-password-policies`
-- Description: Configures and enforces password policies on CockroachDB clusters including minimum length, complexity requirements, and hash cost settings. Use when strengthening authentication requirements, setting up password policies for a new cluster, or meeting compliance password standards.
-
-**`find-animation-opportunities`**
-- Repo path: `skills/find-animation-opportunities`
-- Description: Search a codebase or UI for places that don't animate but should, and reject everything that shouldn't. Read-only; it proposes motion with exact values, it does not implement it. Use when the user asks "what could be animated here?" or wants to "make this feel more alive". For fixing existing animations, use improve-animations or review-animations instead.
-
-**`find-next-crypto-idea`**
-- Repo path: `skills/find-next-crypto-idea`
-- Description: Interview users sharply to discover, rank, or validate what they should build in crypto. Use when a user asks what to build in crypto, wants startup ideas in a crypto niche such as DeFi or AI x crypto, wants blunt feedback on an existing crypto idea, or wants a concrete artifact comparing the best next ideas. Treat the bundled idea datasets as inspiration, not constraints, and always combine them with fresh market research.
-
-**`frontend-design`**
-- Repo path: `skills/frontend-design`
-- Description: Create distinctive, production-grade frontend interfaces with high design quality. Use this skill when the user asks to build web components, pages, artifacts, posters, or applications (examples include websites, landing pages, dashboards, React components, HTML/CSS layouts, or when styling/beautifying any web UI). Generates creative, polished code and UI design that avoids generic AI aesthetics.
-
-**`frontend-design-guidelines`**
-- Repo path: `skills/frontend-design-guidelines`
-- Description: Apply high-quality web interface design rules when building, reviewing, or styling frontend code. Use when the user says "build a frontend", "create a component", "style this", "review my UI", "build a landing page", "design this page", "make this look good", "add animation", "build a form", "improve the UI", "polish this", "make this feel right", "review for craft", "the interaction feels off", "make this look polished", or when generating any React/Next.js component. Defaults to Tailwind CSS and shadcn/ui. Reads brand.md at the project root (if present) and uses it as the source of truth for colors, typography, and voice. Covers interactions, layout, typography, forms, animation, states, accessibility, and a dedicated craft-and-polish layer for taste-level review. Use proactively whenever frontend code is being written — do not wait to be asked.
-
-**`general-video`**
-- Repo path: `skills/general-video`
-- Description: Author or edit a custom HyperFrames composition when no specialized workflow fits, or when BRIEF.md sets flow: companion. Use for longer or multi-scene pieces, brand and sizzle reels, montages, static loops, static title cards, footage remixes, and freeform builds. Use motion-graphics instead for a short unnarrated motion-first unit, including an animated title. Route fresh creation through hyperframes before using this skill.
-
-**`geo`**
-- Repo path: `skills/geo`
-- Description: GEO-first SEO analysis tool. Optimizes websites for AI-powered search engines (ChatGPT, Codex, Perplexity, Gemini, Google AI Overviews) while maintaining traditional SEO foundations. Performs full GEO audits, citability scoring, AI crawler analysis, llms.txt generation, brand mention scanning, platform-specific optimization, schema markup, technical SEO, content quality (E-E-A-T), and client-ready GEO report generation. Use when user says "geo", "seo", "audit", "AI search", "AI visibility", "optimize", "citability", "llms.txt", "schema", "brand mentions", "GEO report", or any URL for analysis.
-
-**`geo-brand-mentions`**
-- Repo path: `skills/geo-brand-mentions`
-- Description: Brand mention and authority scanner for AI visibility. Analyzes brand presence across platforms that AI models rely on for entity recognition and citation decisions. Produces a Brand Authority Score (0-100) with platform-specific recommendations.
-
-**`geo-report-pdf`**
-- Repo path: `skills/geo-report-pdf`
-- Description: Generate a professional PDF report from GEO audit data using ReportLab. Creates a polished, client-ready PDF with score gauges, bar charts, platform readiness visualizations, color-coded tables, and prioritized action plans.
-
-**`gpt-taste`**
-- Repo path: `skills/gpt-taste`
-- Description: Elite UX/UI & Advanced GSAP Motion Engineer. Enforces Python-driven true randomization for layout variance, strict AIDA page structure, wide editorial typography (bans 6-line wraps), gapless bento grids, strict GSAP ScrollTriggers (pinning, stacking, scrubbing), inline micro-images, and massive section spacing.
-
-**`grill-me`**
-- Repo path: `skills/grill-me`
-- Description: Interview the user relentlessly about a plan or design until reaching shared understanding, resolving each branch of the decision tree. Use when user wants to stress-test a plan, get grilled on their design, or mentions "grill me".
-
-**`high-end-visual-design`**
-- Repo path: `skills/high-end-visual-design`
-- Description: Teaches the AI to design like a high-end agency. Defines the exact fonts, spacing, shadows, card structures, and animations that make a website feel expensive. Blocks all the common defaults that make AI designs look cheap or generic.
-
-**`hyperframes`**
-- Repo path: `skills/hyperframes`
-- Description: Mandatory entry point: read this first for any request to make, create, edit, animate, or render a video, animation, or motion graphic, including a promo, explainer, captioned clip, title card, overlay, slideshow or interactive deck, Remotion port, or any HyperFrames HTML composition. Also use it to inspect, diagnose, validate, preview, publish, or batch-render an existing HyperFrames project. Inputs may be a website URL, GitHub PR, Figma design or URL, text or brief, existing footage, or music. It resumes project state, captures intent when applicable, selects and installs the owning workflow, and routes domain capabilities. HyperFrames is the default output framework unless the user explicitly chooses another framework for the deliverable or asks only to record a browser session.
-
-**`hyperframes-animation`**
-- Repo path: `skills/hyperframes-animation`
-- Description: "All animation knowledge for HyperFrames — atomic motion rules, multi-phase scene blueprints, scene transitions, broader motion-design techniques, AND the seven runtime adapters (GSAP default, plus Lottie, Three.js, Anime.js, CSS keyframes, Web Animations API, TypeGPU). Use for any motion or animation task: pick 2-4 rules and compose, or load a blueprint, or look up runtime-specific API (e.g. GSAP eases / Lottie player / Three.js mixer). Also covers auditing an existing composition's choreography (animation map) and 24 named text-animation effects. HyperFrames-native: single paused timeline, seek-safe, deterministic."
-
-**`hyperframes-cli`**
-- Repo path: `skills/hyperframes-cli`
-- Description: Use the HyperFrames CLI development loop: init, add, catalog, capture, lint, check, snapshot, compare, grade-compare, preview, play, present, beats, keyframes, single or batch render, publish, cloud, cloudrun, feedback, lambda, doctor, browser, info, upgrade, skills, compositions, timeline, history, clean, docs, benchmark, telemetry, transcribe, auth, tts, and remove-background. Also use when diagnosing build or render failures. validate, inspect, and layout are deprecated aliases; use check. Covers local, HeyGen-hosted cloud, AWS Lambda, and Google Cloud Run rendering.
-
-**`hyperframes-core`**
-- Repo path: `skills/hyperframes-core`
-- Description: The HyperFrames composition contract — build one renderable project. Use for composition structure, the `data-*` timing attributes, `class="clip"`, tracks, sub-compositions, variables, framework-owned media playback, deterministic-render rules, and validation. Read before writing composition HTML.
-
-**`hyperframes-creative`**
-- Repo path: `skills/hyperframes-creative`
-- Description: Non-animation creative direction for HyperFrames videos. Use for design spec (frame.md / design.md) handling, palettes, typography, narration, beat planning, audio-reactive visuals, composition patterns, and brand / style decisions. For atomic motion patterns and scene blueprints, use `hyperframes-animation`.
-
-**`hyperframes-keyframes`**
-- Repo path: `skills/hyperframes-keyframes`
-- Description: Use when a HyperFrames composition needs a punch-in, punch-out, zoom, reframe, Ken Burns treatment, camera move, visual match/whip handoff, or other seek-safe 2D/3D keyframes; also for GSAP, CSS keyframes, Anime.js, WAAPI, FLIP, paths, masks, SVG morph/draw, text trails, 3D depth, or `hyperframes keyframes` diagnostics. Don't use for broad scene strategy, brand design, media sourcing, captions, or general video planning.
-
-**`hyperframes-registry`**
-- Repo path: `skills/hyperframes-registry`
-- Description: Search, install, and wire registry blocks and components into HyperFrames compositions. Use BEFORE hand-building any named visual — whenever a brief, a user, or a storyboard names a look, effect, treatment, or transition such as CRT scanlines, glitch, chromatic aberration, film grain, a shimmer sweep, a chart, a code or terminal window, a map, or a confetti burst — because roughly 400 hosted items already cover many of them and the search ranks all of them with nothing installed, no project, and no account. Also use when running hyperframes add or hyperframes catalog, installing one item or every block matching a tag, wiring an installed item into index.html, or working with hyperframes.json. Covers discovery, install locations, block sub-composition wiring, component snippet merging, and authoring a new block or component to contribute upstream (idea → scaffold → validate → PR).
-
-**`hyperframes-studio`**
-- Repo path: `skills/hyperframes-studio`
-- Description: Use when working with a person on a HyperFrames project in Studio: first, whether their message asks for a change at all (questions, loose ideas and "don't change anything" get an answer and a plan, not an edit); for a new film, the plan, storyboard and build order that the HyperFrames launch films follow; and how the timeline should be laid out so it reads well (one caption track, one element kind per track, every scene a sub-composition) and where captions and key content may sit (safe zones). Don't use for how to perform an individual edit (split, trim, retime, volume, copy, swap): that is `creator-editing-recipes.md` in `/hyperframes-core`.
-
-**`improve-animations`**
-- Repo path: `skills/improve-animations`
-- Description: Survey a codebase's animation and motion code as a senior motion advisor, then produce a prioritized audit and self-contained implementation plans for other agents (or cheaper models) to execute. Read-only on source code — it plans improvements, it does not apply them. Use when the user asks to "improve the animations", "audit the motion", "make this app feel better", or wants a roadmap of animation fixes rather than a review of a single diff.
-
-**`improve-ui`**
-- Repo path: `skills/improve-ui`
-- Description: Audit an existing product surface against its own design evidence, identify verified UI problems, and write self-contained implementation plans for another agent. Strictly read-only on product source. Use when asked to review, refine, improve, or clean up an interface without replacing its identity; investigate design-system drift; or prepare a design handoff.
-
-**`industrial-brutalist-ui`**
-- Repo path: `skills/industrial-brutalist-ui`
-- Description: Raw mechanical interfaces fusing Swiss typographic print with military terminal aesthetics. Rigid grids, extreme type scale contrast, utilitarian color, analog degradation effects. For data-heavy dashboards, portfolios, or editorial sites that need to feel like declassified blueprints.
-
-**`kaizen-mega`**
-- Repo path: `skills/kaizen-mega`
-- Description: Kaizen's full-stack prototype-building mega-skill. Loads the user's personal rules, workflow, and skill catalog, then routes to the right domain skill for fast UI/backend/crypto/video/pitch work. Use whenever the user says "build", "prototype", "scaffold", "design", "ship", "start working", "kaizen", or any product/MVP/hackathon task. Apply proactively on greenfield product work.
-
-**`landing-page-rewrite`**
-- Repo path: `skills/landing-page-rewrite`
-- Description: Rewrite or build a high-converting SaaS landing page using a proven conversion framework. Use when the user says "rewrite my landing page", "improve landing page", "create a landing page", "make a better hero", "my landing page isn't converting", "fix the homepage", "marketing page", or asks to apply conversion principles to a marketing/product page. Triggers proactively when a generic or vague landing page is detected during frontend work.
-
-**`launch-token`**
-- Repo path: `skills/launch-token`
-- Description: Guide a developer through launching a token on Solana. Use when a user says "launch a token", "create a token", "pump.fun", "bonding curve", "token launch", "create a memecoin", or "SPL token". Reads build-context.md from a prior scaffold phase if available.
-
-**`managing-cluster-capacity`**
-- Repo path: `skills/managing-cluster-capacity`
-- Description: Manages CockroachDB cluster capacity across all tiers. Self-Hosted covers node decommissioning for permanent removal and adding nodes for expansion. Advanced/BYOC covers scaling node count and machine size via Cloud Console, API, or Terraform. Standard covers adjusting provisioned compute (vCPUs). Basic auto-scales — guidance covers spending limits and cost management. Use when scaling capacity up or down, permanently removing nodes, or managing costs.
-
-**`mcp-builder`**
-- Repo path: `skills/mcp-builder`
-- Description: Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools. Use when building MCP servers to integrate external APIs or services, whether in Python (FastMCP) or Node/TypeScript (MCP SDK).
-
-**`media-use`**
-- Repo path: `skills/media-use`
-- Description: Agent Media OS, the single skill for every media need in a HyperFrames project. Resolve BGM, SFX, image, icon, brand logo, voice, color grade, or LUT into a frozen local file or paste-ready block + ledger record (one verb, `resolve`); generate via TTS / music / image models when the catalog misses; produce voiceover, transcription, captions, and background removal through one shared audio engine; operate on media (cut / reframe / transform); and reuse assets across projects. Also use for vague feedback that real footage looks dark, flat, boring, should feel retro/camcorder/print/ASCII, needs privacy, or needs a media reveal.
-
-**`micro-interactions`**
-- Repo path: `skills/micro-interactions`
-- Description: Expert micro-interaction architect for mobile apps, web applications, and responsive websites. Use this skill when the user asks to add, build, fix, audit, or consult on micro-interactions, animations, transitions, motion design, gesture feedback, haptics, loading states, skeleton screens, pull-to-refresh, swipe actions, scroll animations, button states, form validation feedback, toast notifications, modals, dropdowns, toggles, progress indicators, shared element transitions, spring physics, easing curves, motion tokens, or any interaction that provides visual/haptic/auditory feedback to user actions. Triggers on: "micro-interaction", "animation", "transition", "motion", "easing", "spring", "gesture", "haptic", "feedback", "loading state", "skeleton", "shimmer", "pull to refresh", "swipe", "drag", "hover effect", "press state", "focus ring", "scroll animation", "parallax", "stagger", "orchestration", "reduced motion", "View Transitions", "layout animation", "shared element", "hero animation", "morphing", "Framer Motion", "GSAP", "Lottie", "Rive", "React Spring", "anime.js", or any request to make an interface "feel better", "feel alive", "feel snappy", "feel responsive", or "feel polished".
-
-**`minimalist-ui`**
-- Repo path: `skills/minimalist-ui`
-- Description: Clean editorial-style interfaces. Warm monochrome palette, typographic contrast, flat bento grids, muted pastels. No gradients, no heavy shadows.
-
-**`molt-fetch`**
-- Repo path: `skills/molt-fetch`
-- Description: Guide for using molt fetch to migrate data from PostgreSQL, MySQL, Oracle, or MSSQL to CockroachDB. Use when running molt fetch commands, configuring storage backends, handling fetch failures/resumption, or chaining fetch with verify.
-
-**`molt-replicator`**
-- Repo path: `skills/molt-replicator`
-- Description: Guide for using the CockroachDB replicator to continuously replicate changes from PostgreSQL, MySQL, or Oracle to CockroachDB after an initial molt fetch data load. Use when setting up CDC replication, configuring pglogical/mylogical/oraclelogminer, or managing the fetch → replicator cutover workflow.
-
-**`molt-verify`**
-- Repo path: `skills/molt-verify`
-- Description: Guide for using molt verify to compare source and target databases for schema and row-level consistency after a migration. Use when running verify commands, tuning concurrency/sharding, handling schema mismatches, or validating data integrity post-migration.
-
-**`monad`**
-- Repo path: `skills/monad`
-- Description: Build on Monad — a high-performance EVM L1 (10,000 TPS, 400ms blocks, 800ms deterministic finality) with the Cadence consensus protocol and an encrypted mempool. Use when the user mentions Monad, Cadence consensus, MonadBFT, the BuildAnything/Spark hackathon, or is choosing what to build on a fast EVM chain. Covers the three design axes (speed, trustlessness, order-fairness), the load-bearing test, the on-chain/off-chain split, and how hackathon judges score Monad projects.
-
-**`neon`**
-- Repo path: `skills/neon`
-- Description: Overview of Neon, a complete set of cloud backend primitives for apps and agents, spanning Lakebase Postgres, Auth, the Data API, Object Storage, Compute Functions, and the AI Gateway. Start here to route to the right Neon skill, set up the CLI or MCP server, and follow the branch-first workflow. Use when "Neon" or "Lakebase Postgres" is mentioned, or when any of its individual capabilities are the trigger: "object storage" or "S3", "buckets", "serverless functions", "AI gateway", "call an LLM", "logs", "branch logs", "query logs", "log export", "Loki", "Grafana", "observability", "telemetry", "postgres", "database", or "backend". Also use when there is no Neon account yet, the user cannot sign in or provide an API key right now and needs a project they can claim later, or the user asks for a throwaway DATABASE_URL, Claimable Neon, Claimable Postgres, neon.new, claimable.neon.tech, instant Postgres, a no-signup database, temporary postgres, quick postgres, a no credit card database, or npx neon-new.
-
-**`neon-postgres`**
-- Repo path: `skills/neon-postgres`
-- Description: Guides and best practices for working with Lakebase Postgres, the database behind Neon. Covers setup, connection methods and drivers, pooled vs direct connections, branching, schema migrations, autoscaling, scale-to-zero, instant restore, read replicas, connection pooling, IP allow lists, and logical replication. Use when users ask about "Lakebase Postgres", "Neon setup", "connect to Neon", "Neon project", "DATABASE_URL", "serverless Postgres", "Neon CLI", "neon", "Neon MCP", "Neon Auth", "@neondatabase/serverless", "@neondatabase/neon-js", "scale to zero", "Neon autoscaling", "Neon read replica", "Neon connection pooling", or "schema migrations".
-
-**`number-formatting`**
-- Repo path: `skills/number-formatting`
-- Description: Apply consistent number formatting across crypto/Solana UIs. Use when the user says "format numbers", "number display", "token amounts", "price formatting", "zero subscript", "abbreviate numbers", "format currency", "format percent", "how should I display this number", "number formatting spec", or when generating any UI component that displays prices, balances, percentages, ratios, or token amounts. Use proactively whenever writing frontend code that renders numeric values — do not wait to be asked.
-
-**`okx-agent-payments-protocol`**
-- Repo path: `skills/okx-agent-payments-protocol`
-- Description: "Use when an agent hits HTTP 402 / payment-required, or the user mentions x402, x402Version, X-PAYMENT, PAYMENT-REQUIRED, PAYMENT-SIGNATURE, WWW-Authenticate: Payment, permit2, upto, metered billing, a payment channel / voucher / session, channelId / channel_id, opening / closing / topping up / settling / refunding a channel, a paymentId or a2a_ link, creating / checking a payment link, A2MCP / an A2MCP endpoint, or sending a request to / calling an Agent's endpoint with a concrete endpoint URL. Covers x402 (exact, exact+Permit2, upto, aggr_deferred), MPP (charge / session), and a2a-pay paymentId flows. Any close / topup / settle / voucher / refund near a channel_id or session is an MPP mid-session op. Two-phase quote/pay: `payment quote`, `payment pay --payment-id`, `decode-receipt`. The full bilingual trigger list (including Chinese) lives in the skill body."
-
-**`okx-dapp-discovery`**
-- Repo path: `skills/okx-dapp-discovery`
-- Description: Plugin router for 20 third-party DeFi protocols (Polymarket, Aave, Hyperliquid, PancakeSwap, Morpho, Raydium, Curve, Compound, Pendle, Lido, ether.fi, GMX, Kamino, Orca, Meteora, Clanker, pump.fun, Uniswap) and their protocol-native tokens (HYPE, HLP, eETH, weETH, stETH, wstETH, LDO, GHO, CAKE, CRV, COMP, RAY, ETHFI, GLP, kToken, PT-* / YT-*, $CLANKER). Resolves DApp/token → plugin → confirm-install → re-apply request. Routing only — never signs or broadcasts; every on-chain write needs explicit user approval. Fires on: (1) named DApp + action verb (swap/deposit/stake/long/borrow/buy/sell/snipe/farm/claim, EN or ZH 买/卖/换/存/质押/借/做多/做空/狙击); (2) 2+ DApp comparison ("Aave vs Compound", "Lido vs ether.fi"); (3) Polymarket UpDown (`<COIN> 5min updown`, `5 分钟涨跌`, `预测市场`); (4) protocol-native token + action verb ("deposit USDC into HLP", "PT-stETH on Pendle"); (5) pump.fun WRITE verbs (buy/sell/snipe/ape/swap or 买/卖/狙击/梭哈/帮我买). See body for full rules.
-
-**`okx-defi`**
-- Repo path: `skills/okx-defi`
-- Description: "OKX-aggregated DeFi (no specific DApp named) — product discovery, deposit/withdraw/claim execution, AND positions viewing. **If the user names ANY third-party protocol/DApp (Aave, Lido, PancakeSwap, Uniswap, Curve, Compound, Morpho, Pendle, Kamino, Raydium, Hyperliquid, Polymarket, …), route to okx-dapp-discovery — NOT here, even for 'show my Aave positions'.** INVEST triggers: 'invest in DeFi', 'earn yield', 'find best APY', 'deposit/stake for yield', 'search DeFi products', 'redeem/withdraw position', 'claim DeFi rewards', 'borrow against asset', 'repay loan', 'add/remove CLMM liquidity', 'APY/TVL history', 'depth chart', yield farming, lending, staking, liquidity pools. PORTFOLIO triggers: 'check my DeFi positions', 'view DeFi holdings/portfolio', 'my staking/lending positions', 'DeFi balance', 'DeFi 持仓', '我的DeFi资产'. Do NOT use for: DEX swaps (okx-agentic-wallet), token prices (okx-dex-market), wallet token balances (okx-agentic-wallet)."
-
-**`okx-dex-market`**
-- Repo path: `skills/okx-dex-market`
-- Description: "HARD BLOCK — never use for prediction-market/Polymarket UpDown queries; route to okx-dapp-discovery when a named DApp (Polymarket/Aave/Hyperliquid/PancakeSwap/Morpho) appears with a timeframe, or 涨跌/updown for BTC/ETH/SOL/XRP/BNB/DOGE/HYPE. Otherwise, read-only on-chain DEX data, 6 groups: TOKEN (search, hot/热门, liquidity, holders/whale, risk metadata, cluster/持仓集中度, trade history, top traders); MARKET (price/价格, K线/OHLC, index price, wallet PnL/胜率, trade history); SIGNAL (smart money/KOL/whale tracking, buy signals/信号, leaderboard/牛人榜); SOCIAL (news/新闻, sentiment/情绪, token vibe/热度, KOL leaderboard); TRENCHES (pump.fun/meme launches/新盘/扫链, dev reputation, bundle/sniper detection/捆绑狙击者, co-investor — read-only; buy/snipe → okx-dapp-discovery); WS (onchainos ws CLI, or custom WebSocket script/脚本). Also owns Market API payment/x402, quota/额度, and MARKET_API_*_OVER_QUOTA/confirming:true for all 6 groups."
-
-**`okx-guide`**
-- Repo path: `skills/okx-guide`
-- Description: "Onchain OS onboarding hub. Classify first-time, how-to-use, OKX.AI, and support intents, then route via the Intent Routing table. Covers: (1) onboarding and welcome — what is onchainos, how do I use this, getting started, tutorial, I'm new; (2) OKX.AI intro and role registration (User / ASP / Evaluator), including spelling variants; (3) customer support, help center, FAQ, bugs, talk to a human. NOT for swap, wallet, balance, or Agent task lifecycle — those have their own skills."
-
-**`page-load-animations`**
-- Repo path: `skills/page-load-animations`
-- Description: Fix janky page loads where everything appears at once. Production framer-motion recipes for choreographed page entrances, staggered lists, modal transitions, filter cross-fades, live data animations, and micro-interactions. Use when building or reviewing any page that loads content, when animations feel broken or janky, when framer-motion code needs production patterns, or when the user says "page load animation", "entrance choreography", "stagger animation", "framer-motion recipe", "page feels janky", "everything appears at once", "spring animation", "modal animation", "dropdown animation", "rolling numbers", "chart morph", "donut reveal", "filter transition", "tab animation", "micro-interaction", "hover animation", "button feedback", "AnimatePresence", or "framer-motion pattern". Use proactively whenever writing page-level components or reviewing animation code.
-
-**`pick-ui-library`**
-- Repo path: `skills/pick-ui-library`
-- Description: Pick the right library for a given frontend task from a curated, opinionated list — numbers, OTP inputs, charts, command menus, virtualization, drag and drop, toasts, state, styling, and more. Only runs when explicitly invoked; it does not trigger on its own.
-
-**`prd-first-app-builder`**
-- Repo path: `skills/prd-first-app-builder`
-- Description: Use when building or modifying any user-facing app, dashboard, landing page, wallet/auth-gated product, frontend routes, or demo UI; especially when the task mentions PRD, permissions, protected routes, shadcn/ui, route gating, no fake demos, no gradients, large icons, or avoiding mock/simulation lies.
-
-**`preparing-compliance-documentation`**
-- Repo path: `skills/preparing-compliance-documentation`
-- Description: Guides preparation of compliance documentation for CockroachDB Cloud deployments, covering SOC 2, PCI DSS, ISO 27001, HIPAA, and GDPR certifications. Use when responding to compliance questionnaires, preparing for audits, locating certification documents, or assessing cluster configuration for compliance readiness.
-
-**`presigned-urls-security`**
-- Repo path: `skills/presigned-urls-security`
-- Description: "Design, review, and implement S3/Tigris/SigV4 presigned URLs as intentional capability grants with correct expiry, scope, and revocation tradeoffs. Use when the user mentions presigned URLs, signed URLs, X-Amz-Signature, SigV4 object storage auth, temporary download/upload links, hotlink protection, or object-storage access control without sharing long-lived credentials. Works via npx openskills read presigned-urls-security in any harness."
-
-**`problem-finder`**
-- Repo path: `skills/problem-finder`
-- Description: Force a problem-discovery pass before any solutioning. Decompose startup and hackathon ideas into the worker, their current workaround, and the structural gap that keeps the pain unfixed; reject obvious, feel-safe framings by default. Use when the user mentions a startup idea, hackathon idea, "what should I build," validating an idea, finding problems, user pain points, or presents any solution without a validated problem — even if they do not ask for problem discovery explicitly.
-
-**`prototype`**
-- Repo path: `skills/prototype`
-- Description: Build a throwaway prototype to flush out a design before committing to it. Routes between two branches — a runnable terminal app for state/business-logic questions, or several radically different UI variations toggleable from one route. Use when the user wants to prototype, sanity-check a data model or state machine, mock up a UI, explore design options, or says "prototype this", "let me play with it", "try a few designs".
-
-**`provisioning-cluster-for-production`**
-- Repo path: `skills/provisioning-cluster-for-production`
-- Description: Guides initial CockroachDB cluster provisioning and production deployment. Self-Hosted covers cockroach start/init, Kubernetes deployment (Operator, Helm), hardware sizing, and production configuration. Advanced/BYOC covers Cloud Console, API, and Terraform provisioning with production settings. Standard covers cluster creation and provisioned compute selection. Basic covers cluster creation and spending limits. Use when creating a new cluster, preparing for production go-live, or validating deployment configuration.
-
-**`rare-ui`**
-- Repo path: `skills/rare-ui`
-- Description: Rare UI (rareui.com) — a shadcn-style registry of ~21 rare, single-file React components you copy into your project, not a dependency you install. Use when the user wants a distinctive/unique animated UI component, mentions "rare ui" / "rareui", or asks for any of these components: animated folder, bounce sidebar, hook sidebar, family drawer, proximity sidebar, duration picker, fluid orb, scroll progress pill, code block, OTP input, gravity letters, GitHub activity heatmap, emoji reaction, notification bell, step player, grid reveal, gooey nav, delete button with inline confirm, animated counter / odometer digits, matrix orb, task list. Also use when looking for ChatGPT-voice-mode-style orbs, AI loading states, spring-animated nav, or iOS-style controls.
-
-**`redesign-existing-projects`**
-- Repo path: `skills/redesign-existing-projects`
-- Description: Upgrades existing websites and apps to premium quality. Audits current design, identifies generic AI patterns, and applies high-end design standards without breaking functionality. Works with any CSS framework or vanilla CSS.
-
-**`review-animations`**
-- Repo path: `skills/review-animations`
-- Description: Reviews animation and motion code against a high craft bar derived from Emil Kowalski's design engineering philosophy. Default to flagging; approval is earned.
-
-**`slack-gif-creator`**
-- Repo path: `skills/slack-gif-creator`
-- Description: Knowledge and utilities for creating animated GIFs optimized for Slack. Provides constraints, validation tools, and animation concepts. Use when users request animated GIFs for Slack like "make me a GIF of X doing Y for Slack."
-
-**`spyzer-memecoin-guide`**
-- Repo path: `skills/spyzer-memecoin-guide`
-- Description: "Knowledge base from \"A Complete (Meme)coin Guide\" by Spyzer. Use when applying Spyzer's frameworks for memecoin trading, attention markets, on-chain research, risk management, trade psychology, crypto safety, and beginner onboarding."
-
-**`stitch-design-taste`**
-- Repo path: `skills/stitch-design-taste`
-- Description: Semantic Design System Skill for Google Stitch. Generates agent-friendly DESIGN.md files that enforce premium, anti-generic UI standards — strict typography, calibrated color, asymmetric layouts, perpetual micro-motion, and hardware-accelerated performance.
-
-**`svelte-code-writer`**
-- Repo path: `skills/svelte-code-writer`
-- Description: CLI tools for Svelte 5 documentation lookup and code analysis. MUST be used whenever creating, editing or analyzing any Svelte component (.svelte) or Svelte module (.svelte.ts/.svelte.js). If possible, this skill should be executed within the svelte-file-editor agent for optimal results.
-
-**`tdd`**
-- Repo path: `skills/tdd`
-- Description: Test-driven development with red-green-refactor loop. Use when user wants to build features or fix bugs using TDD, mentions "red-green-refactor", wants integration tests, or asks for test-first development.
-
-**`theme-factory`**
-- Repo path: `skills/theme-factory`
-- Description: Toolkit for styling artifacts with a theme. These artifacts can be slides, docs, reportings, HTML landing pages, etc. There are 10 pre-set themes with colors/fonts that you can apply to any artifact that has been creating, or can generate a new theme on-the-fly.
-
-**`threejs-3d-generator`**
-- Repo path: `skills/threejs-3d-generator`
-- Description: "Generate, texture, rig, animate, stylize, convert, and download 3D assets for Three.js games using the Tripo API. Use for text-to-3D, image-to-3D, 2D concept to 3D conversion, game-ready GLB/FBX assets, characters, creatures, buildings, props, weapons, terrain pieces, auto-rigging, animation retargeting, model texturing, LEGO/voxel/Minecraft-style stylization, low-poly/quad conversion, and browser asset pipelines. Pair with threejs-image-generator for concepts, texture references, sky/background/terrain textures, logos, icons, and GUI art before image-to-3D generation."
-
-**`threejs-aaa-graphics-builder`**
-- Repo path: `skills/threejs-aaa-graphics-builder`
-- Description: "Upgrade Three.js games from basic/prototype visuals to premium AAA-inspired browser graphics. Combines art-direction critique, procedural model building, technical art, mandatory external asset sourcing decisions, threejs-3d-generator assets, threejs-image-generator concept/texture workflows, scene visual polish, material/texture libraries, world prop kits, shaders, VFX readability, render budgets, LOD/instancing, render pipeline, and visual scorecard gates. For premium games with characters, vehicles, ships, weapons, buildings, signature props, skies, textures, decals, logos, icons, or GUI art, load the relevant generator skills before deciding procedural assets are enough."
-
-**`threejs-audio-generator`**
-- Repo path: `skills/threejs-audio-generator`
-- Description: "Generate, convert, clean, and prepare audio assets for Three.js browser games using ElevenLabs. Use for sound effects, looping ambience, UI sounds, impact/weapon/vehicle audio, creature or boss stingers, announcer/dialogue TTS, scratch-performance voice conversion, voice cleanup/isolation, audio manifests, and game-ready web audio integration."
-
-**`threejs-debug-profiler`**
-- Repo path: `skills/threejs-debug-profiler`
-- Description: "Debug and profile Three.js browser games. Combines scene debugging, render/runtime/loading/animation/resize/mobile input fixes, performance profiling, draw calls, triangles, textures, memory, shader/post-processing cost, bundle size, and mobile DPR/input issues."
-
-**`threejs-game-director`**
-- Repo path: `skills/threejs-game-director`
-- Description: "Primary entrypoint for complete Three.js browser game creation and premium iteration. Use by default for build-a-game, upgrade, polish, premium, AAA, high-fidelity, showcase, from-scratch, endless runner, arcade, action, or release-ready requests. Orchestrates sibling skills for gameplay, AAA graphics, UI, debug/profile, and QA/release, plus 3D/image/audio generators for characters, vehicles, weapons, buildings, props, skies, textures, logos, icons, GUI art, and SFX/voice. Keeps skill-loading, reference, asset-sourcing, and phase ledgers so users never choose skills manually."
-
-**`threejs-game-ui-designer`**
-- Repo path: `skills/threejs-game-ui-designer`
-- Description: "Design premium Three.js game UI. Use for HUDs, menus, overlays, pause/win/lose screens, settings, icon controls, touch UI, typography, responsive layout, safe areas, text fit, and UI/world cohesion."
-
-**`threejs-gameplay-systems`**
-- Repo path: `skills/threejs-gameplay-systems`
-- Description: "Build and iterate playable Three.js game systems. Combines starter scaffold creation, architecture, game design, level design, gameplay implementation, combat/encounter design, and game-feel tuning (hitstop, screenshake, easing, impact feedback). Use for first playable slices, new Vite/TypeScript/Three.js game setup, design briefs, core loops, level/arena/track/wave/hole/puzzle design, game loops, entity systems, input, collision/physics, scoring, objectives, audio hooks, camera, controls, difficulty, feedback, juice, and maintainable structure."
-
-**`threejs-image-generator`**
-- Repo path: `skills/threejs-image-generator`
-- Description: "Generate and edit 2D image assets for Three.js games using Google's Gemini image API. Use for concept sheets, image-to-3D inputs, texture references, sky/background plates, decals, logos, icons, GUI art, title/menu art, thumbnails, marketing stills, and source images that feed threejs-3d-generator. Also use for direct image editing when the user provides an image path."
-
-**`threejs-qa-release`**
-- Repo path: `skills/threejs-qa-release`
-- Description: "Verify and release Three.js browser games. Combines playtest QA, automated bot playtests, mobile/responsive checks, production builds, preview verification, static-hosting base paths, debug gating, bundle review, screenshots, visual test harness decisions, packaged canvas-pixel inspection with measured metrics, console checks, and release risk reports."
-
-**`transitions-dev`**
-- Repo path: `skills/transitions-dev`
-- Description: Production-ready CSS transitions for web apps. Use when implementing notification badges, dropdowns, modals, panel reveals, page transitions, card resizes, number pop-ins, text swaps, icon swaps, success checks, avatar group hovers, error state shakes, search/input clear, skeleton loaders, shimmer text, sliding tabs, tooltips, staggered text reveals, card hover tilt, plus-to-menu morph, accordions, toasts, like buttons, learn-more hovers, checkbox checks, spinning counters, toggles, AI thinking states, reasoning streams, streaming text, matrix dot loaders, or banner stacking. Triggers on "add a transition", "animate the dropdown", "make the modal open smoothly", "swap icon", "page slide", "stagger animation", "open / close transition", "make it animate", "fade between", "success animation", "form error", "shake on invalid", "hover lift", "avatar stack hover", "clear the search", "skeleton loader", "loading shimmer", "shimmer text", "sliding tabs", "segmented control", "tooltip", "reveal text", "tilt card", "3D hover tilt", "cursor glare", "plus to menu", "FAB morph", "accordion", "collapsible", "expand / collapse", "disclosure", "toast", "snackbar", "like button", "heart animation", "learn more arrow", "checkbox", "check animation", "spinning counter", "odometer", "slot machine digits", "toggle", "switch", "thinking states", "AI status line", "agent reasoning", "reasoning stream", "streaming text", "stream words in", "matrix loader", "dot loader", "banner stack", "stacked toasts". Also "motion tokens", "scan for ad-hoc transitions", "replace hardcoded durations with motion tokens", "tokenize my animations", and the commands transitions reveal, transitions review, transitions apply, transitions refine.
-
-**`transitions-polish`**
-- Repo path: `skills/transitions-polish`
-- Description: Polish and refine existing motion against the transitions.dev motion-token scale — duration, distance, scale, blur, and easing — plus the rules for WHEN each token applies (open/close asymmetry, hover-in vs hover-out, stagger offsets, and intent delays). An add-on to the transitions-dev skill, focused on tuning what already animates rather than adding new transitions. Use when the user asks to "polish my transitions", "refine the motion", "tune the timing / easing", "make the animation feel better / less janky", "tighten the durations", "fix the stagger", "align to the motion tokens", "audit the motion", "review my animations", "scan for ad-hoc transitions", "tokenize my animations", or runs the commands transitions review or transitions polish. Also drives the Refine panel's Small refinement feature. Triggers on "motion polish", "transition polish", "refine motion", "timing feels off", "too slow / too fast", "stagger", "delay", "open close timing", "hover in out".
-
-**`typography-layout`**
-- Repo path: `skills/typography-layout`
-- Description: Apply typography anatomy, best-font selection and setting (weight, tracking, leading, case), font classification, legibility vs readability, type-only visual hierarchy, font pairing recipes, and editorial layout principles (balance, proximity, alignment, grids). Use whenever choosing or setting fonts, pairing type, building type hierarchy, pairing faces, designing editorial/marketing/portfolio layouts, or reviewing UI that looks typographically weak. Trigger on: typography, fonts, which font, font pairing, type hierarchy, baseline grid, tracking, kerning, x-height, serif, sans, display type, editorial layout, letterforms, line length, "make the type better". Use proactively on any frontend that sets headlines, body copy, or multi-column page structure — do not wait to be asked.
-
-**`upgrading-cluster-version`**
-- Repo path: `skills/upgrading-cluster-version`
-- Description: Guides CockroachDB version upgrades with tier-appropriate procedures. Self-Hosted covers manual rolling binary replacement with finalization control. Advanced/BYOC covers Console-initiated major upgrades, maintenance windows for patches, and release channel selection. Standard and Basic upgrades are fully automatic with no customer action required. Use when planning, executing, or monitoring a version upgrade.
-
-**`validate-idea`**
-- Repo path: `skills/validate-idea`
-- Description: Run a structured validation sprint on a crypto startup idea. Use when a user says "validate this idea", "is this worth building", "run a validation sprint", "help me test demand", or "should I build this". Reads idea-context.md from a prior idea phase if available.
-
-**`veo-camera-movement`**
-- Repo path: `skills/veo-camera-movement`
-- Description: Transform natural language camera movement descriptions into professional Veo 3.1 video prompts using industry-standard cinematography terminology. Use when users request video generation with camera movements, describe shots using vague language (e.g., "camera gets closer", "camera spins"), need guidance on which camera movement serves their creative intent, or want to learn film terminology. Handles all movement types from static shots to complex movements like dolly zoom, FPV drone, snorricam, and bullet time. Outputs complete paste-ready Veo prompts following the five-part formula: [Cinematography] + [Subject] + [Action] + [Context] + [Style & Ambiance].
-
-**`video-craft`**
-- Repo path: `skills/video-craft`
-- Description: Frame-level visual composition and product demo presentation for Remotion videos. Use when the user says "video looks generic", "make video frames look better", "video frame design", "device frame", "product demo video craft", "video CTA", "end card", "video composition", "video craft", "screenshot in video", "frame quality", or when reviewing Remotion compositions for visual quality. Sits on top of marketing-video — adds the visual design layer for each frame. Does NOT claim "create a video" or "marketing video" — those route to marketing-video.
-
-**`web-animation-guidelines`**
-- Repo path: `skills/web-animation-guidelines`
-- Description: Production-tested web animation reference — easing curves, timing tables, copy-paste CSS/Framer Motion patterns, accessibility, and a pre-ship checklist. Use when the user says "animate this", "add animation", "animation timing", "easing curve", "spring animation", "fade in", "slide in", "stagger", "hover animation", "button press", "modal entrance", "loading spinner", "page transition", "animation feels off", "animation best practices", "prefers-reduced-motion", "60fps animation", "animation performance", "what duration should I use", "what easing", or when writing/reviewing any web animation code (CSS transitions, keyframes, Framer Motion, GSAP, Motion One, React Spring). Use proactively whenever generating animated UI components.
-
-**`web-artifacts-builder`**
-- Repo path: `skills/web-artifacts-builder`
-- Description: Suite of tools for creating elaborate, multi-component Codex.ai HTML artifacts using modern frontend web technologies (React, Tailwind CSS, shadcn/ui). Use for complex artifacts requiring state management, routing, or shadcn/ui components - not for simple single-file HTML/JSX artifacts.
-
-**`webapp-testing`**
-- Repo path: `skills/webapp-testing`
-- Description: Toolkit for interacting with and testing local web applications using Playwright. Supports verifying frontend functionality, debugging UI behavior, capturing browser screenshots, and viewing browser logs.
-
-**`write-a-skill`**
-- Repo path: `skills/write-a-skill`
-- Description: Create new agent skills with proper structure, progressive disclosure, and bundled resources. Use when user wants to create, write, or build a new skill.
-
-
-### video/media
-
-**`clipify`**
-- Repo path: `skills/clipify`
-- Description: Find the funniest moments in a video, cut them as standalone clips, optionally reformat 16:9 → 9:16 (face-pan or split-screen), and burn opus-style word-by-word captions. Use when the user mentions "clipify," "cut clips from this video," "make shorts from this," "find funny moments," "reframe to 9:16," "vertical clips," or pastes a video file path and wants social-ready cuts.
-
-**`hyperframes-audio`**
-- Repo path: `skills/hyperframes-audio`
-- Description: Use when audio already placed in a HyperFrames composition needs to be mixed: fade-in/fade-out, crossfade, track gain or volume, volume automation, ducking, a music bed that fights a voiceover (voiceover carve), effects on a track (EQ, compressor, limiter, gate, saturation, delay, reverb, chorus, phaser, bitcrush), automation envelopes drawn on a track's volume or any effect parameter, or one submix bus carrying a chain, a fader and an automation clock for several tracks at once (`<hf-audio-group>`). Don't use for sourcing or generating audio — finding BGM, SFX, or making a voiceover is `/media-use`. Don't use for clip timing or track layout, which is `/hyperframes-core`.
-
-**`investigative-video-strategy`**
-- Repo path: `skills/investigative-video-strategy`
-- Description: Write, structure, audit, and ideate long-form investigative/documentary YouTube videos using the retention playbooks of Neo, Cipher, Blackfiles, Fern, and Hoog. Use when the user wants to draft a documentary script, plan video acts and retention beats, audit a script for weak points, or brainstorm investigative video ideas. Triggers on "documentary script", "investigative video", "retention strategy", "video structure", "Fern style", "Cipher style", "Hoog style", "Blackfiles style", "Neo style", "cold open", "hook strategy", "retention audit".
-
-**`marketing-video`**
-- Repo path: `skills/marketing-video`
-- Description: Create marketing videos for Solana projects using Remotion (code-driven) and Renoise (AI-generated). Use when a user says "marketing video", "product video", "promo video", "deck review", "video pitch", "create a video", or "Remotion project".
-
-**`product-launch-video`**
-- Repo path: `skills/product-launch-video`
-- Description: "Turn a product or marketing URL, pasted script, or brief into a product launch / promo video — SaaS promos, feature reveals, product demos, app and company launches. Use when the user wants to market, launch, promote, or reveal a product; the default for any commercial URL. Site tours / showcases of a website route here too — the brief carries the show-it-as-is intent. Unclear → /hyperframes."
-
-**`script-forensics`**
-- Repo path: `skills/script-forensics`
-- Description: Forensic cleanup gate for scripts. Use this skill whenever the user asks to audit, clean, de-slop, de-repeat, tighten, polish, or prepare a YouTube script, content script, voiceover, VSL, narration, hook, intro, outline, or transcript before it moves to thumbnails, voiceover, captions, image prompts, or media production. It finds and removes useless repetition, repeated sentence shapes, repeated beats, filler loops, and AI-slop contrast patterns like "not just X, but Y", "it is not X, it is Y", and "more than just X".
-
-**`submit-to-hackathon`**
-- Repo path: `skills/submit-to-hackathon`
-- Description: Prepare and optimize a hackathon submission for a Solana project. Use when a user says "submit to hackathon", "prepare my submission", "hackathon entry", "write project description", "demo video", or "help me win the hackathon". Reads all prior phase context if available.
-
-**`youtube-content-studio`**
-- Repo path: `skills/youtube-content-studio`
-- Description: Master workflow for YouTube video creation. Use this skill whenever the user wants a YouTube script, content script, retention-backed script, video idea, outline, hook, intro, documentary structure, thumbnail concept, high-CTR thumbnail, voiceover, sound effect, image prompt, AI33 Pro media generation, or a full YouTube production workflow. This skill combines script writing, retention strategy, investigative/documentary structure, originality checks, blocked-name checks, script-forensics cleanup, Thumbnail Architect, and AI33 Pro media tooling.
-
-
-### product/strategy
-
-**`ad-variation-generator`**
-- Repo path: `skills/ad-variation-generator`
-- Description: Generate ad headline variations from winning ads in Figma. Reads your product marketing context, identifies winning ad frames, and creates cloned variations with new headlines directly in your Figma file.
-
-**`apply-grant`**
-- Repo path: `skills/apply-grant`
-- Description: Prepare an Agentic Engineering Grant application by gathering project data, git history, and context files, then presenting all fields needed to fill the Solana Earn grant form. Use when the user says "apply for grant", "agentic engineering grant", "apply-grant", "grant application", "fill grant form", "200 USDG grant", "ST earn", "Superteam earn", "Superteam grant", "earn grant", "help me apply for grant", "solana earn grant", or "submit grant".
-
-**`auditing-cloud-cluster-security`**
-- Repo path: `skills/auditing-cloud-cluster-security`
-- Description: Audits the security posture of a CockroachDB cluster (Cloud or self-hosted) across network, authentication, authorization, encryption, audit logging, and backup dimensions. Use when assessing cluster security readiness, preparing for compliance reviews, or investigating security configuration gaps.
-
-**`base44-remote-dev`**
-- Repo path: `skills/base44-remote-dev`
-- Description: Develop a Base44 app remotely from your own coding agent by connecting it to the Base44 sandbox over MCP or the `base44 sandbox` CLI. Covers auth, sandbox tools, the edit-preview-verify loop, persistence, concurrency, and Send to Coding Agent. Triggers on "develop my Base44 app remotely", "connect Claude Code to Base44", "bring my own agent", "edit a Base44 app over MCP", or "Base44 sandbox MCP".
-
-**`base44-troubleshooter`**
-- Repo path: `skills/base44-troubleshooter`
-- Description: Troubleshoot production issues using backend function logs. Use when investigating app errors, debugging function calls, or diagnosing production problems in Base44 apps.
-
-**`competitive-landscape`**
-- Repo path: `skills/competitive-landscape`
-- Description: Map the competitive landscape for a crypto product idea. Use when a user says "who are my competitors", "map the competitive landscape", "what exists in this space", "show me similar projects", or "competitive analysis". Leverages solana-new's catalogs of 106 repos, 78 skills, and 36 MCPs.
-
-**`create-readme`**
-- Repo path: `skills/create-readme`
-- Description: "Create or rewrite a project README.md using a selectable template. Use when the user asks to write a README, create README.md, rewrite the readme, or pick a README style/template. Templates: classic open-source and product-orchestration (Codex Orchestration style). Works via npx openskills read create-readme in any harness."
-
-**`cso`**
-- Repo path: `skills/cso`
-- Description: Chief Security Officer mode. Infrastructure-first security audit: secrets archaeology, dependency supply chain, CI/CD pipeline security, LLM/AI security, skill supply chain scanning, plus OWASP Top 10, STRIDE threat modeling, and active verification. Two modes: daily (zero-noise, 8/10 confidence gate) and comprehensive (monthly deep scan, 2/10 bar). Use when a user says "security audit", "threat model", "pentest review", "OWASP", "CSO review", "check for vulnerabilities", or "is my code secure".
-
-**`geo-llmstxt`**
-- Repo path: `skills/geo-llmstxt`
-- Description: Analyzes and generates llms.txt files -- the emerging standard for helping AI systems understand website structure and content. Can validate existing llms.txt files or generate new ones from scratch by crawling the site.
-
-**`geo-schema`**
-- Repo path: `skills/geo-schema`
-- Description: Schema.org structured data audit and generation optimized for AI discoverability — detect, validate, and generate JSON-LD markup
-
-**`hackathon-readme`**
-- Repo path: `skills/hackathon-readme`
-- Description: Write product-forward hackathon README + TECH.md documentation in the ProofXI style: clear thesis, live app link, screenshot-led how-it-works, developer layout, honest constraints, TxLINE/endpoints tables. Use when the user says "readme like proofxi", "hackathon docs", "product-forward README", "TECH.md", "document the demo", or wants docs that win judges in 30 seconds. Triggers: /hackathon-readme, proofxi docs, submission README.
-
-**`hardening-user-privileges`**
-- Repo path: `skills/hardening-user-privileges`
-- Description: Hardens CockroachDB user privileges by auditing and tightening role-based access control, reducing admin grants, restricting PUBLIC role permissions, and applying least-privilege principles. Use when reducing excessive privileges, cleaning up admin access, or implementing RBAC best practices.
-
-**`learn`**
-- Repo path: `skills/learn`
-- Description: Manage project learnings across sessions. Review, search, prune, and export what superstack has learned. Use when asked to "what have we learned", "show learnings", "prune stale learnings", "export learnings", or "remember this". Proactively suggest when the user asks about past patterns or wonders "didn't we fix this before?"
-
-**`managing-cluster-settings`**
-- Repo path: `skills/managing-cluster-settings`
-- Description: Reviews, audits, and modifies CockroachDB cluster settings. Self-Hosted has full control over all settings and start flags. Advanced/BYOC can modify most SQL-level settings but infrastructure settings are managed by CRL. Standard has limited settings access — session variables are the primary tuning mechanism. Basic has minimal settings — use session variables and Cloud Console. Use when auditing configuration, tuning performance, or troubleshooting settings-related issues.
-
-**`pptx`**
-- Repo path: `skills/pptx`
-- Description: "Use this skill any time a .pptx file is involved in any way — as input, output, or both. This includes: creating slide decks, pitch decks, or presentations; reading, parsing, or extracting text from any .pptx file (even if the extracted content will be used elsewhere, like in an email or summary); editing, modifying, or updating existing presentations; combining or splitting slide files; working with templates, layouts, speaker notes, or comments. Trigger whenever the user mentions \"deck,\" \"slides,\" \"presentation,\" or references a .pptx filename, regardless of what they plan to do with the content afterward. If a .pptx file needs to be opened, created, or touched, use this skill."
-
-**`product-naming`**
-- Repo path: `skills/product-naming`
-- Description: Expert naming process for products, companies, and features based on David Placek's methodology. Use when the user says "name this", "brainstorm names", "naming process", or needs to find a name for a product, feature, company, or project.
-
-**`product-review`**
-- Repo path: `skills/product-review`
-- Description: Product quality review — UX flows, onboarding, feature completeness, and user value. Use when a user says "product review", "review my product", "UX review", "is my product good", "product quality", "user experience review", "onboarding review", or "feature audit". Different from code review (review-and-iterate) and product roast (roast-my-product) — this is structured, balanced evaluation.
-
-**`review-and-iterate`**
-- Repo path: `skills/review-and-iterate`
-- Description: Review Solana project code for quality, security, and production readiness. Use when a user says "review my code", "is this production ready", "audit my program", "what should I fix", "code review", or "check for security issues".
-
-**`reviewing-cluster-health`**
-- Repo path: `skills/reviewing-cluster-health`
-- Description: Performs a comprehensive health check of a CockroachDB cluster. Gathers deployment context first, then provides tier-appropriate diagnostics. Self-Hosted uses SQL against node-level system tables and CLI. Advanced/BYOC use Cloud Console and SQL with node visibility. Standard monitors provisioned compute and workload via Cloud Console. Basic monitors Request Unit consumption and connectivity. Use for daily checks, pre-maintenance validation, post-incident verification, or production readiness assessment.
-
-**`roast-my-product`**
-- Repo path: `skills/roast-my-product`
-- Description: Harsh, honest product critique — find every weakness before users do. Use when a user says "roast my product", "harsh feedback", "be brutal", "what sucks", "find weaknesses", "product critique", "tear it apart", or "what would kill this". Deliberately harsh but constructive — scores each dimension and explains exactly what to fix.
-
-**`scaffold-project`**
-- Repo path: `skills/scaffold-project`
-- Description: Set up a complete Solana project workspace from a validated idea. Use when a user says "scaffold my project", "set up my workspace", "what stack should I use", "create the project structure", or "initialize my project". Reads idea-context.md from a prior idea phase if available. Leverages solana-new's catalogs of 106 repos, 77 skills, and 36 MCPs.
-
-**`solidity-auditor`**
-- Repo path: `skills/solidity-auditor`
-- Description: Security audit of Solidity code while you develop. Trigger on "audit", "check this contract", "review for security". Modes - default (full repo) or a specific filename.
-
-**`triage`**
-- Repo path: `skills/triage`
-- Description: Triage issues through a state machine driven by triage roles. Use when user wants to create an issue, triage issues, review incoming bugs or feature requests, prepare issues for an AFK agent, or manage issue workflow.
-
-**`vibe-security`**
-- Repo path: `skills/vibe-security`
-- Description: Audits codebases for common security vulnerabilities that AI coding assistants introduce in "vibe-coded" applications. Checks for exposed API keys, broken access control (Supabase RLS, Firebase rules), missing auth validation, client-side trust issues, insecure payment flows, and more. Use this skill whenever the user asks about security, wants a code review, mentions "vibe coding", or when you're writing or reviewing code that handles authentication, payments, database access, API keys, secrets, or user data — even if they don't explicitly mention security. Also trigger when the user says things like "is this safe?", "check my code", "audit this", "review for vulnerabilities", or "can someone hack this?".
-
-
-### solana/crypto
-
-**`"source-command-sc-index"`**
-- Repo path: `skills/"source-command-sc-index"`
-- Description: "Generate comprehensive project documentation and knowledge base with intelligent organization"
-
-**`analyzing-range-distribution`**
-- Repo path: `skills/analyzing-range-distribution`
-- Description: Analyzes CockroachDB range distribution across tables and indexes using SHOW RANGES to identify range count, size patterns, leaseholder placement, and replication health. Use when investigating hotspots, uneven data distribution, range fragmentation, or validating zone configuration effects without DB Console access.
-
-**`caveman`**
-- Repo path: `skills/caveman`
-- Description: Ultra-compressed communication mode. Cuts token usage ~75% by dropping filler, articles, and pleasantries while keeping full technical accuracy. Use when user says "caveman mode", "talk like caveman", "use caveman", "less tokens", "be brief", or invokes /caveman.
-
-**`deep-mantle-researcher`**
-- Repo path: `skills/deep-mantle-researcher`
-- Description: Decomposes high-stakes Mantle and onchain finance questions into source maps, evidence grids, confidence levels, and publishable theses. Use when researching Mantle, RWAs, tokenized assets, DeFi protocols, market moves, hackathon articles, or AI research-agent workflows.
-
-**`geo-citability`**
-- Repo path: `skills/geo-citability`
-- Description: AI citability scoring and optimization. Analyzes web page content to determine how likely AI systems (ChatGPT, Codex, Perplexity, Gemini) are to cite or quote passages from the page. Provides a citability score (0-100) with specific rewrite suggestions.
-
-**`geo-content`**
-- Repo path: `skills/geo-content`
-- Description: Content quality and E-E-A-T assessment for AI citability — evaluate experience, expertise, authoritativeness, trustworthiness, and content structure
-
-**`geo-technical`**
-- Repo path: `skills/geo-technical`
-- Description: Technical SEO audit with GEO-specific checks — crawlability, indexability, security, performance, SSR, and AI crawler access
-
-**`git-guardrails-claude-code`**
-- Repo path: `skills/git-guardrails-claude-code`
-- Description: Set up Codex hooks to block dangerous git commands (push, reset --hard, clean, branch -D, etc.) before they execute. Use when user wants to prevent destructive git operations, add git safety hooks, or block git push/reset in Codex.
-
-**`hackathon-project-social-playbook`**
-- Repo path: `skills/hackathon-project-social-playbook`
-- Description: Generate a complete X (Twitter) social strategy for newly submitted hackathon projects. Based on analysis of breakout Colosseum winners, this skill creates a personalized 30-day playbook with narrative angles, content calendars, engagement tactics, and ready-to-post example tweets.
-
-**`internal-comms`**
-- Repo path: `skills/internal-comms`
-- Description: A set of resources to help me write all kinds of internal communications, using the formats that my company likes to use. Codex should use this skill whenever asked to write some sort of internal communications (status reports, leadership updates, 3P updates, company newsletters, FAQs, incident reports, project updates, etc.).
-
-**`navigate-skills`**
-- Repo path: `skills/navigate-skills`
-- Description: Meta skill — browse all installed solana-new skills, repos, and MCPs to find the right tool for any task
-
-**`okx-agentic-wallet`**
-- Repo path: `skills/okx-agentic-wallet`
-- Description: "OKX Agentic Wallet — the single skill for the user's wallet and on-chain execution. Use it whenever the user wants to operate their wallet or execute an on-chain action, including: login & accounts, balance / holdings, wallet address / deposit / receive, send / transfer, contract calls (approve / deposit / withdraw), transaction history & status, message signing, wallet export & policy; pay gas with a stablecoin (Gas Station, Solana); swap / trade / buy / sell / convert, get a quote; cross-chain bridge & track arrival; limit orders (buy dip / take profit / stop loss / buy above) plus cancel / list / resume them; broadcast / gas / simulate / track a transaction; look up any public address's holdings; security scanning (token / honeypot 蜜罐 / 貔貅, DApp phishing, tx & signature checks, approvals); audit log. Once matched, follow this skill's Intent Routing to dispatch to the exact action."
-
-**`okx-growth-competition`**
-- Repo path: `skills/okx-growth-competition`
-- Description: "List OKX Agentic Wallet exclusive trading competitions, register users for contests, track participation and leaderboard rankings, and claim won rewards. Use when users want to list available trading competitions or trading cups, view competition rules / prize pool / total prizes, register or sign up or enroll or join a contest, check the leaderboard (who is winning) or their own rank (am I in the prize zone, what is my place), ask did I win or query participation / claim status, claim won rewards or prizes from completed competitions, see which wallet account they registered with, or submit Telegram / WeChat / Email / Twitter contact for prize delivery to top-tier winners."
-
-**`solana-beginner`**
-- Repo path: `skills/solana-beginner`
-- Description: Teach Solana fundamentals to developers new to the ecosystem. Use when a user says "what is Solana", "why Solana", "new to Solana", "explain Solana to me", "Solana basics", "EVM to Solana", "getting started with Solana", or "Solana fundamentals". Adapts to user's background — EVM devs, backend devs, or complete beginners.
-
-**`virtual-solana-incubator`**
-- Repo path: `skills/virtual-solana-incubator`
-- Description: Deep technical Solana bootcamp — SVM architecture, Rust patterns, program development. Use when a user says "Solana incubator", "teach me Rust for Solana", "SVM deep dive", "Solana bootcamp", "learn Solana development", "deep dive Solana", "PDA tutorial", "CPI tutorial", or "Anchor tutorial". Structured curriculum that assesses level and assigns exercises.
-
-
-### agent/tools
-
-**`"source-command-sc-implement"`**
-- Repo path: `skills/"source-command-sc-implement"`
-- Description: "Feature and code implementation with intelligent persona activation and MCP integration"
-
-**`"source-command-sc-load"`**
-- Repo path: `skills/"source-command-sc-load"`
-- Description: "Session lifecycle management with Serena MCP integration for project context loading"
-
-**`"source-command-sc-pm"`**
-- Repo path: `skills/"source-command-sc-pm"`
-- Description: "Project Manager Agent - Default orchestration agent that coordinates all sub-agents and manages workflows seamlessly"
-
-**`"source-command-sc-reflect"`**
-- Repo path: `skills/"source-command-sc-reflect"`
-- Description: "Task reflection and validation using Serena MCP analysis capabilities"
-
-**`"source-command-sc-save"`**
-- Repo path: `skills/"source-command-sc-save"`
-- Description: "Session lifecycle management with Serena MCP integration for session context persistence"
-
-**`"source-command-sc-select-tool"`**
-- Repo path: `skills/"source-command-sc-select-tool"`
-- Description: "Intelligent MCP tool selection based on complexity scoring and operation analysis"
-
-**`"source-command-sc-spawn"`**
-- Repo path: `skills/"source-command-sc-spawn"`
-- Description: "Meta-system task orchestration with intelligent breakdown and delegation"
-
-**`base44-cli`**
-- Repo path: `skills/base44-cli`
-- Description: "The base44 CLI is used for EVERYTHING related to base44 projects: resource configuration (entities, backend functions, ai agents), initialization and actions (resource creation, deployment). This skill is the place for learning about how to configure resources. When you plan or implement a feature, you must learn this skill"
-
-**`base44-sandbox`**
-- Repo path: `skills/base44-sandbox`
-- Description: "Develop a Base44 app remotely inside Base44's cloud sandbox using your own agent — no local checkout and no deploy/push commands. The implementation is remote: writing a resource file into the sandbox is what ships it (backend functions, entities, and agents all auto-sync from the file you write), and OAuth connectors are set up against the remote app via MCP tools or the projectless `base44 connectors` CLI. This skill is the place for learning what you can author in the sandbox, how backend functions, entities, and agents are structured, and how to connect a connector without a local filesystem. Triggers on 'develop my Base44 app remotely', 'no local files', 'cloud sandbox', 'create an entity/agent remotely', 'connect a connector remotely', 'bring my own agent', or any work editing a Base44 app inside a sandbox."
-
-**`base44-sdk`**
-- Repo path: `skills/base44-sdk`
-- Description: "The base44 SDK is the library to communicate with base44 services. In projects, you use it to communicate with remote resources (entities, backend functions, ai agents) and to write backend functions. This skill is the place for learning about available modules and types. When you plan or implement a feature, you must learn this skill"
-
-**`calle`**
-- Repo path: `skills/calle`
-- Description: Use CALL-E from skills.sh compatible agents through the calle CLI. Use for CALL-E setup checks, authentication recovery, phone call planning, placing real outbound calls, call status polling, summaries, details, and transcripts.
-
-**`docx`**
-- Repo path: `skills/docx`
-- Description: "Use this skill whenever the user wants to create, read, edit, or manipulate Word documents (.docx files). Triggers include: any mention of 'Word doc', 'word document', '.docx', or requests to produce professional documents with formatting like tables of contents, headings, page numbers, or letterheads. Also use when extracting or reorganizing content from .docx files, inserting or replacing images in documents, performing find-and-replace in Word files, working with tracked changes or comments, or converting content into a polished Word document. If the user asks for a 'report', 'memo', 'letter', 'template', or similar deliverable as a Word or .docx file, use this skill. Do NOT use for PDFs, spreadsheets, Google Docs, or general coding tasks unrelated to document generation."
-
-**`find-skills`**
-- Repo path: `skills/find-skills`
-- Description: Helps users discover and install agent skills when they ask questions like "how do I do X", "find a skill for X", "is there a skill that can...", or express interest in extending capabilities. This skill should be used when the user is looking for functionality that might exist as an installable skill.
-
-**`geo-audit`**
-- Repo path: `skills/geo-audit`
-- Description: Full website GEO+SEO audit with parallel subagent delegation. Orchestrates a comprehensive Generative Engine Optimization audit across AI citability, platform analysis, technical infrastructure, content quality, and schema markup. Produces a composite GEO Score (0-100) with prioritized action plan.
-
-**`geo-update`**
-- Repo path: `skills/geo-update`
-- Description: Pull the latest GEO-SEO skill updates from the upstream repository. Compares installed files against the latest release, shows what changed, and updates all skills, agents, scripts, and schema templates in place.
-
-**`gomobile-flutter-backend`**
-- Repo path: `skills/gomobile-flutter-backend`
-- Description: "Architect and implement Flutter + Go Mobile apps with protobuf platform channels, Go↔native interfaces, async callbacks, and desktop daemon backends. Use when the user mentions gomobile, Go Mobile, Flutter Go backend, Flutter platform channels with Go, protobuf mobile IPC, Digital Carrot-style Go business logic, or shared Go logic across iOS/Android/desktop. Works via npx openskills read gomobile-flutter-backend in any harness."
-
-**`handoff`**
-- Repo path: `skills/handoff`
-- Description: Compact the current conversation into a handoff document for another agent to pick up.
-
-**`mirrormarket`**
-- Repo path: `skills/mirrormarket`
-- Description: Query the MirrorMarket Prediction Market Intelligence API to compare Polymarket vs Kalshi pricing, find arbitrage opportunities between the two venues, and inspect calibration / longshot-bias stats per platform. Use whenever the user asks about prediction markets, Polymarket, Kalshi, arbitrage between betting venues, market calibration, or "where do these two platforms disagree."
-
-**`moolre-docs`**
-- Repo path: `skills/moolre-docs`
-- Description: Moolre API reference — SMS, WhatsApp, accounts, payments, transfers, USSD, webhooks. Use when the user asks about any Moolre endpoint, wants to send SMS/WhatsApp via Moolre, create or check Moolre accounts, initiate payments or transfers, generate payment links, check transaction status, integrate USSD, handle webhooks, look up bank lists or miscellaneous data, or debug Moolre API calls. Also use when working on the Smashup backend's Moolre integration.
-
-**`okx-ai`**
-- Repo path: `skills/okx-ai`
-- Description: ERC-8004 Agent identity: 注册/更新/上架/下架/搜索agent, register/update/activate/deactivate/search — User/ASP/Evaluator(买家/卖家/仲裁者); 我的agent/ASP, 找做X的ASP/agent有什么服务/endpoint怎么填/查口碑/传头像. + Task Marketplace: 发布/创建任务/接单/协商/验收/deliver/dispute/仲裁/拒绝/stake/unstake/change provider/change budget/修改卖家/修改预算/我的任务/my tasks/what am I working on/我的订阅/订阅列表/订阅详情/my subscriptions/what am I subscribed to/AI服务订阅(view AI-service subscriptions, buyer & ASP)/关闭/取消任务/决策列表/decision list/指定服务商/browse marketplace. + task watch: 监听任务进展/历史消息/未读消息/未决策/outstanding decisions. + okx-a2a missing/uninitialized. Match by meaning. MUST ACTIVATE on inbound envelopes: (1) {agentId, message:{source:"system", event, jobId,...}} system event; (2) {msgType:"a2a-agent-chat", jobId, sender:{role},...} agent-to-agent task chat (sender.role = COUNTERPARTY, not you); (3) literal "Read the okx-ai skill" (or legacy "Read the okx-agent-task skill") in the envelope.
-
-**`pdf`**
-- Repo path: `skills/pdf`
-- Description: Use this skill whenever the user wants to do anything with PDF files. This includes reading or extracting text/tables from PDFs, combining or merging multiple PDFs into one, splitting PDFs apart, rotating pages, adding watermarks, creating new PDFs, filling PDF forms, encrypting/decrypting PDFs, extracting images, and OCR on scanned PDFs to make them searchable. If the user mentions a .pdf file or asks to produce one, use this skill.
-
-**`setup-matt-pocock-skills`**
-- Repo path: `skills/setup-matt-pocock-skills`
-- Description: Sets up an `## Agent skills` block in AGENTS.md/CLAUDE.md and `docs/agents/` so the engineering skills know this repo's issue tracker (GitHub or local markdown), triage label vocabulary, and domain doc layout. Run before first use of `to-issues`, `to-prd`, `triage`, `diagnose`, `tdd`, `improve-codebase-architecture`, or `zoom-out` — or if those skills appear to be missing context about the issue tracker, triage labels, or domain docs.
-
-**`skill-creator`**
-- Repo path: `skills/skill-creator`
-- Description: Create new skills, modify and improve existing skills, and measure skill performance. Use when users want to create a skill from scratch, edit, or optimize an existing skill, run evals to test a skill, benchmark skill performance with variance analysis, or optimize a skill's description for better triggering accuracy.
-
-**`solodit`**
-- Repo path: `skills/solodit`
-- Description: Search 50,000+ smart contract vulnerabilities from Cyfrin Solodit. 8 MCP tools with intelligent caching for searching, filtering, and analyzing blockchain security findings.
-
-**`thumbnail-architect`**
-- Repo path: `skills/thumbnail-architect`
-- Description: High-CTR YouTube thumbnail strategy and generation prompt workflow. Use this skill whenever the user asks for YouTube thumbnail ideas, thumbnail prompts, CTR thumbnails, mobile-readable thumbnails, 1280x720 artwork, title-to-thumbnail concepts, or 5 thumbnail concepts. Especially use it for story channels, Afro-Korean mafia romance/drama, faceless narration, revenge stories, betrayal hooks, documentary thumbnails, and any niche where the thumbnail must stop scrolling. Outputs 5 concepts, chooses the strongest, and prepares AI33 Pro image-generation prompts.
-
-**`xlsx`**
-- Repo path: `skills/xlsx`
-- Description: "Use this skill any time a spreadsheet file is the primary input or output. This means any task where the user wants to: open, read, edit, or fix an existing .xlsx, .xlsm, .csv, or .tsv file (e.g., adding columns, computing formulas, formatting, charting, cleaning messy data); create a new spreadsheet from scratch or from other data sources; or convert between tabular file formats. Trigger especially when the user references a spreadsheet file by name or path — even casually (like \"the xlsx in my downloads\") — and wants something done to it or produced from it. Also trigger for cleaning or restructuring messy tabular data files (malformed rows, misplaced headers, junk data) into proper spreadsheets. The deliverable must be a spreadsheet file. Do NOT trigger when the primary deliverable is a Word document, HTML report, standalone Python script, database pipeline, or Google Sheets API integration, even if tabular data is involved."
-
-**`zoom-out`**
-- Repo path: `skills/zoom-out`
-- Description: Tell the agent to zoom out and give broader context or a higher-level perspective. Use when you're unfamiliar with a section of code or need to understand how it fits into the bigger picture.
-
-
-### security/audit
-
-**`"source-command-sc-analyze"`**
-- Repo path: `skills/"source-command-sc-analyze"`
-- Description: "Comprehensive code analysis across quality, security, performance, and architecture domains"
-
-**`configuring-audit-logging`**
-- Repo path: `skills/configuring-audit-logging`
-- Description: Configures SQL audit logging on CockroachDB clusters to capture security-relevant events including authentication, privilege changes, and sensitive data access. Use when enabling audit logging for compliance, setting up role-based audit policies, or verifying audit configuration.
-
-**`configuring-ip-allowlists`**
-- Repo path: `skills/configuring-ip-allowlists`
-- Description: Configures and hardens IP allowlists for CockroachDB Cloud clusters to restrict network access to authorized CIDR ranges. Use when tightening network security, removing overly permissive allowlist entries like 0.0.0.0/0, or setting up allowlists for a new cluster.
-
-**`configuring-log-export`**
-- Repo path: `skills/configuring-log-export`
-- Description: Configures log and metric export for CockroachDB Cloud clusters to external monitoring services including AWS CloudWatch, GCP Cloud Logging, and Datadog. Use when setting up log export for audit compliance, configuring metric export for monitoring, or troubleshooting log delivery issues.
-
-**`enabling-cmek-encryption`**
-- Repo path: `skills/enabling-cmek-encryption`
-- Description: Enables Customer-Managed Encryption Keys (CMEK) on CockroachDB Cloud clusters with the Advanced plan and Advanced Security Add-on to give organizations control over data-at-rest encryption keys via their cloud provider's KMS. Use when enabling CMEK for compliance, rotating encryption keys, or verifying CMEK configuration.
-
-**`geo-compare`**
-- Repo path: `skills/geo-compare`
-- Description: Monthly delta tracking and progress reporting for GEO clients. Compares two GEO audits (baseline vs. current), calculates score improvements across all categories, tracks action item completion, and generates a "here's your progress" client report. Use when user says "compare", "delta", "monthly report", "progress", "confronta", "progressi", "report mensile", or when running a monthly client check-in.
-
-**`geo-platform-optimizer`**
-- Repo path: `skills/geo-platform-optimizer`
-- Description: Platform-specific AI search optimization — audit and optimize for Google AI Overviews, ChatGPT, Perplexity, Gemini, and Bing Copilot individually
-
-**`geo-proposal`**
-- Repo path: `skills/geo-proposal`
-- Description: Auto-generate a professional, client-ready GEO service proposal from audit data. Creates a full proposal in markdown and PDF including executive summary, findings, recommended service packages (Basic/Standard/Premium), pricing, timeline, and terms. Use when user says "proposal", "proposta", "offerta", "preventivo", "generate proposal", or after completing a GEO audit for a prospect.
-
-**`geo-prospect`**
-- Repo path: `skills/geo-prospect`
-- Description: CRM-lite for managing GEO agency prospects and clients. Track leads through the full sales pipeline: Lead → Qualified → Proposal Sent → Won → Lost. Store audit history, notes, deal values, and generate pipeline summaries. Use when user says "prospect", "lead", "client", "pipeline", "crm", "nuovo prospect", "aggiungi cliente", or when managing the business side of GEO services.
-
-**`geo-report`**
-- Repo path: `skills/geo-report`
-- Description: Generate a professional, client-facing GEO report combining all audit results into a single deliverable with scores, findings, and prioritized actions
-
-**`x-ray`**
-- Repo path: `skills/x-ray`
-- Description: "Generates an x-ray.md pre-audit report covering overview, enhanced threat model (protocol-type profiling, git-weighted attack surfaces, temporal risk analysis, composability dependency mapping), invariants, integrations, docs quality, test analysis, and developer/git history. Triggers on 'x-ray', 'audit readiness', 'readiness report', 'pre-audit report', 'prep this protocol', 'protocol prep', 'summarize this protocol'."
-
-
-### research/analytics
-
-**`"source-command-sc-research"`**
-- Repo path: `skills/"source-command-sc-research"`
-- Description: "Deep web research with adaptive planning and intelligent search"
-
-**`geo-crawlers`**
-- Repo path: `skills/geo-crawlers`
-- Description: AI crawler access analysis. Checks robots.txt, meta tags, and HTTP headers to determine which AI crawlers can access the site. Provides a complete access map and recommendations for maximizing AI visibility while maintaining appropriate control.
-
-
-### database/infrastructure
-
-**`configuring-private-connectivity`**
-- Repo path: `skills/configuring-private-connectivity`
-- Description: Configures private network connectivity for CockroachDB Cloud clusters including AWS PrivateLink, GCP Private Service Connect, Azure Private Link, egress private endpoints, and VPC peering. Use when setting up private endpoints to eliminate public internet exposure, configuring egress to external services like Kafka, or establishing VPC peering.
-
-**`configuring-sso-and-scim`**
-- Repo path: `skills/configuring-sso-and-scim`
-- Description: Configures SSO authentication and SCIM 2.0 provisioning for CockroachDB across four distinct layers — Cloud Console SSO (SAML/OIDC), DB Console SSO (OIDC), SQL/Cluster SSO (JWT or LDAP/AD), and SCIM 2.0 automated provisioning. Use when enabling centralized identity management, setting up SSO for compliance, or automating user lifecycle management.
-
-**`managing-certificates-and-encryption`**
-- Repo path: `skills/managing-certificates-and-encryption`
-- Description: Manages TLS certificate and encryption key lifecycle across all tiers. Self-Hosted covers certificate expiry monitoring, node/CA/client cert rotation, and Kubernetes cert management. Advanced/BYOC covers managed TLS (no action) and CMEK (Customer-Managed Encryption Key) rotation in your KMS. Standard and Basic have fully managed TLS and encryption with no customer action. CMEK is only available on Advanced. Use when monitoring cert health, performing rotation, managing CMEK, or responding to key compromise.
-
-**`managing-tls-certificates`**
-- Repo path: `skills/managing-tls-certificates`
-- Description: Manages TLS certificates for CockroachDB clusters including CA certificate configuration, client certificate authentication, certificate rotation, and troubleshooting SSL/TLS connection errors. Use when setting up client certificate auth, resolving SSL connection failures, rotating certificates, or configuring mTLS for CDC changefeeds.
-
-**`monitoring-background-jobs`**
-- Repo path: `skills/monitoring-background-jobs`
-- Description: Monitors CockroachDB background job health by identifying failed, paused, and long-running jobs using SHOW JOBS and SHOW AUTOMATIC JOBS. Surfaces schema changes, backups/restores, automatic statistics collection, and SQL stats compaction jobs without DB Console access. Use when investigating schema change delays, failed backups, or automatic job issues.
-
-**`performing-cluster-maintenance`**
-- Repo path: `skills/performing-cluster-maintenance`
-- Description: Manages planned cluster maintenance across all tiers. Self-Hosted covers node drain procedures for OS patching, hardware changes, and configuration updates. Advanced/BYOC covers maintenance window configuration, patch scheduling, deferral policies, and monitoring during CRL-managed maintenance. Standard and Basic maintenance is fully managed with no customer action. Use when planning maintenance, configuring maintenance windows, or preparing applications for maintenance events.
-
-**`profiling-statement-fingerprints`**
-- Repo path: `skills/profiling-statement-fingerprints`
-- Description: Ranks and analyzes statement fingerprints using aggregated SQL statistics from crdb_internal.statement_statistics to identify slow, resource-intensive, or error-prone query patterns. Use when investigating historical performance trends, identifying optimization opportunities, or diagnosing recurring slowness without DB Console access.
-
-**`setting-up-local-cluster`**
-- Repo path: `skills/setting-up-local-cluster`
-- Description: Downloads and starts a local CockroachDB cluster for development using the official binary. Use when a developer needs a local CockroachDB instance, when no cluster is available, or when setting up a new development environment.
-
-**`triaging-live-sql-activity`**
-- Repo path: `skills/triaging-live-sql-activity`
-- Description: Diagnoses live CockroachDB cluster performance issues by identifying long-running queries, busy sessions, and active transactions using SQL-only interfaces. Use when users report cluster slowness, high CPU, or need to find runaway queries and their source applications without DB Console access.
-
-
-### general/other
-
-**`"source-command-sc-cleanup"`**
-- Repo path: `skills/"source-command-sc-cleanup"`
-- Description: "Systematically clean up code, remove dead code, and optimize project structure"
-
-**`"source-command-sc-estimate"`**
-- Repo path: `skills/"source-command-sc-estimate"`
-- Description: "Provide development estimates for tasks, features, or projects with intelligent analysis"
-
-**`"source-command-sc-explain"`**
-- Repo path: `skills/"source-command-sc-explain"`
-- Description: "Provide clear explanations of code, concepts, and system behavior with educational clarity"
-
-**`"source-command-sc-git"`**
-- Repo path: `skills/"source-command-sc-git"`
-- Description: "Git operations with intelligent commit messages and workflow optimization"
-
-**`"source-command-sc-help"`**
-- Repo path: `skills/"source-command-sc-help"`
-- Description: "List all available /sc commands and their functionality"
-
-**`"source-command-sc-improve"`**
-- Repo path: `skills/"source-command-sc-improve"`
-- Description: "Apply systematic improvements to code quality, performance, and maintainability"
-
-**`"source-command-sc-task"`**
-- Repo path: `skills/"source-command-sc-task"`
-- Description: "Execute complex tasks with intelligent workflow management and delegation"
-
-**`"source-command-sc-test"`**
-- Repo path: `skills/"source-command-sc-test"`
-- Description: "Execute tests with coverage analysis and automated quality reporting"
-
-**`algorithmic-art`**
-- Repo path: `skills/algorithmic-art`
-- Description: Creating algorithmic art using p5.js with seeded randomness and interactive parameter exploration. Use this when users request creating art using code, generative art, algorithmic art, flow fields, or particle systems. Create original algorithmic art rather than copying existing artists' work to avoid copyright violations.
-
-**`diagnose`**
-- Repo path: `skills/diagnose`
-- Description: Disciplined diagnosis loop for hard bugs and performance regressions. Reproduce → minimise → hypothesise → instrument → fix → regression-test. Use when user says "diagnose this" / "debug this", reports a bug, says something is broken/throwing/failing, or describes a performance regression.
-
-**`grill-with-docs`**
-- Repo path: `skills/grill-with-docs`
-- Description: Grilling session that challenges your plan against the existing domain model, sharpens terminology, and updates documentation (CONTEXT.md, ADRs) inline as decisions crystallise. Use when user wants to stress-test a plan against their project's language and documented decisions.
-
-**`improve-codebase-architecture`**
-- Repo path: `skills/improve-codebase-architecture`
-- Description: Find deepening opportunities in a codebase, informed by the domain language in CONTEXT.md and the decisions in docs/adr/. Use when the user wants to improve architecture, find refactoring opportunities, consolidate tightly-coupled modules, or make a codebase more testable and AI-navigable.
-
-**`migrate-to-shoehorn`**
-- Repo path: `skills/migrate-to-shoehorn`
-- Description: Migrate test files from `as` type assertions to @total-typescript/shoehorn. Use when user mentions shoehorn, wants to replace `as` in tests, or needs partial test data.
-
-**`profiling-transaction-fingerprints`**
-- Repo path: `skills/profiling-transaction-fingerprints`
-- Description: Analyzes transaction fingerprints using aggregated statistics from crdb_internal.transaction_statistics to identify high-retry transactions, contention patterns, and commit latency issues. Provides historical transaction-level analysis to understand which statement combinations are causing retries, contention, or performance degradation. Use when investigating transaction retry storms, analyzing commit latency trends, or understanding statement composition of problematic transactions without DB Console access.
-
-**`scaffold-exercises`**
-- Repo path: `skills/scaffold-exercises`
-- Description: Create exercise directory structures with sections, problems, solutions, and explainers that pass linting. Use when user wants to scaffold exercises, create exercise stubs, or set up a new course section.
-
-**`setup-pre-commit`**
-- Repo path: `skills/setup-pre-commit`
-- Description: Set up Husky pre-commit hooks with lint-staged (Prettier), type checking, and tests in the current repo. Use when user wants to add pre-commit hooks, set up Husky, configure lint-staged, or add commit-time formatting/typechecking/testing.
-
-**`to-issues`**
-- Repo path: `skills/to-issues`
-- Description: Break a plan, spec, or PRD into independently-grabbable issues on the project issue tracker using tracer-bullet vertical slices. Use when user wants to convert a plan into issues, create implementation tickets, or break down work into issues.
-
-**`to-prd`**
-- Repo path: `skills/to-prd`
-- Description: Turn the current conversation context into a PRD and publish it to the project issue tracker. Use when user wants to create a PRD from the current context.
-
-
----
-
-## 4. Installing this workflow
-
-Run `./install.sh` to symlink or copy all `skills/` into `~/.agents/skills/` and the major agent harnesses.
-See `README.md` for usage.
+# KAIZEN MEGA — BuildOS-workflow Catalog
+
+## Executive Summary
+- **Total skills**: 736
+- **Repository**: https://github.com/fozagtx/BuildOS-workflow
+- **Install**: `bash install.sh`
+
+## Skills by Category
+### frontend/design (185)
+- **a11y-debugging** — Uses Chrome DevTools MCP for accessibility (a11y) debugging and auditing based on web.dev guidelines. Use when testing semantic HTML, ARIA labels, focus states, keyboard navigation, tap targets, and color contrast.
+- **analyzing-schema-change-storage-risk** — Estimates storage requirements for CockroachDB online schema change backfills using SHOW RANGES WITH DETAILS, KEYS, INDEXES. Use before CREATE INDEX, ADD COLUMN with INDEX/UNIQUE, ALTER PRIMARY KEY, CREATE MATERIALIZED VIEW, CREATE TABLE AS, REFRESH, or SET LOCALITY on tables with large per-index footprints, to avoid mid-backfill disk exhaustion.
+- **android-cli** — Provides instructions for installing and using the `android` CLI. The `android` command-line tool is a critical tool for Android development and helps you create new Android projects, run Android apps on devices, manage and interact with Android virtual devices (including screenshots and UI inspection), manage Android SDK components, look up official Android documentation, and discover and install official Android skills.
+- **android-dev** — Build, run, inspect, and lightly automate Android apps with the android-emulator MCP tools.
+- **animation-vocabulary** — Reverse-lookup glossary that turns a vague description of a web animation or motion effect into its exact term ("the bouncy thing when a popover opens" → Pop in; "the iOS rubber-band scroll" → Rubber-banding). Use when the user asks "what's it called when…", or describes a motion effect without knowing its name and wants the right word to prompt an AI or designer with. For naming an effect, not designing or building one.
+- **apple-design** — Apple's approach to interface design and fluid, physical motion, translated for the web. Use when building or reviewing gesture-driven UI, spring animations, drag/swipe/sheet interactions, momentum and interruptible transitions, translucent materials and depth, typography (optical sizing, tracking, leading), reduced-motion, or the design foundations (feedback, spatial consistency, restraint) behind Apple-style interfaces.
+- **ascii-art** — Generate ASCII art using pyfiglet (571 fonts), cowsay, boxes, toilet, image-to-ascii, remote APIs (asciified, ascii.co.uk), and LLM fallback. No API keys required.
+- **ascii-video** — Production pipeline for ASCII art video — any format. Converts video/audio/images/generative input into colored ASCII character video output (MP4, GIF, image sequence). Covers: video-to-ASCII conversion, audio-reactive music visualizers, generative ASCII art animations, hybrid video+audio reactive, text/lyrics overlays, real-time terminal rendering. Use when users request: ASCII video, text art video, terminal-style video, character art animation, retro text visualization, audio visualizer in ASCII, converting video to ASCII art, matrix-style effects, or any animated ASCII output.
+- **auditing-table-statistics** — Audits optimizer table statistics for staleness, missing coverage, and data quality issues using SHOW STATISTICS. Use when diagnosing poor query performance, unexpected plan changes, or after bulk data changes to identify stale statistics requiring refresh via CREATE STATISTICS.
+- **axolotl** — Expert guidance for fine-tuning LLMs with Axolotl - YAML configs, 100+ models, LoRA/QLoRA, DPO/KTO/ORPO/GRPO, multimodal support
+- **benchmarking-transaction-patterns** — Guides benchmarking and comparing explicit multi-statement transactions versus single-statement CTE transactions in CockroachDB, with fair test methodology, contention analysis, and performance interpretation. Use when comparing transaction formulations, benchmarking CockroachDB workloads under contention, investigating retry pressure, or deciding whether to rewrite multi-step application flows into single SQL statements.
+- **better-interface** — Combines all of the `better-*` skills into a single review across accessibility, layout, writing, typography, color and UI polish.
+- **blackbox** — Delegate coding tasks to Blackbox AI CLI agent. Multi-model agent with built-in judge that runs tasks through multiple LLMs and picks the best result. Requires the blackbox CLI and a Blackbox AI API key.
+- **blender-mcp** — Control Blender directly from Hermes via socket connection to the blender-mcp addon. Create 3D objects, materials, animations, and run arbitrary Blender Python (bpy) code. Use when user wants to create or modify anything in Blender.
+- **brand-design** — Generate, preview, and apply a brand color palette (plus typography, gradients, and tone/voice) to a frontend project. Use when a user says "pick brand colors", "choose a color palette", "brand design", "generate a palette", "theme this project", "what colors should I use", "brand identity", "design my brand", "set up brand colors", "time to build the frontend", "let's start the UI", "make this look branded", or any time a project is about to start frontend work and has no brand.md yet. Presents 6 candidate palettes as a visual HTML preview opened in the user's browser, supports an infinite regenerate loop until the user is satisfied, then writes the chosen palette to shadcn CSS variables (light + dark), wires up typography via next/font, derives brand gradients, and writes brand.md for future reference.
+- **brand-guidelines** — Applies Anthropic's official brand colors and typography to any sort of artifact that may benefit from having Anthropic's look-and-feel. Use it when brand colors or style guidelines, visual formatting, or company design standards apply.
+- **brandkit** — Premium brand-kit image generation skill for creating high-end brand-guidelines boards, logo systems, identity decks, and visual-world presentations. Trained for minimalist, cinematic, editorial, dark-tech, luxury, cultural, security, gaming, developer-tool, and consumer-app brand systems. Optimized for intentional logo concepting, refined composition, sparse typography, strong symbolic meaning, premium mockups, art-directed imagery, and flexible grid layouts.
+- **brave-search** — Web search and content extraction via Brave Search API. Use for searching documentation, facts, or any web content. Lightweight, no browser required.
+- **browser-tools** — Interactive browser automation via Chrome DevTools Protocol. Use when you need to interact with web pages, test frontends, or when user interaction with a visible browser is required.
+- **build-with-ai** — >
+- **build-with-claude** — Guide a developer through building their Solana MVP step by step using Claude Code. Use when a user says "help me build this", "start the MVP", "guide me through implementation", "what should I build first", or "walk me through the code". Reads build-context.md from a prior scaffold phase if available.
+- **calle-invoice-recovery** — Defines a polite CALL-E invoice-recovery conversation, structured outcomes, and human-approval requirements for freelancers and small agencies; includes a no-call preview, while live dispatch and storage require a host integration.
+- **candidate-availability-call** — Recruiting coordination phone-call skill that confirms candidate interview availability, captures evidence-backed time windows, and keeps final scheduling under human control.
+- **canvas-design** — Create beautiful visual art in .png and .pdf documents using design philosophy. You should use this skill when the user asks to create a poster, piece of art, design, or other static piece. Create original visual designs, never copying existing artists' work to avoid copyright violations.
+- **claude-code** — Delegate coding tasks to Claude Code (Anthropic's CLI agent). Use for building features, refactoring, PR reviews, and iterative coding. Requires the claude CLI installed.
+- **code-to-design** — Generate a Paper design from the project's codebase — using its tokens, styles, and components as context.
+- **codex** — Delegate coding tasks to OpenAI Codex CLI agent. Use for building features, refactoring, PR reviews, and batch issue fixing. Requires the codex CLI and a git repository.
+- **compose** — Background knowledge for droid-control workflows -- not invoked directly. Video assembly via Remotion — title cards, layout, transitions, effects, and showcase polish.
+- **control-browser** — Main-agent-only Browser Use. The main agent must perform browser work itself and must not delegate it to a subagent; subagents must not load this skill or use Browser Use. Use to open, navigate, inspect, test, click, type, fill, screenshot, or verify web pages and local HTTP targets (localhost, 127.0.0.1, ::1) inside ZCode, including browser/web-UI automation, rendered-page scraping, frontend checks, and visible page-state reading.
+- **coss-ui** — Design engineering guidelines, design token architecture, and open-source enterprise UI component specifications from COSS UI (coss.com/ui). Use when architecting design systems, building commercial open-source SaaS interfaces, standardizing tokens, or implementing clean developer-first UI components.
+- **cu-desktop** — Computer Use desktop operation guide. Auto-injected when CU mode is enabled.
+- **dart-build-cli-app** — Entrypoint structure, exit codes, cross-platform scripts. Use when building command line utilities, scripts, or applications.
+- **dart-generate-test-mocks** — Define and generate mock objects for external dependencies using `package:mockito` and `build_runner`. Use when unit testing classes that depend on complex external services like APIs or databases.
+- **dataviz** — Design guidance for charts, graphs, dashboards, maps, and data visualizations, including a local palette validator.
+- **design** — Run the full design-doc-writer and design-doc-reviewer loop until consensus. Produces a polished design document with a PR plan.
+- **design-promax** — >-
+- **design-system-checklist** — Comprehensive checklist for designing, building, and auditing design systems, foundations, and core UI components from Design System Checklist (designsystemchecklist.com). Use when creating component libraries, auditing UI completeness, or implementing any of the 28+ core UI components.
+- **design-taste** — Design direction, judgment calls, and anti-AI-slop review for crypto UIs. Use when the user says "this looks generic", "this looks AI-generated", "anti-slop", "design judgment", "premium feel", "design direction", "what direction should this take", "make this feel more premium", "review for taste", "theme reference", "warm monochrome", "stark minimal", "gradient trust", "workstation dense", "soft consumer", "gallery editorial", "density", "page archetype", "design brief", "pitch deck style", "deck visual direction". Also use when building any new page-level component that needs aesthetic direction before implementation. Does NOT claim "make this look good" or "polish this" — those belong to frontend-design-guidelines.
+- **design-taste-frontend** — Senior UI/UX Engineer. Architect digital interfaces overriding default LLM biases. Enforces metric-based rules, strict component architecture, CSS hardware acceleration, and balanced design engineering.
+- **design-to-code** — Turn a Paper design into production code using the project's existing conventions.
+- **designing-application-transactions** — Guides application developers in designing correct and performant transaction patterns for CockroachDB, covering transaction lifetime, implicit vs explicit transactions, retry handling with exponential backoff, pushing invariants into SQL, selective pessimistic locking, set-based operations, connection pooling, prepared statements, keyset pagination, follower reads, and separating business logic from database logic. Use when building applications on CockroachDB, designing transaction workflows, handling retries, optimizing application-layer database interactions, or configuring connection pools.
+- **designing-multi-region-applications** — Guides developers in selecting and implementing multi-region patterns for CockroachDB applications, covering active-passive vs active-active architectures, REGIONAL BY ROW, GLOBAL tables, manual geo-partitioning with lease preferences, and live demo setup with validation queries. Use when designing multi-region database topologies, choosing between REGIONAL BY ROW and manual partitioning, building multi-region demos, or optimizing cross-region latency.
+- **diagnosing-plugins** — Use to diagnose and fix ZCode plugin and marketplace problems in the ZCode client. Applies when a plugin is not listed, adding a marketplace or installing a plugin fails, a plugin is enabled but its skills or commands are missing, a built-in plugin still appears after being disabled, a plugin is not enabled as expected, a plugin.json manifest has a parse error, a plugin name is invalid, a dependency is unresolved or blocked across marketplaces, or a sensitive configuration value cannot be entered in the interface. Provides the plugin lifecycle, manifest schema, how to manage plugins in the client, and a step-by-step localization and repair workflow.
+- **doc-coauthoring** — Guide users through a structured workflow for co-authoring documentation. Use when user wants to write documentation, proposals, technical specs, decision docs, or similar structured content. This workflow helps users efficiently transfer context, refine content through iteration, and verify the doc works for readers. Trigger when user mentions writing docs, creating proposals, drafting specs, or similar documentation tasks.
+- **docs** — docs (living docs people share, comment on and edit; use only when the user asks for one: names a doc, document, page, memo, spec, PRD, runbook or write-up, asks for somewhere to share or keep editing something, or says yes to your doc offer; a plan, comparison, summary or notes asked in chat stays in chat (at most a one-line doc offer); a report, status update, recap or "something I can send them" with no form named → ask first: reply, doc or file?; tabs hold tables and live charts too; a pasted claude.ai/code/artifact/… link may be a doc: check with docs tools first; not HTML pages, apps or plain chat answers; a .docx/.pptx/.xlsx/PDF asked for by name → that format''s skill): asked for one → no docs-connector instructions in context? call the docs connector''s `guide` with topic.instructions first, then create the doc (headings only, no body) before any search, file read or plan, even with files attached. Documenting code means docstrings or repo docs, not a doc.
+- **domain-intel** — Passive domain reconnaissance using Python stdlib. Subdomain discovery, SSL certificate inspection, WHOIS lookups, DNS records, domain availability checks, and bulk multi-domain analysis. No API keys required.
+- **droid-control** — Control terminal TUIs and web/Electron apps for testing, demos, QA, and computer-use tasks. Use when you need to automate a CLI, drive a browser, record a demo, or capture proof artifacts.
+- **dspy** — Build complex AI systems with declarative programming, optimize prompts automatically, create modular RAG systems and agents with DSPy - Stanford NLP's framework for systematic LM programming
+- **emil-design-eng** — This skill encodes Emil Kowalski's philosophy on UI polish, component design, animation decisions, and the invisible details that make software feel great.
+- **exception-resolver** — Resolve operational exceptions by gathering missing information through an authorized CALL-E phone conversation and returning a structured result for human approval. Use when an AI agent encounters a supported operational exception that cannot be resolved from available system data and requires information from an authorized person.
+- **find-animation-opportunities** — Search a codebase or UI for places that don't animate but should, and reject everything that shouldn't. Read-only; it proposes motion with exact values, it does not implement it. Use when the user asks "what could be animated here?" or wants to "make this feel more alive". For fixing existing animations, use improve-animations or review-animations instead.
+- **firebase-auth-basics** — Guide for setting up and using Firebase Authentication. Use this skill when the user's app requires user sign-in, user management, or secure data access using auth rules.
+- **firebase-crashlytics** — Comprehensive guide for Firebase Crashlytics, including provisioning and SDK usage. Use this skill when the user needs help setting up Crashlytics, adding crash reporting, or using the Crashlytics SDK in their application.
+- **firebase-data-connect** — Builds and deploys Firebase SQL Connect (aka Firebase Data Connect) backends with PostgreSQL securely. Use when designing schemas with tables and relations, writing authorized queries and mutations, configuring real-time data updates, or generating type-safe SDKs. Use when you need a relational database with Firebase, or when the user mentions SQL Connect or Data Connect.
+- **firebase-remote-config-basics** — Comprehensive guide for Firebase Remote Config, including template management and SDK usage. Use this skill when the user needs help setting up Remote Config, managing feature flags, or updating app behavior dynamically.
+- **fizz** — Generate Echidna/Medusa-compatible Solidity fuzz suites from Foundry or Hardhat projects. Trigger on "fizz", "generate fuzz suite", "build fuzz harness", "stateful fuzzing", "fuzzing harness", "property testing", and "invariant suite".
+- **flutter-add-integration-test** — Configures Flutter Driver for app interaction and converts MCP actions into permanent integration tests. Use when adding integration testing to a project, exploring UI components via MCP, or automating user flows with the integration_test package.
+- **flutter-add-widget-preview** — Adds interactive widget previews to the project using the previews.dart system. Use when creating new UI components or updating existing screens to ensure consistent design and interactive testing.
+- **flutter-add-widget-test** — Implement a component-level test using `WidgetTester` to verify UI rendering and user interactions (tapping, scrolling, entering text). Use when validating that a specific widget displays correct data and responds to events as expected.
+- **flutter-apply-architecture-best-practices** — Architects a Flutter application using the recommended layered approach (UI, Logic, Data). Use when structuring a new project or refactoring for scalability.
+- **flutter-build-responsive-layout** — Use `LayoutBuilder`, `MediaQuery`, or `Expanded/Flexible` to create a layout that adapts to different screen sizes. Use when you need the UI to look good on both mobile and tablet/desktop form factors.
+- **flutter-fix-layout-issues** — Fixes Flutter layout errors (overflows, unbounded constraints) using Dart and Flutter MCP tools. Use when addressing "RenderFlex overflowed", "Vertical viewport was given unbounded height", or similar layout issues.
+- **frontend-design** — Create distinctive, production-grade frontend interfaces with high design quality. Use this skill when the user asks to build web components, pages, artifacts, posters, or applications (examples include websites, landing pages, dashboards, React components, HTML/CSS layouts, or when styling/beautifying any web UI). Generates creative, polished code and UI design that avoids generic AI aesthetics.
+- **frontend-design-guidelines** — Apply high-quality web interface design rules when building, reviewing, or styling frontend code. Use when the user says "build a frontend", "create a component", "style this", "review my UI", "build a landing page", "design this page", "make this look good", "add animation", "build a form", "improve the UI", "polish this", "make this feel right", "review for craft", "the interaction feels off", "make this look polished", or when generating any React/Next.js component. Defaults to Tailwind CSS and shadcn/ui. Reads brand.md at the project root (if present) and uses it as the source of truth for colors, typography, and voice. Covers interactions, layout, typography, forms, animation, states, accessibility, and a dedicated craft-and-polish layer for taste-level review. Use proactively whenever frontend code is being written — do not wait to be asked.
+- **full-output-enforcement** — Overrides default LLM truncation behavior. Enforces complete code generation, bans placeholder patterns, and handles token-limit splits cleanly. Apply to any task requiring exhaustive, unabridged output.
+- **game-animation-frames** — >
+- **game-ui-icons** — >
+- **generate-image** — Generate images with Higgsfield. Use when the user asks to create, generate, render, or design an image, illustration, poster, character, scene, or visual concept.
+- **generative_ui** — How to render rich interactive HTML widgets inline in the chat or as standalone artifacts. Use this skill when you want to show the user diagrams, data visualizations, interactive controls, educational walkthroughs, or any rich visual content beyond plain text and markdown.
+- **geo-brand-mentions** — Brand mention and authority scanner for AI visibility. Analyzes brand presence across platforms that AI models rely on for entity recognition and citation decisions. Produces a Brand Authority Score (0-100) with platform-specific recommendations.
+- **gguf-quantization** — GGUF format and llama.cpp quantization for efficient CPU/GPU inference. Use when deploying models on consumer hardware, Apple Silicon, or when needing flexible quantization from 2-8 bit without GPU requirements.
+- **gitnexus-explorer** — Index a codebase with GitNexus and serve an interactive knowledge graph via web UI + Cloudflare tunnel.
+- **glaze-app-lifecycle** — Use when implementing or debugging Glaze app lifecycle behavior: quit/exit actions, before-quit/will-quit cleanup, menu bar or LSUIElement apps, dock icon hiding, tray menu quit handlers, app activation, shutdown signals, or graceful termination.
+- **glaze-backend-performance** — Use when building apps that poll system state, execute shell commands, or transfer binary/large data over IPC. Covers child_process safety, polling patterns, IPC payload optimization, in-memory caching, and macOS system integration.
+- **glaze-capabilities** — What Glaze itself can do outside the coding agent — publishing, store screenshots, the app icon/name, sharing, the Store, project management, credits/billing, teams. Load when the user asks how or where to do something that Glaze handles rather than their app's code — how to publish, share, or submit their app, where screenshots or promotional/marketing images for the store listing should be made, how to change the app icon or name, install or update Store apps, archive/delete/export a project, or manage credits, plans, or teams. Answer by pointing them to the right Glaze flow instead of building anything. Not for features inside the user's own app — that's normal app work.
+- **glaze-claude-cli** — Build Glaze apps that explicitly integrate with a user's local Claude Code CLI subscription via `claude -p` / `--print`. Do not use this as the default way to add AI to an app: it requires the target user to have Claude Code installed and logged in. Use only for local/private projects or apps whose users are known to have Claude Code available.
+- **glaze-cli-dependencies** — Use when a Glaze app must call an external CLI or Homebrew-installed tool because npm packages are not sufficient, including ffmpeg/yt-dlp/imagemagick/pandoc/whisper/jq, install checks, one-click Homebrew setup, child_process safety, and runtime missing-dependency UI.
+- **glaze-component-docs-reader** — Fetch usage docs for one or more @glaze/core design-system components WITHOUT loading the full files into your context. The caller passes the absolute path to each component's .md; this skill reads only those exact files in an isolated context and returns a condensed API reference (import, props, variants, one canonical snippet, pitfalls). Use this instead of Read-ing component .md files directly. Triggers on "read the docs for <component>", "component docs", or before implementing UI with @glaze/core components.
+- **glaze-component-patterns** — Build or modify native macOS-style Glaze renderer UI with the design system. Use for layouts, sidebars, toolbars, forms, dialogs, lists, grids, tables, component selection, semantic styling, scrolling, sticky regions, overlays, or any custom UI markup.
+- **glaze-context-gather** — Gather context from project memory, guides, and codebase before implementation. Use when starting new features, complex changes, or when you need to understand existing patterns. Triggers on "gather context", "check what exists", "explore the codebase", or any task that needs codebase understanding before coding.
+- **glaze-data-storage** — Persist Glaze app UI state, user content, settings, history, caches, secrets, or relational data. Use when choosing localStorage, Application Support JSON files, safeStorage, or SQLite; implementing data stores; or debugging missing, corrupted, insecure, or repository-relative persistence.
+- **glaze-drag-and-drop** — Implement drag-and-drop workflows in Glaze apps, including dropping files from Finder into the app, dragging exported files from the app to Finder, and in-app drag/reorder interactions. Use when building drop zones, drag handles, file import/export UX, or any DnD behavior.
+- **glaze-frontend-rules** — Rules for Glaze frontend implementation with React, TanStack Router, React Query, and @glaze/core components.
+- **glaze-icon-usage** — Guidelines for using icons in Glaze apps. Use semantic text colors — the system renders them solid on icons automatically.
+- **glaze-protocol-large-files** — Use when building Glaze apps that need to load large files (MB+) in the renderer or stream file content without IPC bloat. Covers the Glaze protocol API (registerSchemesAsPrivileged/handle), strict registration timing, safe path handling, and renderer fetch patterns.
+- **glaze-theming** — Theme a Glaze app's colors when the user asks for a color scheme, brand colors, or a visual vibe ("make it soft yellow", "cyberpunk dark", "match my brand"). Covers seed-variable overrides, the light-mode saturation rule, and integrating with the app's appearance setting (replace it or extend it with selectable themes).
+- **glaze-window-sizing** — Chooses window width, height, and minimum dimensions for a Glaze BrowserWindow based on the app's layout and content. Use when creating a new Glaze app, scaffolding from the template, adding a BrowserWindow, or configuring windowWidth, windowHeight, minWidth, or minHeight in main/index.ts.
+- **google-workspace** — Read this before the first Google Drive, Docs, Sheets or Slides connector call whenever the task creates or changes a Google file. Use this skill whenever the user wants to create or change a Google Doc, Sheet or Slides file in their Google Drive. Triggers include: a request that names Google Docs, Sheets, Slides or Drive and asks to make, edit, format, copy or rename a file; a docs.google.com link with a request to change that file, even a one-line fix or suggested edits; and any follow-up change to a Google file from earlier in the chat, even \"change it\" or \"add a tab\". Includes helper scripts for document positions, cell ranges and slide layout. However, if the user asks for a doc, deck or spreadsheet without naming Google, or gives a Google file only as source material for something new, use Claude's own output type instead. Do NOT use for read-only questions about a Google file, or for Word, Excel, PowerPoint or PDF files.
+- **gpt-taste** — Elite UX/UI & Advanced GSAP Motion Engineer. Enforces Python-driven true randomization for layout variance, strict AIDA page structure, wide editorial typography (bans 6-line wraps), gapless bento grids, strict GSAP ScrollTriggers (pinning, stacking, scrubbing), inline micro-images, and massive section spacing.
+- **grill-me** — Interview the user relentlessly about a plan or design until reaching shared understanding, resolving each branch of the decision tree. Use when user wants to stress-test a plan, get grilled on their design, or mentions "grill me".
+- **grpo-rl-training** — Expert guidance for GRPO/RL fine-tuning with TRL for reasoning and task-specific model training
+- **guidance** — Control LLM output with regex and grammars, guarantee valid JSON/XML/code generation, enforce structured formats, and build multi-step workflows with Guidance - Microsoft Research's constrained generation framework
+- **hermes-atropos-environments** — Build, test, and debug Hermes Agent RL environments for Atropos training. Covers the HermesAgentBaseEnv interface, reward functions, agent loop integration, evaluation with tools, wandb logging, and the three CLI modes (serve/process/evaluate). Use when creating, reviewing, or fixing RL environments in the hermes-agent repo.
+- **high-end-visual-design** — Teaches the AI to design like a high-end agency. Defines the exact fonts, spacing, shadows, card structures, and animations that make a website feel expensive. Blocks all the common defaults that make AI designs look cheap or generic.
+- **holdline** — Ask one question of many places by phone and get back only the answers the call actually established. Use for batch phone enquiries where a wrong answer is worse than no answer — supplier stock checks, capacity and availability enquiries, claim and case status, directory verification. Includes evidence checking that catches values a call returns for questions it never asked.
+- **hyperframes-animation** — All animation knowledge for HyperFrames — atomic motion rules, multi-phase scene blueprints, scene transitions, broader motion-design techniques, AND the seven runtime adapters (GSAP default, plus Lottie, Three.js, Anime.js, CSS keyframes, Web Animations API, TypeGPU). Use for any motion or animation task: pick 2-4 rules and compose, or load a blueprint, or look up runtime-specific API (e.g. GSAP eases / Lottie player / Three.js mixer). Also covers auditing an existing composition's choreography (animation map) and 24 named text-animation effects. HyperFrames-native: single paused timeline, seek-safe, deterministic.
+- **hyperframes-creative** — Non-animation creative direction for HyperFrames videos. Use for design spec (frame.md / design.md) handling, palettes, typography, narration, beat planning, audio-reactive visuals, composition patterns, and brand / style decisions. For atomic motion patterns and scene blueprints, use `hyperframes-animation`.
+- **hyperframes-registry** — Search, install, and wire registry blocks and components into HyperFrames compositions. Use BEFORE hand-building any named visual — whenever a brief, a user, or a storyboard names a look, effect, treatment, or transition such as CRT scanlines, glitch, chromatic aberration, film grain, a shimmer sweep, a chart, a code or terminal window, a map, or a confetti burst — because roughly 400 hosted items already cover many of them and the search ranks all of them with nothing installed, no project, and no account. Also use when running hyperframes add or hyperframes catalog, installing one item or every block matching a tag, wiring an installed item into index.html, or working with hyperframes.json. Covers discovery, install locations, block sub-composition wiring, component snippet merging, and authoring a new block or component to contribute upstream (idea → scaffold → validate → PR).
+- **image-to-code** — Elite website image-to-code skill for Codex. For visually important web tasks, it must first generate the design image(s) itself, deeply analyze them, then implement the website to match them as closely as possible. In Codex, it must prefer large, readable, section-specific images instead of tiny compressed boards, generate fresh standalone images for sections or detail views instead of cropping old ones, avoid lazy under-generation, avoid cards-inside-cards-inside-cards UI, and keep the hero clean, spacious, readable, and visible on a small laptop.
+- **imagegen** — Generate or edit raster images when the task benefits from AI-created bitmap visuals such as photos, illustrations, textures, sprites, mockups, or transparent-background cutouts. Use when Codex should create a brand-new image, transform an existing image, or derive visual variants from references, and the output should be a bitmap asset rather than repo-native code or vector. Do not use when the task is better handled by editing existing SVG/vector/code-native assets, extending an established icon or logo system, or building the visual directly in HTML/CSS/canvas.
+- **imagegen-frontend-mobile** — Elite mobile app image-generation skill for creating premium, app-native screen concepts and flows. Designed for iOS, Android, and cross-platform mobile products. Prioritizes clean hierarchy, comfortably readable text, strong multi-screen consistency, controlled color palettes, non-generic creative direction, textured surfaces, image-led composition, tasteful custom iconography, and clean phone mockup framing. By default, screens should be shown inside a subtle premium iPhone or similar phone mockup with a visible frame, while the main focus stays on the app content itself. This skill generates images only. It does not write code.
+- **imagegen-frontend-web** — Elite frontend image-direction skill for generating premium, conversion-aware website design references. CRITICAL OUTPUT RULE — generate ONE separate horizontal image FOR EVERY section. A landing page with 8 sections produces 8 images. Never compress multiple sections into one image. Enforces composition variety (not always left-text / right-image), background-image freedom, varied CTAs, varied hero scales (giant / mid / mini minimalist), narrative concept spine, second-read moments, and a single consistent palette across all images. Optimized for landing pages, marketing sites, and product comps that developers or coding models can accurately recreate.
+- **improve-animations** — Survey a codebase's animation and motion code as a senior motion advisor, then produce a prioritized audit and self-contained implementation plans for other agents (or cheaper models) to execute. Read-only on source code — it plans improvements, it does not apply them. Use when the user asks to "improve the animations", "audit the motion", "make this app feel better", or wants a roadmap of animation fixes rather than a review of a single diff.
+- **improve-ui** — Audit an existing product surface against its own design evidence, identify verified UI problems, and write self-contained implementation plans for another agent. Strictly read-only on product source. Use when asked to review, refine, improve, or clean up an interface without replacing its identity; investigate design-system drift; or prepare a design handoff.
+- **incident-escalation-call** — Escalate a production incident by phone until a person commits to owning it. Places one CALL-E call per on-call engineer in ladder order, requires a spoken owner and an ETA, then verifies the acknowledgement over a second transport before reporting it. Use when a page must end with a human on the hook, not a notification marked as sent.
+- **industrial-brutalist-ui** — Raw mechanical interfaces fusing Swiss typographic print with military terminal aesthetics. Rigid grids, extreme type scale contrast, utilitarian color, analog degradation effects. For data-heavy dashboards, portfolios, or editorial sites that need to feel like declassified blueprints.
+- **inference-sh-cli** — Run 150+ AI apps via inference.sh CLI (infsh) — image generation, video creation, LLMs, search, 3D, social automation. Uses the terminal tool. Triggers: inference.sh, infsh, ai apps, flux, veo, image generation, video generation, seedream, seedance, tavily
+- **ios-dev** — Build, run, inspect, and lightly automate iOS simulator apps with the ios-simulator MCP tools.
+- **labline-critical-result** — Safety-bounded CALL-E workflow for closed-loop communication of an approved critical laboratory result to an authorized clinical recipient. Verifies the recipient before disclosure, requires exact read-back, fails closed on wrong recipient or voicemail, and never interprets the result or recommends treatment.
+- **mcp-builder** — Guide for creating high-quality MCP (Model Context Protocol) servers that enable LLMs to interact with external services through well-designed tools. Use when building MCP servers to integrate external APIs or services, whether in Python (FastMCP) or Node/TypeScript (MCP SDK).
+- **media-use** — Agent Media OS, the single skill for every media need in a HyperFrames project. Resolve BGM, SFX, image, icon, brand logo, voice, color grade, or LUT into a frozen local file or paste-ready block + ledger record (one verb, `resolve`); generate via TTS / music / image models when the catalog misses; produce voiceover, transcription, captions, and background removal through one shared audio engine; operate on media (cut / reframe / transform); and reuse assets across projects. Also use for vague feedback that real footage looks dark, flat, boring, should feel retro/camcorder/print/ASCII, needs privacy, or needs a media reveal.
+- **minimalist-ui** — Clean editorial-style interfaces. Warm monochrome palette, typographic contrast, flat bento grids, muted pastels. No gradients, no heavy shadows.
+- **ml-paper-writing** — Write publication-ready ML/AI papers for NeurIPS, ICML, ICLR, ACL, AAAI, COLM. Use when drafting papers from research repos, structuring arguments, verifying citations, or preparing camera-ready submissions. Includes LaTeX templates, reviewer guidelines, and citation verification workflows.
+- **mobilize** — Get a required number of confirmed responses from a consented pool of people within a deadline by calling multiple candidates in parallel waves via CALL-E, stopping as soon as the need is met. Use for urgent mobilization tasks like "find 3 donors in the next hour" or "get 2 volunteers by 5pm" from a registry of people who opted in to be contacted.
+- **modern-web-guidance** — |
+- **molt-fetch** — Guide for using molt fetch to migrate data from PostgreSQL, MySQL, Oracle, or MSSQL to CockroachDB. Use when running molt fetch commands, configuring storage backends, handling fetch failures/resumption, or chaining fetch with verify.
+- **molt-replicator** — Guide for using the CockroachDB replicator to continuously replicate changes from PostgreSQL, MySQL, or Oracle to CockroachDB after an initial molt fetch data load. Use when setting up CDC replication, configuring pglogical/mylogical/oraclelogminer, or managing the fetch → replicator cutover workflow.
+- **molt-verify** — Guide for using molt verify to compare source and target databases for schema and row-level consistency after a migration. Use when running verify commands, tuning concurrency/sharding, handling schema mismatches, or validating data integrity post-migration.
+- **monad** — Build on Monad — a high-performance EVM L1 (10,000 TPS, 400ms blocks, 800ms deterministic finality) with the Cadence consensus protocol and an encrypted mempool. Use when the user mentions Monad, Cadence consensus, MonadBFT, the BuildAnything/Spark hackathon, or is choosing what to build on a fast EVM chain. Covers the three design axes (speed, trustlessness, order-fairness), the load-bearing test, the on-chain/off-chain split, and how hackathon judges score Monad projects.
+- **new-app** — Workflow for creating new applications from scratch. Covers requirements gathering, tech stack selection, scaffolding, implementation, and delivery of a functional prototype.
+- **number-formatting** — Apply consistent number formatting across crypto/Solana UIs. Use when the user says "format numbers", "number display", "token amounts", "price formatting", "zero subscript", "abbreviate numbers", "format currency", "format percent", "how should I display this number", "number formatting spec", or when generating any UI component that displays prices, balances, percentages, ratios, or token amounts. Use proactively whenever writing frontend code that renders numeric values — do not wait to be asked.
+- **openhue** — Control Philips Hue lights, rooms, and scenes via the OpenHue CLI. Turn lights on/off, adjust brightness, color, color temperature, and activate scenes.
+- **page-load-animations** — Fix janky page loads where everything appears at once. Production framer-motion recipes for choreographed page entrances, staggered lists, modal transitions, filter cross-fades, live data animations, and micro-interactions. Use when building or reviewing any page that loads content, when animations feel broken or janky, when framer-motion code needs production patterns, or when the user says "page load animation", "entrance choreography", "stagger animation", "framer-motion recipe", "page feels janky", "everything appears at once", "spring animation", "modal animation", "dropdown animation", "rolling numbers", "chart morph", "donut reveal", "filter transition", "tab animation", "micro-interaction", "hover animation", "button feedback", "AnimatePresence", or "framer-motion pattern". Use proactively whenever writing page-level components or reviewing animation code.
+- **permissioned-github** — Guidelines for interacting with GitHub and request permissions from the user when commands fail due to restrictions in the agent environment.
+- **pick-ui-library** — Pick the right library for a given frontend task from a curated, opinionated list — numbers, OTP inputs, charts, command menus, virtualization, drag and drop, toasts, state, styling, and more. Only runs when explicitly invoked; it does not trigger on its own.
+- **playwright-component-testing** — Set up component testing with Playwright using a story gallery — scaffold stories and a gallery dev page driven by the built-in mount fixture, no dedicated component-testing runtime. Use when asked to test React or Vue components in isolation with Playwright, or to migrate off @playwright/experimental-ct-react / -vue.
+- **plugin-creator** — Create and scaffold plugin directories for Codex with a required `.codex-plugin/plugin.json`, optional plugin folders/files, valid manifest defaults, and personal-marketplace entries by default. Use when Codex needs to create a new personal plugin, add optional plugin structure, generate or update marketplace entries for plugin ordering and availability metadata, or update an existing local plugin during development with the CLI-driven cachebuster and reinstall flow.
+- **popular-web-designs** — >
+- **prd-first-app-builder** — Use when building or modifying any user-facing app, dashboard, landing page, wallet/auth-gated product, frontend routes, or demo UI; especially when the task mentions PRD, permissions, protected routes, shadcn/ui, route gating, no fake demos, no gradients, large icons, or avoiding mock/simulation lies.
+- **presigned-urls-security** — Design, review, and implement S3/Tigris/SigV4 presigned URLs as intentional capability grants with correct expiry, scope, and revocation tradeoffs. Use when the user mentions presigned URLs, signed URLs, X-Amz-Signature, SigV4 object storage auth, temporary download/upload links, hotlink protection, or object-storage access control without sharing long-lived credentials. Works via npx openskills read presigned-urls-security in any harness.
+- **product-review** — Product quality review — UX flows, onboarding, feature completeness, and user value. Use when a user says "product review", "review my product", "UX review", "is my product good", "product quality", "user experience review", "onboarding review", or "feature audit". Different from code review (review-and-iterate) and product roast (roast-my-product) — this is structured, balanced evaluation.
+- **prototype** — Build a throwaway prototype to flush out a design before committing to it. Routes between two branches — a runnable terminal app for state/business-logic questions, or several radically different UI variations toggleable from one route. Use when the user wants to prototype, sanity-check a data model or state machine, mock up a UI, explore design options, or says "prototype this", "let me play with it", "try a few designs".
+- **purposeful-ui-motion** — Emil Kowalski's motion design engineering principles (from emilkowal.ski/ui/you-dont-need-animations) on deciding when to animate, when NOT to animate, optimizing perceived speed, and building purposeful UI micro-interactions. Use when adding animations, transitions, Framer Motion, CSS transitions, hover/active states, toasts, dialogs, or auditing animation performance.
+- **pytorch-fsdp** — Expert guidance for Fully Sharded Data Parallel training with PyTorch FSDP - parameter sharding, mixed precision, CPU offloading, FSDP2
+- **pytorch-lightning** — High-level PyTorch framework with Trainer class, automatic distributed training (DDP/FSDP/DeepSpeed), callbacks system, and minimal boilerplate. Scales from laptop to supercomputer with same code. Use when you want clean training loops with built-in best practices.
+- **qdrant-vector-search** — High-performance vector similarity search engine for RAG and semantic search. Use when building production RAG systems requiring fast nearest neighbor search, hybrid search with filtering, or scalable vector storage with Rust-powered performance.
+- **quickgo-database** — >
+- **quitou** — # Quitou — payment-assurance skill
+- **rare-ui** — >
+- **redesign-existing-projects** — Upgrades existing websites and apps to premium quality. Audits current design, identifies generic AI patterns, and applies high-end design standards without breaking functionality. Works with any CSS framework or vanilla CSS.
+- **research-gap-call-verifier** — Turn cited business research into a bounded, approval-gated phone-call plan that asks only unresolved factual questions, then reconcile CALL-E-compatible results without treating voicemail, refusal, ambiguity, or failure as confirmation. Use when web research has produced a shortlist but availability, pricing, policies, or scheduling still require a disclosed call to a published business number.
+- **research-paper-writing** — End-to-end pipeline for writing ML/AI research papers — from experiment design through analysis, drafting, revision, and submission. Covers NeurIPS, ICML, ICLR, ACL, AAAI, COLM. Integrates automated experiment monitoring, statistical analysis, iterative writing, and citation verification.
+- **reui-components** — Modern React & Tailwind CSS component patterns, headless accessible primitives, and composable UI architecture from ReUI (reui.io/components). Use when building React component libraries, compound components, polymorphic elements (asChild pattern), and Tailwind CSS v3/v4 integrations.
+- **review-animations** — Reviews animation and motion code against a high craft bar derived from Emil Kowalski's design engineering philosophy. Default to flagging; approval is earned.
+- **seeri** — Verifiable deep-research skill for any onchain or market question. Decomposes a messy question into sub-claims, maps sources by category, triangulates the highest-stakes claims, builds an evidence grid with confidence ratings, and synthesizes a defensible thesis. Uses SERV Reasoning for the reasoning steps when SERV_API_KEY is available. Use when researching a token, protocol, chain, RWA vault, tokenized asset, market move, or any claim that needs sourcing before someone acts on it.
+- **seeri-memecoin-markets** — Knowledge base from \"A Complete (Meme)coin Guide\" by Spyzer. Use when applying Spyzer's frameworks for memecoin trading, attention markets, on-chain research, risk management, trade psychology, crypto safety, and beginner onboarding.
+- **showcase** — Background knowledge for droid-control workflows -- not invoked directly. Visual polish for videos via Remotion-powered window chrome, animations, and branded backgrounds.
+- **skill-design-principles** — Concise, high-signal principles for writing and editing skills well. Use whenever authoring or editing a skill.
+- **slack-gif-creator** — Knowledge and utilities for creating animated GIFs optimized for Slack. Provides constraints, validation tools, and animation concepts. Use when users request animated GIFs for Slack like "make me a GIF of X doing Y for Slack.
+- **slime-rl-training** — Provides guidance for LLM post-training with RL using slime, a Megatron+SGLang framework. Use when training GLM models, implementing custom data generation workflows, or needing tight Megatron-LM integration for RL scaling.
+- **source-command-sc-brainstorm** — Interactive requirements discovery through Socratic dialogue and systematic exploration
+- **source-command-sc-build** — Build, compile, and package projects with intelligent error handling and optimization
+- **source-command-sc-design** — Design system architecture, APIs, and component interfaces with comprehensive specifications
+- **source-command-sc-document** — Generate focused documentation for components, functions, APIs, and features
+- **source-command-sc-troubleshoot** — Diagnose and resolve issues in code, builds, deployments, and system behavior
+- **source-command-sc-workflow** — Generate structured implementation workflows from PRDs and feature requirements
+- **sparse-autoencoder-training** — Provides guidance for training and analyzing Sparse Autoencoders (SAEs) using SAELens to decompose neural network activations into interpretable features. Use when discovering interpretable features, analyzing superposition, or studying monosemantic representations in language models.
+- **spyzer-memecoin-guide** — Knowledge base from \"A Complete (Meme)coin Guide\" by Spyzer. Use when applying Spyzer's frameworks for memecoin trading, attention markets, on-chain research, risk management, trade psychology, crypto safety, and beginner onboarding.
+- **stable-diffusion-image-generation** — State-of-the-art text-to-image generation with Stable Diffusion models via HuggingFace Diffusers. Use when generating images from text prompts, performing image-to-image translation, inpainting, or building custom diffusion pipelines.
+- **stitch-design-taste** — Semantic Design System Skill for Google Stitch. Generates agent-friendly DESIGN.md files that enforce premium, anti-generic UI standards — strict typography, calibrated color, asymmetric layouts, perpetual micro-motion, and hardware-accelerated performance.
+- **superdesign** — Design or redesign frontend UI, presentations, and graphics on the Superdesign canvas with a choice of leading AI models. Use whenever the user wants to design a page, feature, flow, slide deck, or brand-new product; improve or reproduce existing UI; compare design results across top models; explore visual variants; set or extract a design system; build reusable components or multi-page flows; create presentations; or create posters and marketing graphics, even if they never say the word 'design tool'. Also supports generating supporting image or video assets when a design needs them.
+- **tdd** — Test-driven development with red-green-refactor loop. Use when user wants to build features or fix bugs using TDD, mentions "red-green-refactor", wants integration tests, or asks for test-first development.
+- **theme-factory** — Toolkit for styling artifacts with a theme. These artifacts can be slides, docs, reportings, HTML landing pages, etc. There are 10 pre-set themes with colors/fonts that you can apply to any artifact that has been creating, or can generate a new theme on-the-fly.
+- **threejs-3d-generator** — Generate, texture, rig, animate, stylize, convert, and download 3D assets for Three.js games using the Tripo API. Use for text-to-3D, image-to-3D, 2D concept to 3D conversion, game-ready GLB/FBX assets, characters, creatures, buildings, props, weapons, terrain pieces, auto-rigging, animation retargeting, model texturing, LEGO/voxel/Minecraft-style stylization, low-poly/quad conversion, and browser asset pipelines. Pair with threejs-image-generator for concepts, texture references, sky/background/terrain textures, logos, icons, and GUI art before image-to-3D generation.
+- **threejs-aaa-graphics-builder** — Upgrade Three.js games from basic/prototype visuals to premium AAA-inspired browser graphics. Combines art-direction critique, procedural model building, technical art, mandatory external asset sourcing decisions, threejs-3d-generator assets, threejs-image-generator concept/texture workflows, scene visual polish, material/texture libraries, world prop kits, shaders, VFX readability, render budgets, LOD/instancing, render pipeline, and visual scorecard gates. For premium games with characters, vehicles, ships, weapons, buildings, signature props, skies, textures, decals, logos, icons, or GUI art, load the relevant generator skills before deciding procedural assets are enough.
+- **threejs-audio-generator** — Generate, convert, clean, and prepare audio assets for Three.js browser games using ElevenLabs. Use for sound effects, looping ambience, UI sounds, impact/weapon/vehicle audio, creature or boss stingers, announcer/dialogue TTS, scratch-performance voice conversion, voice cleanup/isolation, audio manifests, and game-ready web audio integration.
+- **threejs-debug-profiler** — Debug and profile Three.js browser games. Combines scene debugging, render/runtime/loading/animation/resize/mobile input fixes, performance profiling, draw calls, triangles, textures, memory, shader/post-processing cost, bundle size, and mobile DPR/input issues.
+- **threejs-game-ui-designer** — Design premium Three.js game UI. Use for HUDs, menus, overlays, pause/win/lose screens, settings, icon controls, touch UI, typography, responsive layout, safe areas, text fit, and UI/world cohesion.
+- **threejs-gameplay-systems** — Build and iterate playable Three.js game systems. Combines starter scaffold creation, architecture, game design, level design, gameplay implementation, combat/encounter design, and game-feel tuning (hitstop, screenshake, easing, impact feedback). Use for first playable slices, new Vite/TypeScript/Three.js game setup, design briefs, core loops, level/arena/track/wave/hole/puzzle design, game loops, entity systems, input, collision/physics, scoring, objectives, audio hooks, camera, controls, difficulty, feedback, juice, and maintainable structure.
+- **threejs-image-generator** — Generate and edit 2D image assets for Three.js games using Google's Gemini image API. Use for concept sheets, image-to-3D inputs, texture references, sky/background plates, decals, logos, icons, GUI art, title/menu art, thumbnails, marketing stills, and source images that feed threejs-3d-generator. Also use for direct image editing when the user provides an image path.
+- **threejs-qa-release** — Verify and release Three.js browser games. Combines playtest QA, automated bot playtests, mobile/responsive checks, production builds, preview verification, static-hosting base paths, debug gating, bundle review, screenshots, visual test harness decisions, packaged canvas-pixel inspection with measured metrics, console checks, and release risk reports.
+- **transitions-dev** — Production-ready CSS transitions for web apps. Use when implementing notification badges, dropdowns, modals, panel reveals, page transitions, card resizes, number pop-ins, text swaps, icon swaps, success checks, avatar group hovers, error state shakes, search/input clear, skeleton loaders, shimmer text, sliding tabs, tooltips, staggered text reveals, card hover tilt, plus-to-menu morph, accordions, toasts, like buttons, learn-more hovers, checkbox checks, spinning counters, toggles, AI thinking states, reasoning streams, streaming text, matrix dot loaders, or banner stacking. Triggers on "add a transition", "animate the dropdown", "make the modal open smoothly", "swap icon", "page slide", "stagger animation", "open / close transition", "make it animate", "fade between", "success animation", "form error", "shake on invalid", "hover lift", "avatar stack hover", "clear the search", "skeleton loader", "loading shimmer", "shimmer text", "sliding tabs", "segmented control", "tooltip", "reveal text", "tilt card", "3D hover tilt", "cursor glare", "plus to menu", "FAB morph", "accordion", "collapsible", "expand / collapse", "disclosure", "toast", "snackbar", "like button", "heart animation", "learn more arrow", "checkbox", "check animation", "spinning counter", "odometer", "slot machine digits", "toggle", "switch", "thinking states", "AI status line", "agent reasoning", "reasoning stream", "streaming text", "stream words in", "matrix loader", "dot loader", "banner stack", "stacked toasts". Also "motion tokens", "scan for ad-hoc transitions", "replace hardcoded durations with motion tokens", "tokenize my animations", and the commands transitions reveal, transitions review, transitions apply, transitions refine.
+- **transitions-polish** — Polish and refine existing motion against the transitions.dev motion-token scale — duration, distance, scale, blur, and easing — plus the rules for WHEN each token applies (open/close asymmetry, hover-in vs hover-out, stagger offsets, and intent delays). An add-on to the transitions-dev skill, focused on tuning what already animates rather than adding new transitions. Use when the user asks to "polish my transitions", "refine the motion", "tune the timing / easing", "make the animation feel better / less janky", "tighten the durations", "fix the stagger", "align to the motion tokens", "audit the motion", "review my animations", "scan for ad-hoc transitions", "tokenize my animations", or runs the commands transitions review or transitions polish. Also drives the Refine panel's Small refinement feature. Triggers on "motion polish", "transition polish", "refine motion", "timing feels off", "too slow / too fast", "stagger", "delay", "open close timing", "hover in out".
+- **tuistory** — Background knowledge for droid-control workflows -- not invoked directly. Tuistory driver mechanics for terminal TUI automation via virtual PTY.
+- **typography-layout** — >-
+- **ui-skills** — Design-engineering skills for interface craft, accessibility, micro-interactions, layout shift prevention, and polished UI details from UI Skills (ui-skills.com). Trigger when building or refining UI components, styling web surfaces, improving perceived polish, or applying design engineering best practices.
+- **unsloth** — Expert guidance for fast fine-tuning with Unsloth - 2-5x faster training, 50-80% less memory, LoRA/QLoRA optimization
+- **veo-camera-movement** — Transform natural language camera movement descriptions into professional Veo 3.1 video prompts using industry-standard cinematography terminology. Use when users request video generation with camera movements, describe shots using vague language (e.g., "camera gets closer", "camera spins"), need guidance on which camera movement serves their creative intent, or want to learn film terminology. Handles all movement types from static shots to complex movements like dolly zoom, FPV drone, snorricam, and bullet time. Outputs complete paste-ready Veo prompts following the five-part formula: [Cinematography] + [Subject] + [Action] + [Context] + [Style & Ambiance].
+- **visual-design** — |
+- **web-animation-guidelines** — Production-tested web animation reference — easing curves, timing tables, copy-paste CSS/Framer Motion patterns, accessibility, and a pre-ship checklist. Use when the user says "animate this", "add animation", "animation timing", "easing curve", "spring animation", "fade in", "slide in", "stagger", "hover animation", "button press", "modal entrance", "loading spinner", "page transition", "animation feels off", "animation best practices", "prefers-reduced-motion", "60fps animation", "animation performance", "what duration should I use", "what easing", or when writing/reviewing any web animation code (CSS transitions, keyframes, Framer Motion, GSAP, Motion One, React Spring). Use proactively whenever generating animated UI components.
+- **web-artifacts-builder** — Suite of tools for creating elaborate, multi-component Codex.ai HTML artifacts using modern frontend web technologies (React, Tailwind CSS, shadcn/ui). Use for complex artifacts requiring state management, routing, or shadcn/ui components - not for simple single-file HTML/JSX artifacts.
+- **web-gui-tester** — Use the browser automation tooling available in the session to test web frontends interactively in a purely GUI-based, black-box manner: simulate real user clicks, text input, scrolling, and other actions; use screenshots for visual verification and read-only DOM inspection for cross-validation; and produce a final test report. Suitable for verifying whether web functionality works correctly, reproducing frontend bugs, checking interaction feedback and layout styling, or conducting exploratory testing of a page. Use this skill when the user asks to test a webpage/frontend feature, verify UI behavior, reproduce a page bug, or provides only a URL and asks you to “test it.”
+- **webapp-testing** — Toolkit for interacting with and testing local web applications using Playwright. Supports verifying frontend functionality, debugging UI behavior, capturing browser screenshots, and viewing browser logs.
+- **writing-plans** — Use when you have a spec or requirements for a multi-step task. Creates comprehensive implementation plans with bite-sized tasks, exact file paths, and complete code examples.
+- **X MCP guide** — >-
+
+### solana/crypto (41)
+- **agents-md-project-rules** — Use when creating or bootstrapping a software project and the user wants reusable project instructions, mentions AGENTS.md, agentsdotmd, remorses/AGENTS.md, project rules, or asks Codex to reference a standard instruction set for future project creation.
+- **analyzing-range-distribution** — Analyzes CockroachDB range distribution across tables and indexes using SHOW RANGES to identify range count, size patterns, leaseholder placement, and replication health. Use when investigating hotspots, uneven data distribution, range fragmentation, or validating zone configuration effects without DB Console access.
+- **apply-grant** — Prepare an Agentic Engineering Grant application by gathering project data, git history, and context files, then presenting all fields needed to fill the Solana Earn grant form. Use when the user says "apply for grant", "agentic engineering grant", "apply-grant", "grant application", "fill grant form", "200 USDG grant", "ST earn", "Superteam earn", "Superteam grant", "earn grant", "help me apply for grant", "solana earn grant", or "submit grant".
+- **base** — Query Base (Ethereum L2) blockchain data with USD pricing — wallet balances, token info, transaction details, gas analysis, contract inspection, whale detection, and live network stats. Uses Base RPC + CoinGecko. No API key required.
+- **bounty-workflow** — Authorized bug-bounty loop: pick a program, lock scope, recon, proof, report. Use when hunting bounties, triaging a program, or writing a submission.
+- **build-data-pipeline** — Guide a developer through building a Solana data pipeline or indexer. Use when a user says "build an indexer", "data pipeline", "analytics", "track transactions", "monitor wallets", "webhook", "index accounts", or "real-time data". Reads build-context.md from a prior scaffold phase if available.
+- **build-defi-protocol** — Guide a developer through building a DeFi protocol on Solana. Use when a user says "build a DEX", "AMM", "lending protocol", "vault", "yield", "liquidity pool", "DeFi protocol", "swap program", "build a DeFi app", "perpetual futures", "perps protocol", "leverage trading", or "derivatives". Reads build-context.md from a prior scaffold phase if available.
+- **clarus** — Use when ingesting BSC meme attention, scoring a BNB Chain contract, running Clarus firewall gates, writing a risk report, or assembling an unsigned PancakeSwap / Binance Web3 payload. Read-only skill: no signing, broadcasting, or key handling.
+- **claude-api** — Build, debug, and optimize Codex API / Anthropic SDK apps. Apps built with this skill should include prompt caching. Also handles migrating existing Codex API code between Codex model versions (4.5 → 4.6, 4.6 → 4.7, retired-model replacements). TRIGGER when: code imports `anthropic`/`@anthropic-ai/sdk`; user asks for the Codex API, Anthropic SDK, or Managed Agents; user adds/modifies/tunes a Codex feature (caching, thinking, compaction, tool use, batch, files, citations, memory) or model (Opus/Sonnet/Haiku) in a file; questions about prompt caching / cache hit rate in an Anthropic SDK project. SKIP: file imports `openai`/other-provider SDK, filename like `*-openai.py`/`*-generic.py`, provider-neutral code, general programming/ML.
+- **colosseum-copilot** — Search and analyze 5,400+ Solana hackathon projects using Colosseum Copilot. Find similar projects, discover winner patterns, identify gaps, and explore ML clusters. Use when a user says "colosseum copilot", "hackathon projects", "winner patterns", "gap analysis hackathon", "similar Solana projects", or "colosseum landscape". Requires a Colosseum Copilot token.
+- **debug-program** — Help a developer debug a failing Solana program or transaction. Use when a user says "debug my program", "program error", "transaction failed", "stuck", "help me fix", "why is this failing", "error code", or "instruction failed". Reads build-context.md if available.
+- **deep-mantle-researcher** — Decomposes high-stakes Mantle and onchain finance questions into source maps, evidence grids, confidence levels, and publishable theses. Use when researching Mantle, RWAs, tokenized assets, DeFi protocols, market moves, hackathon articles, or AI research-agent workflows.
+- **deploy-to-mainnet** — Guide a Solana project from devnet to mainnet production deployment. Use when a user says "deploy to mainnet", "go to production", "deployment checklist", "prepare for launch", "mainnet deployment", or "ship it". Reads build-context.md from a prior build phase if available.
+- **diagnosing-mcp** — Use to diagnose and fix ZCode MCP (Model Context Protocol) server configuration problems in the ZCode client. Applies when an MCP server will not connect, its tools (mcp__server__tool) do not appear, it shows as disabled or failed, connections time out, a command cannot be found, template variables are not expanded, or a server defined in a configuration file has no effect. Provides configuration locations, how to inspect status in Settings, common pitfalls, and a step-by-step localization and repair workflow.
+- **faiss** — Facebook's library for efficient similarity search and clustering of dense vectors. Supports billions of vectors, GPU acceleration, and various index types (Flat, IVF, HNSW). Use for fast k-NN search, large-scale vector retrieval, or when you need pure similarity search without metadata. Best for high-performance applications.
+- **geo-citability** — AI citability scoring and optimization. Analyzes web page content to determine how likely AI systems (ChatGPT, Codex, Perplexity, Gemini) are to cite or quote passages from the page. Provides a citability score (0-100) with specific rewrite suggestions.
+- **geo-content** — Content quality and E-E-A-T assessment for AI citability — evaluate experience, expertise, authoritativeness, trustworthiness, and content structure
+- **git-guardrails-claude-code** — Set up Codex hooks to block dangerous git commands (push, reset --hard, clean, branch -D, etc.) before they execute. Use when user wants to prevent destructive git operations, add git safety hooks, or block git push/reset in Codex.
+- **github-auth** — Set up GitHub authentication for the agent using git (universally available) or the gh CLI. Covers HTTPS tokens, SSH keys, credential helpers, and gh auth — with a detection flow to pick the right method automatically.
+- **glaze-oauth** — Implement, port, debug, or explain OAuth 2.0 and PKCE authentication in Glaze apps. Use when the user asks about OAuth, OAuth2, PKCE, browser sign-in, access tokens, refresh tokens, redirect URIs, callback URLs, hosted HTTPS redirects, or porting Raycast OAuthService usage to Glaze.
+- **huggingface-tokenizers** — Fast tokenizers optimized for research and production. Rust-based implementation tokenizes 1GB in <20 seconds. Supports BPE, WordPiece, and Unigram algorithms. Train custom vocabularies, track alignments, handle padding/truncation. Integrates seamlessly with transformers. Use when you need high-performance tokenization or custom tokenizer training.
+- **init** — Bootstrap a coding project for AI agents — generate the root `AGENTS.md` (per agents.md spec, consumed by OpenCode/Codex/Cursor/Aider/Devin/Gemini CLI/…). Auto-loaded when the system prompt contains `<bootstrap_check>` (cold-start in a git workspace with no root AGENTS.md); users can also invoke via `/init` or natural language like "init agents.md" / "bootstrap project" / "set up agents for this repo". Coding-specific. For adding standalone agents, use `create-agent`.
+- **internal-comms** — A set of resources to help me write all kinds of internal communications, using the formats that my company likes to use. Codex should use this skill whenever asked to write some sort of internal communications (status reports, leadership updates, 3P updates, company newsletters, FAQs, incident reports, project updates, etc.).
+- **lark-minutes** — 飞书妙记：妙记相关基本功能。1.查询妙记列表（按关键词/所有者/参与者/时间范围）；2.获取妙记基础信息（标题、封面、时长 等）；3.下载妙记音视频文件；4.获取妙记相关 AI 产物（总结、待办、章节）。飞书妙记 URL 格式: http(s)://<host>/minutes/<minute-token>
+- **launch-token** — Guide a developer through launching a token on Solana. Use when a user says "launch a token", "create a token", "pump.fun", "bonding curve", "token launch", "create a memecoin", or "SPL token". Reads build-context.md from a prior scaffold phase if available.
+- **okx-agentic-wallet** — OKX Agentic Wallet — the single skill for the user's wallet and on-chain execution. Use it whenever the user wants to operate their wallet or execute an on-chain action, including: login & accounts, balance / holdings, wallet address / deposit / receive, send / transfer, contract calls (approve / deposit / withdraw), transaction history & status, message signing, wallet export & policy; pay gas with a stablecoin (Gas Station, Solana); swap / trade / buy / sell / convert, get a quote; cross-chain bridge & track arrival; limit orders (buy dip / take profit / stop loss / buy above) plus cancel / list / resume them; broadcast / gas / simulate / track a transaction; look up any public address's holdings; security scanning (token / honeypot 蜜罐 / 貔貅, DApp phishing, tx & signature checks, approvals); audit log. Once matched, follow this skill's Intent Routing to dispatch to the exact action.
+- **okx-defi** — OKX-aggregated DeFi (no specific DApp named) — product discovery, deposit/withdraw/claim execution, AND positions viewing. **If the user names ANY third-party protocol/DApp (Aave, Lido, PancakeSwap, Uniswap, Curve, Compound, Morpho, Pendle, Kamino, Raydium, Hyperliquid, Polymarket, …), route to okx-dapp-discovery — NOT here, even for 'show my Aave positions'.** INVEST triggers: 'invest in DeFi', 'earn yield', 'find best APY', 'deposit/stake for yield', 'search DeFi products', 'redeem/withdraw position', 'claim DeFi rewards', 'borrow against asset', 'repay loan', 'add/remove CLMM liquidity', 'APY/TVL history', 'depth chart', yield farming, lending, staking, liquidity pools. PORTFOLIO triggers: 'check my DeFi positions', 'view DeFi holdings/portfolio', 'my staking/lending positions', 'DeFi balance', 'DeFi 持仓', '我的DeFi资产'. Do NOT use for: DEX swaps (okx-agentic-wallet), token prices (okx-dex-market), wallet token balances (okx-agentic-wallet).
+- **okx-dex-market** — HARD BLOCK — never use for prediction-market/Polymarket UpDown queries; route to okx-dapp-discovery when a named DApp (Polymarket/Aave/Hyperliquid/PancakeSwap/Morpho) appears with a timeframe, or 涨跌/updown for BTC/ETH/SOL/XRP/BNB/DOGE/HYPE. Otherwise, read-only on-chain DEX data, 6 groups: TOKEN (search, hot/热门, liquidity, holders/whale, risk metadata, cluster/持仓集中度, trade history, top traders); MARKET (price/价格, K线/OHLC, index price, wallet PnL/胜率, trade history); SIGNAL (smart money/KOL/whale tracking, buy signals/信号, leaderboard/牛人榜); SOCIAL (news/新闻, sentiment/情绪, token vibe/热度, KOL leaderboard); TRENCHES (pump.fun/meme launches/新盘/扫链, dev reputation, bundle/sniper detection/捆绑狙击者, co-investor — read-only; buy/snipe → okx-dapp-discovery); WS (onchainos ws CLI, or custom WebSocket script/脚本). Also owns Market API payment/x402, quota/额度, and MARKET_API_*_OVER_QUOTA/confirming:true for all 6 groups.
+- **optimizing-attention-flash** — Optimizes transformer attention with Flash Attention for 2-4x speedup and 10-20x memory reduction. Use when training/running transformers with long sequences (>512 tokens), encountering GPU memory issues with attention, or need faster inference. Supports PyTorch native SDPA, flash-attn library, H100 FP8, and sliding window attention.
+- **otherend-task-test** — Rehearse a CALL-E phone-call task against a programmable line the operator owns, answering as a receptionist with a planted adversity or as a scripted person for tasks that call people, before the task reaches real people. Plan without dialing, replay graded fixtures with no keys, place at most N live calls, then turn the grade into task-text edits.
+- **restore-legacy-sessions** — Use when ZCode needs to inspect, plan, or execute restoration of old ACP-era ZCode sessions from ~/.zcode/v2/sessions into the new ZCode task/session stores. Trigger when the user wants to choose a previous agent, select a workspace to restore, pick a specific historical conversation, dry-run legacy session migration, or reason about tasks-index.sqlite and ~/.zcode/cli/db/db.sqlite consistency.
+- **resume-codex** — >
+- **review-and-iterate** — Review Solana project code for quality, security, and production readiness. Use when a user says "review my code", "is this production ready", "audit my program", "what should I fix", "code review", or "check for security issues".
+- **skill-installer** — Install Codex skills into $CODEX_HOME/skills from a curated list or a GitHub repo path. Use when a user asks to list installable skills, install a curated skill, or install a skill from another repo (including private repos).
+- **solana** — Query Solana blockchain data with USD pricing — wallet balances, token portfolios with values, transaction details, NFTs, whale detection, and live network stats. Uses Solana RPC + CoinGecko. No API key required.
+- **solana-beginner** — Teach Solana fundamentals to developers new to the ecosystem. Use when a user says "what is Solana", "why Solana", "new to Solana", "explain Solana to me", "Solana basics", "EVM to Solana", "getting started with Solana", or "Solana fundamentals". Adapts to user's background — EVM devs, backend devs, or complete beginners.
+- **solodit** — Search 50,000+ smart contract vulnerabilities from Cyfrin Solodit. 8 MCP tools with intelligent caching for searching, filtering, and analyzing blockchain security findings.
+- **source-command-sc-index** — Generate comprehensive project documentation and knowledge base with intelligent organization
+- **submit-to-hackathon** — Prepare and optimize a hackathon submission for a Solana project. Use when a user says "submit to hackathon", "prepare my submission", "hackathon entry", "write project description", "demo video", or "help me win the hackathon". Reads all prior phase context if available.
+- **template-skill** — Replace with description of the skill and when Codex should use it.
+- **virtual-solana-incubator** — Deep technical Solana bootcamp — SVM architecture, Rust patterns, program development. Use when a user says "Solana incubator", "teach me Rust for Solana", "SVM deep dive", "Solana bootcamp", "learn Solana development", "deep dive Solana", "PDA tutorial", "CPI tutorial", or "Anchor tutorial". Structured curriculum that assesses level and assigns exercises.
+
+### agent/tools (108)
+- **agent-browser** — Background knowledge for droid-control workflows -- not invoked directly. Agent-browser driver mechanics for web page and Electron desktop app automation.
+- **agentmail** — Give the agent its own dedicated email inbox via AgentMail. Send, receive, and manage email autonomously using agent-owned email addresses (e.g. hermes-agent@agentmail.to).
+- **antigravity-guide** — Provides a comprehensive guide, quick reference, and sitemap for Google Antigravity (AGY), including the Antigravity CLI (agy), Antigravity 2.0, Antigravity IDE, Python SDK, slash commands, keybindings, and customizations (skills, rules, MCP, sidecars). Activate this skill when the user asks questions about how to use, configure, or customize Antigravity, AGY, the agy CLI, the Antigravity IDE, or Antigravity 2.0.
+- **arxiv** — Search and retrieve academic papers from arXiv using their free REST API. No API key needed. Search by keyword, author, category, or ID. Combine with web_extract or the ocr-and-documents skill to read full paper content.
+- **base44-cli** — The base44 CLI is used for EVERYTHING related to base44 projects: resource configuration (entities, backend functions, ai agents), initialization and actions (resource creation, deployment). This skill is the place for learning about how to configure resources. When you plan or implement a feature, you must learn this skill
+- **base44-sandbox** — Develop a Base44 app remotely inside Base44's cloud sandbox using your own agent — no local checkout and no deploy/push commands. The implementation is remote: writing a resource file into the sandbox is what ships it (backend functions, entities, and agents all auto-sync from the file you write), and OAuth connectors are set up against the remote app via MCP tools or the projectless `base44 connectors` CLI. This skill is the place for learning what you can author in the sandbox, how backend functions, entities, and agents are structured, and how to connect a connector without a local filesystem. Triggers on 'develop my Base44 app remotely', 'no local files', 'cloud sandbox', 'create an entity/agent remotely', 'connect a connector remotely', 'bring my own agent', or any work editing a Base44 app inside a sandbox.
+- **base44-sdk** — The base44 SDK is the library to communicate with base44 services. In projects, you use it to communicate with remote resources (entities, backend functions, ai agents) and to write backend functions. This skill is the place for learning about available modules and types. When you plan or implement a feature, you must learn this skill
+- **batch** — Execute batch operations on multiple files in parallel. Automatically discovers files, splits into chunks, and processes with parallel worker agents. Use `/batch` followed by operation and file pattern.
+- **bioinformatics** — Gateway to 400+ bioinformatics skills from bioSkills and ClawBio. Covers genomics, transcriptomics, single-cell, variant calling, pharmacogenomics, metagenomics, structural biology, and more. Fetches domain-specific reference material on demand.
+- **book-to-skill** — Converts books and documents (PDF, EPUB, DOCX, HTML, Markdown, plain text, RTF, MOBI/AZW with Calibre) into structured agent skills, extracting frameworks, mental models, principles, techniques, and anti-patterns. Use when the user wants to study a document through GitHub Copilot CLI, Amp, or Claude Code, apply an author's frameworks while working, or build a reusable knowledge base from a file.
+- **built-in-browser** — Read this skill before the first step that uses the built-in browser, the browser pane inside the Claude desktop app (also called the in-app browser, the browser pane, Claude's browser, or \"your own browser\"), whose tools are named mcp__Claude_Browser__* when the session runs in the desktop app and mcp__remote-devices__Claude_Browser__* when a cloud session is linked to the person's computer; before those tools are turned on there may be a single enable__mcp__remote-devices__Claude_Browser tool instead. It covers the pane's persistent sign-ins, tabs and preview_start, reading pages as text, site approvals, what the pane cannot open, and what to do when it cannot be reached. It is not for Claude in Chrome (mcp__claude-in-chrome__* tools), which has its own skill, and it does not decide which browser to use.
+- **call-boundary-probes** — Check a phone-call workflow's static scope-containment policy against a versioned offline probe corpus before integrating any agent or provider.
+- **call-summarizer** — Turn a finished CALL-E phone-call transcript into a structured post-call brief with a one-line outcome, a masked summary, extracted action items with owners and due dates, caller sentiment, and a redacted caller fingerprint. Use after any CALL-E call when an agent or operator needs an actionable, reviewable record of what was said without re-reading the whole transcript or re-playing the recording.
+- **calle** — Use CALL-E from skills.sh compatible agents through the calle CLI. Use for CALL-E setup checks, authentication recovery, phone call planning, placing real outbound calls, call status polling, summaries, details, and transcripts.
+- **capacity-backfill-cascade** — Confirm bookings and backfill freed capacity from a waitlist using CALL-E phone calls. Use when an agent needs to recover cancelled reservations, fill released slots, or run consent-based confirm-then-cascade call workflows safely.
+- **chrome-browser** — Read this skill before the first step that uses Claude in Chrome, the browser extension whose tools are named mcp__claude-in-chrome__* (also called Chrome, the browser extension, or the external browser) and which acts in the person's real Chrome with their own sign-ins; before those tools are turned on there may be a single enable__mcp__claude-in-chrome tool instead. It covers loading the tools in one ToolSearch call, checking the person's open tabs and working in a new tab, site permissions, GIF recordings, console logs, dialogs to avoid, and when to stop and ask. It is not for the built-in browser (mcp__Claude_Browser__* or mcp__remote-devices__Claude_Browser__* tools), which has its own skill, and it does not decide which browser to use.
+- **chrome-devtools** — Uses Chrome DevTools via MCP for efficient debugging, troubleshooting and browser automation. Use when debugging web pages, automating browser interactions, analyzing performance, or inspecting network requests. This skill does not apply to `--slim` mode (MCP configuration).
+- **claude-agent-sdk-expert** — |
+- **computer-use** — Read this skill before the first step of any request to do something in an app on the person's own computer (Notes, Finder, System Settings, any desktop app), to look at their screen, or for \"computer use\". Computer use (desktop control) lets Claude take screenshots of the person's desktop and control it with clicks, typing and scrolling through the Claude desktop app; its tools are named mcp__computer-use__* when the session runs in the desktop app and mcp__remote-devices__computer_* when a cloud session is linked to the person's computer; before computer use is turned on for a conversation there may be no such tools, only an enable__mcp__remote-devices__computer tool, which turns it on. It covers turning it on, picking the right tool, the access flow, and the safety rules for tiered apps, links and financial actions. It is not for websites, which go through Claude in Chrome or the built-in browser and their own skills.
+- **create-readme** — Create or rewrite a project README.md using a selectable template. Use when the user asks to write a README, create README.md, rewrite the readme, or pick a README style/template. Templates: classic open-source and product-orchestration (Codex Orchestration style). Works via npx openskills read create-readme in any harness.
+- **create-skill** — >-
+- **create-subagent** — >-
+- **cua-skill** — MUST USE whenever the user wants to automate a real desktop or sandbox - clicking, typing, scrolling, screenshotting, running an OS shell command, or handing a high-level 'open browser and do X' task to an autonomous computer-use agent. Wraps the trycua/cua Python toolkit via its `cua` CLI - pynput-based, cross-platform (macOS / Linux / Windows). NO custom tools are registered; you call `cua` through pi's built-in bash and read screenshots back through the Read tool. Triggers: cua, computer use, computer-use, GUI automation, screenshot the desktop, click on the screen, type into the active app, scroll the page, control my computer, drive my browser, sandbox, docker sandbox, QEMU sandbox, Lume sandbox, ComputerAgent, cua do, cua sandbox, 컴퓨터 자동화, 스크린샷 찍어, 내 컴퓨터 조작, 브라우저 열어서, 샌드박스, 화면 자동화, 마우스로 클릭, 키보드 타이핑, computer use 위임, 자동으로 클릭, 자율 에이전트로 처리.
+- **dart-setup-ffi-assets** — Guides agents in compiling and packaging C/C++ source code into dynamic or static libraries (Code Assets) using Dart's Native Assets hook system (via hook/build.dart and hook/link.dart utilizing package:hooks and package:native_toolchain_c). Use when a user asks to: 'setup native assets', 'compile C/C++ source code', 'bundle dynamic libraries', 'build native C code', 'link native assets', 'implement build.dart or link.dart hooks', or 'integrate C/C++ interop in Dart/Flutter'. Helps agents avoid manual toolchain orchestration and configures secure hash-validated binary downloads or advanced linker tree-shaking with package:record_use mapping.
+- **dart-use-ffigen** — Guide agents to use `package:ffigen` to automatically generate FFI bindings instead of writing them manually. Use this skill when a task involves writing new FFI bindings, extending C/Objective-C/Swift integrations, or replacing hand-crafted `dart:ffi` setups.
+- **debug-optimize-lcp** — Guides debugging and optimizing Largest Contentful Paint (LCP) using Chrome DevTools MCP tools. Use this skill whenever the user asks about LCP performance, slow page loads, Core Web Vitals optimization, or wants to understand why their page's main content takes too long to appear. Also use when the user mentions "largest contentful paint", "page load speed", "CWV", or wants to improve how fast their hero image or main content renders.
+- **diagnosing-skills** — Use to diagnose and fix ZCode skill configuration problems in the ZCode client. Applies when a skill is not discovered, is installed but does not trigger automatically, is shadowed by a higher-precedence skill of the same name, is disabled by configuration, has a SKILL.md frontmatter error, fails to load because its description is too long, or disappears because the plugin providing it is disabled. Provides the discovery order, how to inspect skills in the client, common pitfalls, and a step-by-step localization and repair workflow.
+- **docx** — Use this skill whenever the user wants to create, read, edit, or manipulate Word documents (.docx files). Triggers include: any mention of 'Word doc', 'word document', '.docx', or requests to produce professional documents with formatting like tables of contents, headings, page numbers, or letterheads. Also use when extracting or reorganizing content from .docx files, inserting or replacing images in documents, performing find-and-replace in Word files, working with tracked changes or comments, or converting content into a polished Word document. If the user asks for a 'report', 'memo', 'letter', 'template', or similar deliverable as a Word or .docx file, use this skill. Do NOT use for PDFs, spreadsheets, Google Docs, or general coding tasks unrelated to document generation.
+- **dollar-consent-first-callback** — Place one consent-first CALL-E callback after a local safety gate has already blocked an extreme-risk developer action, so a known project owner can say stop or request normal review without granting the agent destructive permission.
+- **dynamic-resources** — Example skill loaded from resources_discover
+- **emergency-dispatch-relay** — Preview an experimental human-confirmed dispatch relay, or make one authorized call to collect an advisory unit answer. Use to explore a human-to-unit notification workflow, never as autonomous emergency dispatch or a replacement for established command channels.
+- **execute-plan** — Execute a PR Plan DAG from a design document. Parses the plan, topologically sorts it, implements PRs in parallel using worktree-isolated subagents, runs mandatory orchestrator-level review, and assembles either a Graphite PR stack or a plain-git branch stack depending on tool availability.
+- **extension-creator** — Create, scaffold, customize, validate, and locally test Qwen Code extensions. Use when the user wants a new Qwen Code extension, needs help choosing an extension template, wants to add QWEN.md context, commands, skills, agents, MCP servers, settings, hooks, channels, or LSP servers, or asks how to link and test an extension locally. Invoke with `/extension-creator` followed by an extension path and optional template name.
+- **factory-files** — Create and edit file-based Warp software factory definitions, in a repository tree rooted at a factory.yaml. Use when authoring or changing that factory.yaml, Agent, Automation, Scorer, or Runner files under that root, or its factory and agent skill trees, and when fixing Factory file diagnostics. Do not use for agent-definition Markdown that belongs to another tool, for a tree with no factory.yaml, or to operate a live factory or hand work to one through Factory MCP.
+- **find-skills** — Helps users discover and install agent skills when they ask questions like "how do I do X", "find a skill for X", "is there a skill that can...", or express interest in extending capabilities. This skill should be used when the user is looking for functionality that might exist as an installable skill.
+- **firebase-hosting-basics** — Skill for working with Firebase Hosting (Classic). Use this when you want to deploy static web apps, Single Page Apps (SPAs), or simple microservices. Do NOT use for Firebase App Hosting.
+- **fizz-convert** — Convert English-language properties in PROPERTIES.md (produced by the Fizz skill) into Solidity assertions inside the existing fuzz harness, then flip their checkboxes. Trigger on "fizz-convert", "convert properties", "implement properties from PROPERTIES.md", "convert PROPERTIES.md to Solidity".
+- **geo-audit** — Full website GEO+SEO audit with parallel subagent delegation. Orchestrates a comprehensive Generative Engine Optimization audit across AI citability, platform analysis, technical infrastructure, content quality, and schema markup. Produces a composite GEO Score (0-100) with prioritized action plan.
+- **geo-update** — Pull the latest GEO-SEO skill updates from the upstream repository. Compares installed files against the latest release, shows what changed, and updates all skills, agents, scripts, and schema templates in place.
+- **glaze-mcp-server** — Expose a Glaze app's data or actions as an MCP server so the user can work with the app from Claude Code, Codex, or other MCP clients. Use when the user asks to create an MCP server for their app, connect the app to Claude/Codex/AI agents/assistants, or make app data and actions available to outside tools.
+- **glaze-subagent-handoff** — Mechanics for delegating to glaze-frontend-architect / glaze-backend-architect sub-agents — IPC contract format, sub-agent prompt shape, handoff size, model selection, logging, and post-delegation integration. Invoke right before spawning sub-agents, after the orchestrator's delegation gate has already passed.
+- **google-antigravity-sdk** — Design, implement, and debug autonomous AI agents and multi-agent systems using the Google Antigravity (AGY) SDK. ACTIVATE this skill when the user wants to create, configure, or orchestrate Google Antigravity agents.
+- **google-form-callback** — Turn Google Form lead or callback responses into safe one-off AI-agent phone calls with template-driven goals, scheduled runs, and result writeback.
+- **handoff** — Compact the current conversation into a handoff document for another agent to pick up.
+- **hermes-agent** — Complete guide to using and extending Hermes Agent — CLI usage, setup, configuration, spawning additional agents, gateway platforms, skills, voice, tools, profiles, and a concise contributor reference. Load this skill when helping users configure Hermes, troubleshoot issues, spawn agent instances, or make code contributions.
+- **hifi-hotel-negotiator** — Autonomous voice AI agent skill for hotel procurement, direct-booking rate negotiation, and reservation confirmation over the phone using CALL-E.
+- **human-context-handoff** — Ask a verified, consenting human one bounded question by phone when an agent is blocked on missing context, then resume only from a structured terminal result. Use for ordinary product, workflow, preference, and operations choices, not identity proof or authorization for irreversible action.
+- **install-skill** — Install a skill from a file, a folder, or a URL
+- **language-bridge-call** — Cross-language relay call skill for CALL-E - places one call in the recipient's language to capture a structured answer, then one call back to the requester in their language, and returns an agreed outcome or a fail-closed handoff.
+- **lark-doc** — 飞书云文档：创建和编辑飞书文档。从 Markdown 创建文档、获取文档内容、更新文档（追加/覆盖/替换/插入/删除）、上传和下载文档中的图片和文件、搜索云空间文档。当用户需要创建或编辑飞书文档、读取文档内容、在文档中插入图片、搜索云空间文档时使用；如果用户是想按名称或关键词先定位电子表格、报表等云空间对象，也优先使用本 skill 的 docs +search 做资源发现。
+- **lark-event** — 飞书事件订阅：通过 WebSocket 长连接实时监听飞书事件（消息、通讯录变更、日历变更等），输出 NDJSON 到 stdout，支持 compact Agent 友好格式、正则路由、文件输出。当用户需要实时监听飞书事件、构建事件驱动管道时使用。
+- **lark-openapi-explorer** — 飞书/Lark 原生 OpenAPI 探索：从官方文档库中挖掘未经 CLI 封装的原生 OpenAPI 接口。当用户的需求无法被现有 lark-* skill 或 lark-cli 已注册命令满足，需要查找并调用原生飞书 OpenAPI 时使用。
+- **lark-skill-maker** — 创建 lark-cli 的自定义 Skill。当用户需要把飞书 API 操作封装成可复用的 Skill（包装原子 API 或编排多步流程）时使用。
+- **linecanary-monitor** — Monitor business phone lines and deployed voice agents with LineCanary — scheduled CALL-E test calls that walk the caller journey, assert structured results, diff against baselines and alert on regressions. Use when the user asks whether a phone line or voice agent still works, wants ongoing phone-line monitoring, or wants a post-deploy phone smoke test in CI.
+- **llm-call** — Call a configured LLM model directly through the local script using provider settings from config.yaml. Use this skill when the user wants a raw model call, prompt test, provider/model comparison, or asks to send text to a specific GPT/Gemini model. Do not use it for normal Mavis agent execution.
+- **mcporter** — Use the mcporter CLI to list, configure, auth, and call MCP servers/tools directly (HTTP or stdio), including ad-hoc servers, config edits, and CLI/type generation.
+- **migrate-to-skills** — >-
+- **migrate-workflows** — Automatically migrate legacy workflows to modern skills across global and workspace configurations. Scans for existing workflows, creates target SKILL.md files, and safely archives old workflow files.
+- **native-mcp** — Built-in MCP (Model Context Protocol) client that connects to external MCP servers, discovers their tools, and registers them as native Hermes Agent tools. Supports stdio and HTTP transports with automatic reconnection, security filtering, and zero-config tool injection.
+- **navigate-skills** — Meta skill — browse all installed solana-new skills, repos, and MCPs to find the right tool for any task
+- **neuroskill-bci** — >
+- **ocr-and-documents** — Extract text from PDFs and scanned documents. Use web_extract for remote URLs, pymupdf for local text-based PDFs, marker-pdf for OCR/scanned docs. For DOCX use python-docx, for PPTX see the powerpoint skill.
+- **okx-agent-payments-protocol** — Use when an agent hits HTTP 402 / payment-required, or the user mentions x402, x402Version, X-PAYMENT, PAYMENT-REQUIRED, PAYMENT-SIGNATURE, WWW-Authenticate: Payment, permit2, upto, metered billing, a payment channel / voucher / session, channelId / channel_id, opening / closing / topping up / settling / refunding a channel, a paymentId or a2a_ link, creating / checking a payment link, A2MCP / an A2MCP endpoint, or sending a request to / calling an Agent's endpoint with a concrete endpoint URL. Covers x402 (exact, exact+Permit2, upto, aggr_deferred), MPP (charge / session), and a2a-pay paymentId flows. Any close / topup / settle / voucher / refund near a channel_id or session is an MPP mid-session op. Two-phase quote/pay: `payment quote`, `payment pay --payment-id`, `decode-receipt`. The full bilingual trigger list (including Chinese) lives in the skill body.
+- **okx-growth-competition** — List OKX Agentic Wallet exclusive trading competitions, register users for contests, track participation and leaderboard rankings, and claim won rewards. Use when users want to list available trading competitions or trading cups, view competition rules / prize pool / total prizes, register or sign up or enroll or join a contest, check the leaderboard (who is winning) or their own rank (am I in the prize zone, what is my place), ask did I win or query participation / claim status, claim won rewards or prizes from completed competitions, see which wallet account they registered with, or submit Telegram / WeChat / Email / Twitter contact for prize delivery to top-tier winners.
+- **okx-guide** — Onchain OS onboarding hub. Classify first-time, how-to-use, OKX.AI, and support intents, then route via the Intent Routing table. Covers: (1) onboarding and welcome — what is onchainos, how do I use this, getting started, tutorial, I'm new; (2) OKX.AI intro and role registration (User / ASP / Evaluator), including spelling variants; (3) customer support, help center, FAQ, bugs, talk to a human. NOT for swap, wallet, balance, or Agent task lifecycle — those have their own skills.
+- **openai-docs** — Use for Codex models/pricing, scheduled tasks, skills, settings, setup, troubleshooting, customization, automations, and self-knowledge—including 'you,' 'your,' 'this app,' or 'this coding agent' when they refer to Codex—and for OpenAI APIs/products and ChatGPT Work. Also use for model choice/migration, prompting, SDKs, Responses, Realtime, agents, evals, and Chat/Work/Codex comparisons. Do not use for generic app/software tasks that merely mention Codex.
+- **openclaw-migration** — Migrate a user's OpenClaw customization footprint into Hermes Agent. Imports Hermes-compatible memories, SOUL.md, command allowlists, user skills, and selected workspace assets from ~/.openclaw, then reports exactly what could not be migrated and why.
+- **opencode** — Delegate coding tasks to OpenCode CLI agent for feature implementation, refactoring, PR review, and long-running autonomous sessions. Requires the opencode CLI installed and authenticated.
+- **outbound-call-skill-creator** — Create directly usable outbound phone-call Agent Skills that bind source and durable result-output contracts at the right level, connect data such as Google Forms, TikTok Ads, Notion, Airtable, local CSV, or custom systems to an MCP one-off call provider route, compile per-record call goals, enforce safety rules, and configure source writeback, source-adjacent result artifacts, or new local result CSV output.
+- **outcome-completion-agent** — Own one goal across as many CALL-E calls as it takes, when who to call next depends on what the last call said — read every call as structured evidence, reject offers that break the user's stated limits, follow referrals to parties the user never supplied, and gate the single call that commits the user.
+- **oz-child-agent-orchestration** — Internal Oz child-agent orchestration playbook for Claude Code child runs. Invoke only when the Oz harness system prompt tells you to coordinate with a lead run through the Oz CLI in `OZ_CLI`, using `OZ_RUN_ID` and `OZ_PARENT_RUN_ID`.
+- **parallel-cli** — Optional vendor skill for Parallel CLI — agent-native web search, extraction, deep research, enrichment, FindAll, and monitoring. Prefer JSON output and non-interactive flows.
+- **pdf** — Use this skill whenever the user wants to do anything with PDF files. This includes reading or extracting text/tables from PDFs, combining or merging multiple PDFs into one, splitting PDFs apart, rotating pages, adding watermarks, creating new PDFs, filling PDF forms, encrypting/decrypting PDFs, extracting images, and OCR on scanned PDFs to make them searchable. If the user mentions a .pdf file or asks to produce one, use this skill.
+- **pokemon-player** — Play Pokemon games autonomously via headless emulation. Starts a game server, reads structured game state from RAM, makes strategic decisions, and sends button inputs — all from the terminal.
+- **qc-helper** — Answer any question about Qwen Code usage, features, configuration, and troubleshooting by referencing the official user documentation. Also helps users view or modify their settings.json. Invoke with `/qc-helper` followed by a question, e.g. `/qc-helper how do I configure MCP servers?` or `/qc-helper change approval mode to yolo`.
+- **qmd** — Search personal knowledge bases, notes, docs, and meeting transcripts locally using qmd — a hybrid retrieval engine with BM25, vector search, and LLM reranking. Supports CLI and MCP integration.
+- **review** — Review code changes with the Bugbot or Security Review subagent.
+- **review-agent** — Perform a read-only, defect-first review of a specified code change and return every actionable finding. Use when another agent delegates review of uncommitted changes, a base-branch diff, a commit, or custom review instructions.
+- **review-bugbot** — Review code changes with Bugbot subagent.
+- **review-security** — Review code changes with Security Review subagent.
+- **scaffold-project** — Set up a complete Solana project workspace from a validated idea. Use when a user says "scaffold my project", "set up my workspace", "what stack should I use", "create the project structure", or "initialize my project". Reads idea-context.md from a prior idea phase if available. Leverages solana-new's catalogs of 106 repos, 77 skills, and 36 MCPs.
+- **servexa-phone-call-agents** — Use when working on SERVEXA phone-call workflows, CALL-E integration, customer-care call prompts, human-directed call templates, structured call outcomes, transcripts, webhook persistence, follow-ups, or call-report review. Covers the repository's implemented flow and its safety boundaries.
+- **setup-matt-pocock-skills** — Sets up an `## Agent skills` block in AGENTS.md/CLAUDE.md and `docs/agents/` so the engineering skills know this repo's issue tracker (GitHub or local markdown), triage label vocabulary, and domain doc layout. Run before first use of `to-issues`, `to-prd`, `triage`, `diagnose`, `tdd`, `improve-codebase-architecture`, or `zoom-out` — or if those skills appear to be missing context about the issue tracker, triage labels, or domain docs.
+- **skill-creation** — |
+- **skill-creator** — Create new skills, modify and improve existing skills, and measure skill performance. Use when users want to create a skill from scratch, edit, or optimize an existing skill, run evals to test a skill, benchmark skill performance with variance analysis, or optimize a skill's description for better triggering accuracy.
+- **skill-management** — Use when creating, installing, uninstalling, or removing Bionic skills, or when explaining what skills are and how they work.
+- **skill-refiner** — |
+- **source-command-sc-implement** — Feature and code implementation with intelligent persona activation and MCP integration
+- **source-command-sc-load** — Session lifecycle management with Serena MCP integration for project context loading
+- **source-command-sc-pm** — Project Manager Agent - Default orchestration agent that coordinates all sub-agents and manages workflows seamlessly
+- **source-command-sc-reflect** — Task reflection and validation using Serena MCP analysis capabilities
+- **source-command-sc-save** — Session lifecycle management with Serena MCP integration for session context persistence
+- **source-command-sc-select-tool** — Intelligent MCP tool selection based on complexity scoring and operation analysis
+- **source-command-sc-spawn** — Meta-system task orchestration with intelligent breakdown and delegation
+- **subagent-driven-development** — Use when executing implementation plans with independent tasks. Dispatches fresh delegate_task per task with two-stage review (spec compliance then code quality).
+- **svelte-code-writer** — CLI tools for Svelte 5 documentation lookup and code analysis. MUST be used whenever creating, editing or analyzing any Svelte component (.svelte) or Svelte module (.svelte.ts/.svelte.js). If possible, this skill should be executed within the svelte-file-editor agent for optimal results.
+- **synonyms** — Generate synonyms for words or phrases. Use this skill when the user needs alternative words with similar meanings, wants to expand vocabulary, or seeks varied expressions for writing.
+- **threejs-game-director** — Primary entrypoint for complete Three.js browser game creation and premium iteration. Use by default for build-a-game, upgrade, polish, premium, AAA, high-fidelity, showcase, from-scratch, endless runner, arcade, action, or release-ready requests. Orchestrates sibling skills for gameplay, AAA graphics, UI, debug/profile, and QA/release, plus 3D/image/audio generators for characters, vehicles, weapons, buildings, props, skies, textures, logos, icons, GUI art, and SFX/voice. Keeps skill-loading, reference, asset-sourcing, and phase ledgers so users never choose skills manually.
+- **triage** — Triage issues through a state machine driven by triage roles. Use when user wants to create an issue, triage issues, review incoming bugs or feature requests, prepare issues for an AFK agent, or manage issue workflow.
+- **troubleshooting** — Uses Chrome DevTools MCP and documentation to troubleshoot connection and target issues. Trigger this skill when list_pages, new_page, or navigate_page fail, or when the server initialization fails.
+- **using-ao** — Catalog of the AO (Agent Orchestrator) `ao` CLI: spawning workers, managing sessions and projects, sending messages, controlling the shared browser, previewing pages, and daemon control. Use when using the ao CLI, spawning workers, or managing AO sessions in an AO workspace.
+- **vsl-script-writer** — Expert VSL (Video Sales Letter) script creation skill. Use when the user requests help writing, creating, or drafting a VSL script, video sales letter script, sales video script, or voiceover script for a marketing video. This skill specializes in direct response copywriting for video format, producing full scripts optimized for conversion.
+- **webhook-subscriptions** — Create and manage webhook subscriptions for event-driven agent activation. Use when the user wants external services to trigger agent runs automatically.
+- **workflow-skill-creator** — >
+- **write-a-skill** — Create new agent skills with proper structure, progressive disclosure, and bundled resources. Use when user wants to create, write, or build a new skill.
+- **xlsx** — Use this skill any time a spreadsheet file is the primary input or output. This means any task where the user wants to: open, read, edit, or fix an existing .xlsx, .xlsm, .csv, or .tsv file (e.g., adding columns, computing formulas, formatting, charting, cleaning messy data); create a new spreadsheet from scratch or from other data sources; or convert between tabular file formats. Trigger especially when the user references a spreadsheet file by name or path — even casually (like \"the xlsx in my downloads\") — and wants something done to it or produced from it. Also trigger for cleaning or restructuring messy tabular data files (malformed rows, misplaced headers, junk data) into proper spreadsheets. The deliverable must be a spreadsheet file. Do NOT trigger when the primary deliverable is a Word document, HTML report, standalone Python script, database pipeline, or Google Sheets API integration, even if tabular data is involved.
+- **zcode-configuration-guide** — Use when configuring ZCode's extension resources (MCP servers, slash commands, skills, hooks, and plugins) or instruction files such as AGENTS.md in the ZCode client. Explains where each resource is configured at the user and workspace scope, the discovery order, precedence, and merge rules, plus guidance on which location to choose. Use when someone asks how to add an MCP server, command, skill, hook, plugin, or AGENTS.md instructions, where a configuration file lives, why a configuration is not taking effect, or needs routing to a specific diagnostic skill.
+- **zoom-out** — Tell the agent to zoom out and give broader context or a higher-level perspective. Use when you're unfamiliar with a section of code or need to understand how it fits into the bigger picture.
+
+### product/strategy (31)
+- **ad-variation-generator** — Generate ad headline variations from winning ads in Figma. Reads your product marketing context, identifies winning ad frames, and creates cloned variations with new headlines directly in your Figma file.
+- **bpfg-hackathon** — >
+- **competitive-landscape** — Map the competitive landscape for a crypto product idea. Use when a user says "who are my competitors", "map the competitive landscape", "what exists in this space", "show me similar projects", or "competitive analysis". Leverages solana-new's catalogs of 106 repos, 78 skills, and 36 MCPs.
+- **copywriting** — When the user wants to write, rewrite, or improve marketing copy for any page — including homepage, landing pages, pricing pages, feature pages, about pages, or product pages. Also use when the user says "write copy for," "improve this copy," "rewrite this page," "marketing copy," "headline help," "CTA copy," "value proposition," "tagline," "subheadline," "hero section copy," "above the fold," "this copy is weak," "make this more compelling," or "help me describe my product." Use this whenever someone is working on website text that needs to persuade or convert. For email copy, see emails. For popup copy, see popups. For editing existing copy, see copy-editing. For the offer underneath the copy (bonuses, guarantees, value framing), see offers.
+- **create-pitch-deck** — Create a structured pitch deck for a crypto project. Use when a user says "create a pitch deck", "help me pitch", "I need slides", "prepare for demo day", "investor presentation", or "grant application". Reads idea-context.md and build-context.md from prior phases if available.
+- **droid-cli** — Background knowledge for droid-control workflows -- not invoked directly. Droid CLI target patterns, shortcuts, modes, and launch helpers.
+- **find-next-crypto-idea** — Interview users sharply to discover, rank, or validate what they should build in crypto. Use when a user asks what to build in crypto, wants startup ideas in a crypto niche such as DeFi or AI x crypto, wants blunt feedback on an existing crypto idea, or wants a concrete artifact comparing the best next ideas. Treat the bundled idea datasets as inspiration, not constraints, and always combine them with fresh market research.
+- **geo-llmstxt** — Analyzes and generates llms.txt files -- the emerging standard for helping AI systems understand website structure and content. Can validate existing llms.txt files or generate new ones from scratch by crawling the site.
+- **hackathon-project-social-playbook** — Generate a complete X (Twitter) social strategy for newly submitted hackathon projects. Based on analysis of breakout Colosseum winners, this skill creates a personalized 30-day playbook with narrative angles, content calendars, engagement tactics, and ready-to-post example tweets.
+- **hackathon-readme** — >
+- **huggingface-accelerate** — Simplest distributed training API. 4 lines to add distributed support to any PyTorch script. Unified API for DeepSpeed/FSDP/Megatron/DDP. Automatic device placement, mixed precision (FP16/BF16/FP8). Interactive config, single launch command. HuggingFace ecosystem standard.
+- **investigative-video-strategy** — Write, structure, audit, and ideate long-form investigative/documentary YouTube videos using the retention playbooks of Neo, Cipher, Blackfiles, Fern, and Hoog. Use when the user wants to draft a documentary script, plan video acts and retention beats, audit a script for weak points, or brainstorm investigative video ideas. Triggers on "documentary script", "investigative video", "retention strategy", "video structure", "Fern style", "Cipher style", "Hoog style", "Blackfiles style", "Neo style", "cold open", "hook strategy", "retention audit".
+- **marketing-video** — Create marketing videos for Solana projects using Remotion (code-driven) and Renoise (AI-generated). Use when a user says "marketing video", "product video", "promo video", "deck review", "video pitch", "create a video", or "Remotion project".
+- **minecraft-modpack-server** — Set up a modded Minecraft server from a CurseForge/Modrinth server pack zip. Covers NeoForge/Forge install, Java version, JVM tuning, firewall, LAN config, backups, and launch scripts.
+- **mirrormarket** — Query the MirrorMarket Prediction Market Intelligence API to compare Polymarket vs Kalshi pricing, find arbitrage opportunities between the two venues, and inspect calibration / longshot-bias stats per platform. Use whenever the user asks about prediction markets, Polymarket, Kalshi, arbitrage between betting venues, market calibration, or "where do these two platforms disagree.
+- **polymarket** — Query Polymarket prediction market data — search markets, get prices, orderbooks, and price history. Read-only via public REST APIs, no API key needed.
+- **powerpoint** — Use this skill any time a .pptx file is involved in any way — as input, output, or both. This includes: creating slide decks, pitch decks, or presentations; reading, parsing, or extracting text from any .pptx file (even if the extracted content will be used elsewhere, like in an email or summary); editing, modifying, or updating existing presentations; combining or splitting slide files; working with templates, layouts, speaker notes, or comments. Trigger whenever the user mentions \"deck,\" \"slides,\" \"presentation,\" or references a .pptx filename, regardless of what they plan to do with the content afterward. If a .pptx file needs to be opened, created, or touched, use this skill.
+- **pptx** — Use this skill any time a .pptx file is involved in any way — as input, output, or both. This includes: creating slide decks, pitch decks, or presentations; reading, parsing, or extracting text from any .pptx file (even if the extracted content will be used elsewhere, like in an email or summary); editing, modifying, or updating existing presentations; combining or splitting slide files; working with templates, layouts, speaker notes, or comments. Trigger whenever the user mentions \"deck,\" \"slides,\" \"presentation,\" or references a .pptx filename, regardless of what they plan to do with the content afterward. If a .pptx file needs to be opened, created, or touched, use this skill.
+- **problem-finder** — Force a problem-discovery pass before any solutioning. Decompose startup and hackathon ideas into the worker, their current workaround, and the structural gap that keeps the pain unfixed; reject obvious, feel-safe framings by default. Use when the user mentions a startup idea, hackathon idea, "what should I build," validating an idea, finding problems, user pain points, or presents any solution without a validated problem — even if they do not ask for problem discovery explicitly.
+- **product-launch-video** — Turn a product or marketing URL, pasted script, or brief into a product launch / promo video — SaaS promos, feature reveals, product demos, app and company launches. Use when the user wants to market, launch, promote, or reveal a product; the default for any commercial URL. Site tours / showcases of a website route here too — the brief carries the show-it-as-is intent. Unclear → /hyperframes.
+- **product-naming** — Expert naming process for products, companies, and features based on David Placek's methodology. Use when the user says "name this", "brainstorm names", "naming process", or needs to find a name for a product, feature, company, or project.
+- **recall-outreach** — Contact affected customers about a product recall or corrective notice with CALL-E. Relays only organisation-approved wording, dispatches a wave as one batch with a strict per-recipient result schema, routes every unapproved question to a human, and never treats a completed call as a completed recall.
+- **roast-my-product** — Harsh, honest product critique — find every weakness before users do. Use when a user says "roast my product", "harsh feedback", "be brutal", "what sucks", "find weaknesses", "product critique", "tear it apart", or "what would kill this". Deliberately harsh but constructive — scores each dimension and explains exactly what to fix.
+- **script-rewriter** — De-AI / de-sloplop script rewriter. Strips AI-generated patterns from marketing scripts, ads, VSLs, and promos. Converts generic corporate-speak into natural human voice. Use when a script sounds like AI wrote it — robotic phrasing, fake enthusiasm, cliché transitions, uniform sentence length, or "corporate brochure" tone. Also triggers on "humanize this script", "de-AI this", "remove the slop", "make this sound human", "rewrite this ad", or "fix this copy".
+- **service-dispatch-call** — Call a service vendor to ask whether they can take a job, when they can attend, and what it costs, return the answer as validated structured data, and hand any commitment to a human before it is accepted. Use for maintenance dispatch, repair triage, contractor availability checks, and quote gathering.
+- **serving-llms-vllm** — Serves LLMs with high throughput using vLLM's PagedAttention and continuous batching. Use when deploying production LLM APIs, optimizing inference latency/throughput, or serving models with limited GPU memory. Supports OpenAI-compatible endpoints, quantization (GPTQ/AWQ/FP8), and tensor parallelism.
+- **songsee** — Generate spectrograms and audio feature visualizations (mel, chroma, MFCC, tempogram, etc.) from audio files via CLI. Useful for audio analysis, music production debugging, and visual documentation.
+- **tensorrt-llm** — Optimizes LLM inference with NVIDIA TensorRT for maximum throughput and lowest latency. Use for production deployment on NVIDIA GPUs (A100/H100), when you need 10-100x faster inference than PyTorch, or for serving models with quantization (FP8/INT4), in-flight batching, and multi-GPU scaling.
+- **thumbnail-architect** — High-CTR YouTube thumbnail strategy and generation prompt workflow. Use this skill whenever the user asks for YouTube thumbnail ideas, thumbnail prompts, CTR thumbnails, mobile-readable thumbnails, 1280x720 artwork, title-to-thumbnail concepts, or 5 thumbnail concepts. Especially use it for story channels, Afro-Korean mafia romance/drama, faceless narration, revenge stories, betrayal hooks, documentary thumbnails, and any niche where the thumbnail must stop scrolling. Outputs 5 concepts, chooses the strongest, and prepares AI33 Pro image-generation prompts.
+- **validate-idea** — Run a structured validation sprint on a crypto startup idea. Use when a user says "validate this idea", "is this worth building", "run a validation sprint", "help me test demand", or "should I build this". Reads idea-context.md from a prior idea phase if available.
+- **video-craft** — Frame-level visual composition and product demo presentation for Remotion videos. Use when the user says "video looks generic", "make video frames look better", "video frame design", "device frame", "product demo video craft", "video CTA", "end card", "video composition", "video craft", "screenshot in video", "frame quality", or when reviewing Remotion compositions for visual quality. Sits on top of marketing-video — adds the visual design layer for each frame. Does NOT claim "create a video" or "marketing video" — those route to marketing-video.
+
+### database/infrastructure (56)
+- **alphafold-database-fetch-and-analyze** — >
+- **auditing-cloud-cluster-security** — Audits the security posture of a CockroachDB cluster (Cloud or self-hosted) across network, authentication, authorization, encryption, audit logging, and backup dimensions. Use when assessing cluster security readiness, preparing for compliance reviews, or investigating security configuration gaps.
+- **chembl-database** — >
+- **chroma** — Open-source embedding database for AI applications. Store embeddings and metadata, perform vector and full-text search, filter by metadata. Simple 4-function API. Scales from notebooks to production clusters. Use for semantic search, RAG applications, or document retrieval. Best for local development and open-source projects.
+- **clinical-trials-database** — >
+- **clinvar-database** — >
+- **cockroachdb-sql** — Use when writing, generating, or optimizing SQL for CockroachDB, designing CockroachDB schemas, or when the user asks about CockroachDB-specific SQL patterns, type mappings, and distributed database best practices. Also use when encountering CockroachDB anti-patterns like missing primary keys, sequential ID hotspots, or incorrect type usage.
+- **configuring-audit-logging** — Configures SQL audit logging on CockroachDB clusters to capture security-relevant events including authentication, privilege changes, and sensitive data access. Use when enabling audit logging for compliance, setting up role-based audit policies, or verifying audit configuration.
+- **configuring-ip-allowlists** — Configures and hardens IP allowlists for CockroachDB Cloud clusters to restrict network access to authorized CIDR ranges. Use when tightening network security, removing overly permissive allowlist entries like 0.0.0.0/0, or setting up allowlists for a new cluster.
+- **configuring-log-export** — Configures log and metric export for CockroachDB Cloud clusters to external monitoring services including AWS CloudWatch, GCP Cloud Logging, and Datadog. Use when setting up log export for audit compliance, configuring metric export for monitoring, or troubleshooting log delivery issues.
+- **configuring-private-connectivity** — Configures private network connectivity for CockroachDB Cloud clusters including AWS PrivateLink, GCP Private Service Connect, Azure Private Link, egress private endpoints, and VPC peering. Use when setting up private endpoints to eliminate public internet exposure, configuring egress to external services like Kafka, or establishing VPC peering.
+- **configuring-sso-and-scim** — Configures SSO authentication and SCIM 2.0 provisioning for CockroachDB across four distinct layers — Cloud Console SSO (SAML/OIDC), DB Console SSO (OIDC), SQL/Cluster SSO (JWT or LDAP/AD), and SCIM 2.0 automated provisioning. Use when enabling centralized identity management, setting up SSO for compliance, or automating user lifecycle management.
+- **dbsnp-database** — >
+- **deploy-website** — # Deploy Website
+- **deployment-approval-call** — Place one CALL-E phone call to get a spoken, code-verified human approval before an agent or a pipeline does something irreversible, such as a production deploy, a database restore, a bulk refund or a migration. Use when the approver is away from a keyboard and the action cannot be undone.
+- **edit-deployed-website** — # Edit Deployed Website
+- **enabling-cmek-encryption** — Enables Customer-Managed Encryption Keys (CMEK) on CockroachDB Cloud clusters with the Advanced plan and Advanced Security Add-on to give organizations control over data-at-rest encryption keys via their cloud provider's KMS. Use when enabling CMEK for compliance, rotating encryption keys, or verifying CMEK configuration.
+- **encode-ccres-database** — >
+- **enforcing-password-policies** — Configures and enforces password policies on CockroachDB clusters including minimum length, complexity requirements, and hash cost settings. Use when strengthening authentication requirements, setting up password policies for a new cluster, or meeting compliance password standards.
+- **ensembl-database** — >
+- **fastmcp** — Build, test, inspect, install, and deploy MCP servers with FastMCP in Python. Use when creating a new MCP server, wrapping an API or database as MCP tools, exposing resources or prompts, or preparing a FastMCP server for Claude Code, Cursor, or HTTP deployment.
+- **gnomad-database** — >
+- **google-maps-platform** — A collection of skills for architecting and implementing production-ready code using Google Maps Platform APIs and SDKs for any map, place, address, geocoding, routing/ETA (including eco-friendly routing), nearby search, 3D / Street View / static map, marker clustering, custom styling, drawing, geofencing, heatmap, or environmental (air-quality / pollen / solar / weather) feature — across Web, Android, iOS, and Web Services APIs. For prototyping, use the public Maps Demo Key — no billing setup and no Cloud project required, covering a growing set of the most popular Google Maps Platform APIs. For production, the skill prompts you to create and restrict your own key. All non-trivial code is grounded in freshly retrieved docs via the Google Maps Platform Code Assist service (no reliance on training-data memory).
+- **gtex-database** — >
+- **huggingface-hub** — Hugging Face Hub CLI (hf) — search, download, and upload models and datasets, manage repos, query datasets with SQL, deploy inference endpoints, manage Spaces and buckets.
+- **human-protein-atlas-database** — >
+- **interpro-database** — >
+- **jaspar-database** — >
+- **lambda-labs-gpu-cloud** — Reserved and on-demand GPU cloud instances for ML training and inference. Use when you need dedicated GPU instances with simple SSH access, persistent filesystems, or high-performance multi-node clusters for large-scale training.
+- **llama-cpp** — Runs LLM inference on CPU, Apple Silicon, and consumer GPUs without NVIDIA hardware. Use for edge deployment, M1/M2/M3 Macs, AMD/Intel GPUs, or when CUDA is unavailable. Supports GGUF quantization (1.5-8 bit) for reduced memory and 4-10× speedup vs PyTorch on CPU.
+- **managing-cluster-capacity** — Manages CockroachDB cluster capacity across all tiers. Self-Hosted covers node decommissioning for permanent removal and adding nodes for expansion. Advanced/BYOC covers scaling node count and machine size via Cloud Console, API, or Terraform. Standard covers adjusting provisioned compute (vCPUs). Basic auto-scales — guidance covers spending limits and cost management. Use when scaling capacity up or down, permanently removing nodes, or managing costs.
+- **managing-cluster-settings** — Reviews, audits, and modifies CockroachDB cluster settings. Self-Hosted has full control over all settings and start flags. Advanced/BYOC can modify most SQL-level settings but infrastructure settings are managed by CRL. Standard has limited settings access — session variables are the primary tuning mechanism. Basic has minimal settings — use session variables and Cloud Console. Use when auditing configuration, tuning performance, or troubleshooting settings-related issues.
+- **managing-tls-certificates** — Manages TLS certificates for CockroachDB clusters including CA certificate configuration, client certificate authentication, certificate rotation, and troubleshooting SSL/TLS connection errors. Use when setting up client certificate auth, resolving SSL connection failures, rotating certificates, or configuring mTLS for CDC changefeeds.
+- **modal-serverless-gpu** — Serverless GPU cloud platform for running ML workloads. Use when you need on-demand GPU access without infrastructure management, deploying ML models as APIs, or running batch jobs with automatic scaling.
+- **monitoring-background-jobs** — Monitors CockroachDB background job health by identifying failed, paused, and long-running jobs using SHOW JOBS and SHOW AUTOMATIC JOBS. Surfaces schema changes, backups/restores, automatic statistics collection, and SQL stats compaction jobs without DB Console access. Use when investigating schema change delays, failed backups, or automatic job issues.
+- **notion** — Notion API for creating and managing pages, databases, and blocks via curl. Search, create, update, and query Notion workspaces directly from the terminal.
+- **openfda-database** — >
+- **opentargets-database** — >
+- **pdb-database** — >
+- **performing-cluster-maintenance** — Manages planned cluster maintenance across all tiers. Self-Hosted covers node drain procedures for OS patching, hardware changes, and configuration updates. Advanced/BYOC covers maintenance window configuration, patch scheduling, deferral policies, and monitoring during CRL-managed maintenance. Standard and Basic maintenance is fully managed with no customer action. Use when planning maintenance, configuring maintenance windows, or preparing applications for maintenance events.
+- **pinecone** — Managed vector database for production AI applications. Fully managed, auto-scaling, with hybrid search (dense + sparse), metadata filtering, and namespaces. Low latency (<100ms p95). Use for production RAG, recommendation systems, or semantic search at scale. Best for serverless, managed infrastructure.
+- **preparing-compliance-documentation** — Guides preparation of compliance documentation for CockroachDB Cloud deployments, covering SOC 2, PCI DSS, ISO 27001, HIPAA, and GDPR certifications. Use when responding to compliance questionnaires, preparing for audits, locating certification documents, or assessing cluster configuration for compliance readiness.
+- **provisioning-cluster-for-production** — Guides initial CockroachDB cluster provisioning and production deployment. Self-Hosted covers cockroach start/init, Kubernetes deployment (Operator, Helm), hardware sizing, and production configuration. Advanced/BYOC covers Cloud Console, API, and Terraform provisioning with production settings. Standard covers cluster creation and provisioned compute selection. Basic covers cluster creation and spending limits. Use when creating a new cluster, preparing for production go-live, or validating deployment configuration.
+- **pubchem-database** — >
+- **pubmed-database** — >-
+- **reactome-database** — >
+- **reviewing-cluster-health** — Performs a comprehensive health check of a CockroachDB cluster. Gathers deployment context first, then provides tier-appropriate diagnostics. Self-Hosted uses SQL against node-level system tables and CLI. Advanced/BYOC use Cloud Console and SQL with node visibility. Standard monitors provisioned compute and workload via Cloud Console. Basic monitors Request Unit consumption and connectivity. Use for daily checks, pre-maintenance validation, post-incident verification, or production readiness assessment.
+- **scrapling** — Web scraping with Scrapling - HTTP fetching, stealth browser automation, Cloudflare bypass, and spider crawling via CLI and Python.
+- **setting-up-local-cluster** — Downloads and starts a local CockroachDB cluster for development using the official binary. Use when a developer needs a local CockroachDB instance, when no cluster is available, or when setting up a new development environment.
+- **string-database** — >
+- **telephony** — Give Hermes phone capabilities without core tool changes. Provision and persist a Twilio number, send and receive SMS/MMS, make direct calls, and place AI-driven outbound calls through Bland.ai or Vapi.
+- **triaging-live-sql-activity** — Diagnoses live CockroachDB cluster performance issues by identifying long-running queries, busy sessions, and active transactions using SQL-only interfaces. Use when users report cluster slowness, high CPU, or need to find runaway queries and their source applications without DB Console access.
+- **unibind-database** — >-
+- **uniprot-database** — >-
+- **upgrading-cluster-version** — Guides CockroachDB version upgrades with tier-appropriate procedures. Self-Hosted covers manual rolling binary replacement with finalization control. Advanced/BYOC covers Console-initiated major upgrades, maintenance windows for patches, and release channel selection. Standard and Basic upgrades are fully automatic with no customer action required. Use when planning, executing, or monitoring a version upgrade.
+- **verify-by-phone** — Verify a directory listing, database record, or any published claim about an organization by placing one disclosed CALL-E phone call and returning a span-grounded structured answer with a calibrated confidence or an explicit abstention. Use when stored information about a business must be checked against reality by phone, such as provider directory entries, accepting-new-patients status, insurance participation, hours, or availability, and when a wrong answer is more costly than no answer.
+
+### security/audit (25)
+- **accesscall** — Conduct phone-based accessibility intake interviews for users who cannot complete web-based accessibility audit forms (screen reader fatigue, motor impairment, low vision, cognitive load), and produce a structured result mapped to VPAT 2.4 / Section 508 conformance reporting fields.
+- **auditing-cis-benchmark** — Audits a self-hosted CockroachDB cluster against the CIS CockroachDB Benchmark v1.0.0 Level 1 controls. Supports two audit depths — quick automated scans and full CIS audit procedures. Produces a structured PASS/FAIL/MANUAL report covering installation, system hardening, logging, user access, data protection, and CockroachDB settings. Use when preparing for CIS compliance assessments, hardening self-hosted deployments, or validating security posture against industry benchmarks.
+- **code-review** — Run an extremely strict maintainability review for abstraction quality, giant files, and spaghetti-condition growth. Use for a deep code quality audit or an especially harsh maintainability review.
+- **commit-security-scan** — Analyze code changes for security vulnerabilities using LLM reasoning and threat model patterns. Use for PR reviews, pre-commit checks, or branch comparisons.
+- **concord-policy-audit** — Audit what your own branches tell callers by phone, judge each answer against written policy, and return a branch-level gap register that is deliberately unusable as a staff performance record.
+- **firebase-security-rules-auditor** — A skill to evaluate how secure Firestore security rules are. Use this when Firestore security rules are updated to ensure that the generated rules are extremely secure and robust.
+- **fizz-sync** — Reconcile an existing Fizz harness with a changed source tree. Detects added/removed/changed contract functions, quarantines stale properties, regenerates drifted handler stubs, and refreshes the snapshot. Trigger on "fizz-sync", "resync fuzzing", "sync fuzz harness", "refresh fuzzing properties", "fuzzing drift check".
+- **geo-platform-optimizer** — Platform-specific AI search optimization — audit and optimize for Google AI Overviews, ChatGPT, Perplexity, Gemini, and Bing Copilot individually
+- **geo-report** — Generate a professional, client-facing GEO report combining all audit results into a single deliverable with scores, findings, and prioritized actions
+- **geo-technical** — Technical SEO audit with GEO-specific checks — crawlability, indexability, security, performance, SSR, and AI crawler access
+- **grill-with-docs** — Grilling session that challenges your plan against the existing domain model, sharpens terminology, and updates documentation (CONTEXT.md, ADRs) inline as decisions crystallise. Use when user wants to stress-test a plan against their project's language and documented decisions.
+- **hardening-user-privileges** — Hardens CockroachDB user privileges by auditing and tightening role-based access control, reducing admin grants, restricting PUBLIC role permissions, and applying least-privilege principles. Use when reducing excessive privileges, cleaning up admin access, or implementing RBAC best practices.
+- **improve-codebase-architecture** — Find deepening opportunities in a codebase, informed by the domain language in CONTEXT.md and the decisions in docs/adr/. Use when the user wants to improve architecture, find refactoring opportunities, consolidate tightly-coupled modules, or make a codebase more testable and AI-navigable.
+- **invoice-exception-manager-briefing** — Prepare a controlled, one-time CALL-E briefing for an authorized manager about an invoice exception, while keeping the human decision in the existing review application.
+- **obliteratus** — Remove refusal behaviors from open-weight LLMs using OBLITERATUS — mechanistic interpretability techniques (diff-in-means, SVD, whitened SVD, LEACE, SAE decomposition, etc.) to excise guardrails while preserving reasoning. 9 CLI methods, 28 analysis modules, 116 model presets across 5 compute tiers, tournament evaluation, and telemetry-driven recommendations. Use when a user wants to uncensor, abliterate, or remove refusal from an LLM.
+- **ringer-consumer-tasks** — Handle the dreaded consumer phone calls — negotiate a bill, cancel a subscription, chase a refund, book an appointment, get a price quote, or ask a business a question — by turning a few fields into a precise CALL-E task and a strict structured-result schema, previewing as a dry run, and placing the call only with explicit consent. Includes a Quote Shootout batch mode that calls several businesses and returns per-business results plus a ranked comparison.
+- **scaffold-exercises** — Create exercise directory structures with sections, problems, solutions, and explainers that pass linting. Use when user wants to scaffold exercises, create exercise stubs, or set up a new course section.
+- **secgin** — Guide for the local-source VDH/VVS security research harness. Use when the operator wants authorized Web2/Web3/AI source review, MCP tools harness_plan harness_run harness_status, x-ray, solidity-auditor, fizz, or Pashov skills. Not a canned audit product and not a live scanner.
+- **security-harness** — Guide for the local-source VDH/VVS security research harness. Use when the operator wants authorized Web2/Web3 source review, MCP tools harness_plan harness_run harness_status, x-ray, solidity-auditor, fizz, or Pashov skills. Not a canned audit product and not a live scanner.
+- **security-review** — Scan code changes for security vulnerabilities using STRIDE threat modeling, validate findings for exploitability, and output structured results for downstream patch generation. Supports PR review, scheduled scans, and full repository audits.
+- **solidity-auditor** — Security audit of Solidity code while you develop. Trigger on "audit", "check this contract", "review for security". Modes - default (full repo) or a specific filename.
+- **source-command-sc-analyze** — Comprehensive code analysis across quality, security, performance, and architecture domains
+- **threat-model-generation** — Generate a STRIDE-based security threat model for a repository. Use when setting up security monitoring, after architecture changes, or for security audits.
+- **vulnerability-validation** — Validate security findings from commit-security-scan by assessing exploitability, filtering false positives, and generating proof-of-concept exploits. Use after running commit-security-scan to confirm vulnerabilities.
+- **x-ray** — Generates an x-ray.md pre-audit report covering overview, enhanced threat model (protocol-type profiling, git-weighted attack surfaces, temporal risk analysis, composability dependency mapping), invariants, integrations, docs quality, test analysis, and developer/git history. Triggers on 'x-ray', 'audit readiness', 'readiness report', 'pre-audit report', 'prep this protocol', 'protocol prep', 'summarize this protocol'.
+
+### research/analytics (19)
+- **autoresearch** — |
+- **deep-research** — >
+- **defillama-research** — Research DeFi protocols and market opportunities using DefiLlama data. Use when a user says "show me TVL data", "which protocols are growing", "DeFi market research", "what should I build in DeFi", "find DeFi opportunities", "analyze protocol TVL", or "which chains are trending". Uses TVL as a trust metric to suggest protocols worth building on or integrating with.
+- **document-processing-and-graphics** — Create, read, edit, and redline Word and other documents; create diagrams, charts, data visualizations, and standalone graphics.
+- **flutter-implement-json-serialization** — Create model classes with `fromJson` and `toJson` methods using `dart:convert`. Use when manually mapping JSON keys to class properties for simple data structures.
+- **flutter-use-http-package** — Use the `http` package to execute GET, POST, PUT, or DELETE requests. Use when you need to fetch from or send data to a REST API.
+- **geo** — >
+- **geo-compare** — >
+- **geo-crawlers** — AI crawler access analysis. Checks robots.txt, meta tags, and HTTP headers to determine which AI crawlers can access the site. Provides a complete access map and recommendations for maximizing AI visibility while maintaining appropriate control.
+- **geo-proposal** — >
+- **geo-prospect** — >
+- **geo-report-pdf** — Generate a professional PDF report from GEO audit data using ReportLab. Creates a polished, client-ready PDF with score gauges, bar charts, platform readiness visualizations, color-coded tables, and prioritized action plans.
+- **geo-schema** — Schema.org structured data audit and generation optimized for AI discoverability — detect, validate, and generate JSON-LD markup
+- **import-memory** — Import a memory export from another AI assistant into Claude's memory — conversationally, additively, and with the content treated as data.
+- **instructor** — Extract structured data from LLM responses with Pydantic validation, retry failed extractions automatically, parse complex JSON with type safety, and stream partial results with Instructor - battle-tested structured output library
+- **migrate-to-shoehorn** — Migrate test files from `as` type assertions to @total-typescript/shoehorn. Use when user mentions shoehorn, wants to replace `as` in tests, or needs partial test data.
+- **nemo-curator** — GPU-accelerated data curation for LLM training. Supports text/image/video/audio. Features fuzzy deduplication (16× faster), quality filtering (30+ heuristics), semantic deduplication, PII redaction, NSFW detection. Scales across GPUs with RAPIDS. Use for preparing high-quality training datasets, cleaning web data, or deduplicating large corpora.
+- **source-command-sc-research** — Deep web research with adaptive planning and intelligent search
+- **youtube-shorts-automation** — YouTube Shorts automation, faceless channel, channel warm-up, niche research, viral script generation, TTS voiceover, stock footage, CapCut or VEED editing, thumbnails, titles, upload cadence, analytics iteration, and monetization-readiness skill. Use whenever the user wants to start, teach, document, scale, audit, or troubleshoot a YouTube Shorts workflow, especially for faceless channels, AI-assisted content, 30-45 day Shorts sprints, batch production, or YouTube Partner Program preparation.
+
+### video/media (14)
+- **clip** — OpenAI's model connecting vision and language. Enables zero-shot image classification, image-text matching, and cross-modal retrieval. Trained on 400M image-text pairs. Use for image search, content moderation, or vision-language tasks without fine-tuning. Best for general-purpose image understanding.
+- **clipify** — Find the funniest moments in a video, cut them as standalone clips, optionally reformat 16:9 → 9:16 (face-pan or split-screen), and burn opus-style word-by-word captions. Use when the user mentions "clipify," "cut clips from this video," "make shorts from this," "find funny moments," "reframe to 9:16," "vertical clips," or pastes a video file path and wants social-ready cuts.
+- **duckduckgo-search** — Free web search via DuckDuckGo — text, news, images, videos. No API key needed. Prefer the `ddgs` CLI when installed; use the Python DDGS library only after verifying that `ddgs` is available in the current runtime.
+- **embedded-captions** — >
+- **general-video** — >
+- **generate-video** — Generate videos with Higgsfield. Use when the user asks to create, generate, animate, or render a video, clip, ad, or motion piece — from a prompt or from an existing image.
+- **hyperframes-core** — The HyperFrames composition contract — build one renderable project. Use for composition structure, the `data-*` timing attributes, `class="clip"`, tracks, sub-compositions, variables, framework-owned media playback, deterministic-render rules, and validation. Read before writing composition HTML.
+- **llava** — Large Language and Vision Assistant. Enables visual instruction tuning and image-based conversations. Combines CLIP vision encoder with Vicuna/LLaMA language models. Supports multi-turn image chat, visual question answering, and instruction following. Use for vision-language chatbots or image understanding tasks. Best for conversational image analysis.
+- **script-forensics** — Forensic cleanup gate for scripts. Use this skill whenever the user asks to audit, clean, de-slop, de-repeat, tighten, polish, or prepare a YouTube script, content script, voiceover, VSL, narration, hook, intro, outline, or transcript before it moves to thumbnails, voiceover, captions, image prompts, or media production. It finds and removes useless repetition, repeated sentence shapes, repeated beats, filler loops, and AI-slop contrast patterns like "not just X, but Y", "it is not X, it is Y", and "more than just X".
+- **sherlock** — OSINT username search across 400+ social networks. Hunt down social media accounts by username.
+- **storytelling-craft** — Write, diagnose, and tune retention-driven short-form video scripts, narrative explainers, and any story-shaped content (YouTube, TikTok, Reels, Shorts, voiceover, narrative articles). Trigger whenever the user wants to write a hook, draft a script, rewrite a flat story, figure out why a video flopped, explain something so people actually watch to the end, or "make this more interesting." Use this skill even when the user doesn't say the word "story" — if the deliverable is a piece of content meant to hold attention, this skill applies.
+- **youtube-content** — >
+- **youtube-content-studio** — Master workflow for YouTube video creation. Use this skill whenever the user wants a YouTube script, content script, retention-backed script, video idea, outline, hook, intro, documentary structure, thumbnail concept, high-CTR thumbnail, voiceover, sound effect, image prompt, AI33 Pro media generation, or a full YouTube production workflow. This skill combines script writing, retention strategy, investigative/documentary structure, originality checks, blocked-name checks, script-forensics cleanup, Thumbnail Architect, and AI33 Pro media tooling.
+- **youtube-transcript** — Fetch transcripts from YouTube videos for summarization and analysis.
+
+### mobile/ios (6)
+- **build-mobile** — Guide a developer through building a Solana mobile app. Use when a user says "build a mobile app", "React Native Solana", "Solana mobile", "mobile wallet", "mobile dApp", "Android Solana", or "iOS Solana". Reads build-context.md from a prior scaffold phase if available.
+- **codebase-inspection** — Inspect and analyze codebases using pygount for LOC counting, language breakdown, and code-vs-comment ratios. Use when asked to check lines of code, repo size, language composition, or codebase stats.
+- **flutter-setup-declarative-routing** — Configure `MaterialApp.router` using a package like `go_router` for advanced URL-based navigation. Use when developing web applications or mobile apps that require specific deep linking and browser history support.
+- **flutter-setup-localization** — Add `flutter_localizations` and `intl` dependencies, enable "generate true" in `pubspec.yaml`, and create an `l10n.yaml` configuration file. Use when initializing localization support for a new Flutter project.
+- **gomobile-flutter-backend** — Architect and implement Flutter + Go Mobile apps with protobuf platform channels, Go↔native interfaces, async callbacks, and desktop daemon backends. Use when the user mentions gomobile, Go Mobile, Flutter Go backend, Flutter platform channels with Go, protobuf mobile IPC, Digital Carrot-style Go business logic, or shared Go logic across iOS/Android/desktop. Works via npx openskills read gomobile-flutter-backend in any harness.
+- **xcode-project-setup** — Safely modifies Xcode projects (.pbxproj) to add Swift Packages and link files. Use this skill whenever an iOS project needs dependencies installed (e.g. Firebase, Alamofire).
+
+### backend/api (32)
+- **base44-remote-dev** — >-
+- **base44-troubleshooter** — Troubleshoot production issues using backend function logs. Use when investigating app errors, debugging function calls, or diagnosing production problems in Base44 apps.
+- **evaluating-llms-harness** — Evaluates LLMs across 60+ academic benchmarks (MMLU, HumanEval, GSM8K, TruthfulQA, HellaSwag). Use when benchmarking model quality, comparing models, reporting academic results, or tracking training progress. Industry standard used by EleutherAI, HuggingFace, and major labs. Supports HuggingFace, vLLM, APIs.
+- **fastapi** — FastAPI best practices and conventions. Use when working with FastAPI APIs, Pydantic models, dependencies, streaming responses including Server-Sent Events (SSE), and serving frontend apps. Keeps FastAPI code clean and up to date with the latest features and patterns.
+- **find-nearby** — Find nearby places (restaurants, cafes, bars, pharmacies, etc.) using OpenStreetMap. Works with coordinates, addresses, cities, zip codes, or Telegram location pins. No API keys needed.
+- **firebase-ai-logic-basics** — Official skill for integrating Firebase AI Logic (Gemini API) into web applications. Covers setup, multimodal inference, structured output, and security.
+- **firebase-app-hosting-basics** — Deploy and manage web apps with Firebase App Hosting. Use this skill when deploying Next.js/Angular apps with backends.
+- **firebase-basics** — >-
+- **firebase-firestore** — >-
+- **github-code-review** — Review code changes by analyzing git diffs, leaving inline comments on PRs, and performing thorough pre-push review. Works with gh CLI or falls back to git + GitHub REST API via curl.
+- **github-issues** — Create, manage, triage, and close GitHub issues. Search existing issues, add labels, assign people, and link to PRs. Works with gh CLI or falls back to git + GitHub REST API via curl.
+- **github-oauth** — Add, port, debug, or explain GitHub OAuth sign-in and GitHub API authentication in Glaze apps. Use when the user asks to connect GitHub, sign in with GitHub, access GitHub repositories/issues/pull requests/notifications, call the GitHub API as the user, or port Raycast OAuthService.github usage.
+- **github-pr-workflow** — Full pull request lifecycle — create branches, commit changes, open PRs, monitor CI status, auto-fix failures, and merge. Works with gh CLI or falls back to git + GitHub REST API via curl.
+- **github-repo-management** — Clone, create, fork, configure, and manage GitHub repositories. Manage remotes, secrets, releases, and workflows. Works with gh CLI or falls back to git + GitHub REST API via curl.
+- **glaze-ai** — Add AI features to a Glaze app — text generation, summarization, drafting, classification, or any LLM-powered behavior. Use when the user asks for AI, "smart"/"auto"-anything, chat, or generating/summarizing/rewriting text with a model. Covers the mandatory `glaze.capabilities.ai` package.json declaration, backend `generateText`, the `useGlazeAI` renderer hook, and handling every blocked state.
+- **glaze-backend-rules** — Rules for Glaze backend, service, settings, and IPC implementation.
+- **glaze-external-api** — Use when a Glaze app integrates an external REST/GraphQL/HTTP API, API keys or bearer tokens, third-party service data, backend API service classes, curl endpoint checks, safeStorage secret handling, IPC wrappers for API calls, or frontend error/loading states for remote data.
+- **glaze-ipc-communication** — Implement, review, or debug secure communication between a Glaze renderer, backend, preload, and native APIs. Use for ipcMain handlers, window.glazeAPI calls, notifications, preload exposure, sensitive clipboard/shell/file APIs, native dialogs, channel typing, or large IPC payloads.
+- **glaze-native-images** — Build, review, or debug Glaze features that display native macOS application icons, file icons, or Quick Look thumbnails. Use for app launchers, installed-app lists, file browsers, icon or thumbnail grids, image-size and scale controls, backend NativeImage manipulation, API or documentation friction reports, or diagnosing blurry, cropped, oversized, missing, stale, or slow native images. Reload this skill when a follow-up asks to evaluate the implementation or guidance.
+- **glaze-native-permissions** — Implement camera, microphone, location, calendar, reminders, and contacts permission flows in Glaze apps using dedicated backend APIs, systemPreferences APIs, capability manifests, and native/WebKit-safe UX. Use this when adding native capability checks, personal-data access, permission prompts, diagnostics, or troubleshooting repeated permission dialogs.
+- **godmode** — Jailbreak API-served LLMs using G0DM0D3 techniques — Parseltongue input obfuscation (33 techniques), GODMODE CLASSIC system prompt templates, ULTRAPLINIAN multi-model racing, encoding escalation, and Hermes-native prefill/system prompt integration. Use when a user wants to bypass safety filters, jailbreak a model, or red-team model robustness.
+- **http-toolkit-intercept** — Intercept and debug HTTP traffic from any CLI, service, or script using HTTP Toolkit. Use when you need to inspect LLM API calls, backend requests, auth flows, or debug network-level issues across any language or runtime.
+- **lark-approval** — 飞书审批 API：审批实例、审批任务管理。
+- **lark-slides** — 飞书幻灯片：以 XML 格式读取和管理 PPT 页面。创建演示文稿优先用 `+create`；XML API 主要用于读取 PPT 全文信息、创建和删除幻灯片页面。当用户需要创建 PPT、读取 PPT 内容、管理幻灯片页面时使用。
+- **linear** — Manage Linear issues, projects, and teams via the GraphQL API. Create, update, search, and organize issues. Uses API key auth (no OAuth needed). All operations via curl — no dependencies.
+- **linear-oauth** — Add, port, debug, or explain Linear OAuth sign-in and Linear API authentication in Glaze apps. Use when the user asks to connect Linear, sign in with Linear, access Linear issues/projects/teams/workspaces, call the Linear GraphQL API as the user, or port Raycast OAuthService.linear usage.
+- **moolre-docs** — Moolre API reference — SMS, WhatsApp, accounts, payments, transfers, USSD, webhooks. Use when the user asks about any Moolre endpoint, wants to send SMS/WhatsApp via Moolre, create or check Moolre accounts, initiate payments or transfers, generate payment links, check transaction status, integrate USSD, handle webhooks, look up bank lists or miscellaneous data, or debug Moolre API calls. Also use when working on the Smashup backend's Moolre integration.
+- **siyuan** — SiYuan Note API for searching, reading, creating, and managing blocks and documents in a self-hosted knowledge base via curl.
+- **slack-oauth** — Add, port, debug, or explain Slack OAuth sign-in and Slack Web API authentication in Glaze apps. Use when the user asks to connect Slack, sign in with Slack, access Slack channels/messages/users/search/status/reactions, call the Slack Web API as the user, or port Raycast OAuthService.slack usage.
+- **transcribe** — Speech-to-text transcription using Groq Whisper API. Supports m4a, mp3, wav, ogg, flac, webm.
+- **vibe-security** — Audits codebases for common security vulnerabilities that AI coding assistants introduce in "vibe-coded" applications. Checks for exposed API keys, broken access control (Supabase RLS, Firebase rules), missing auth validation, client-side trust issues, insecure payment flows, and more. Use this skill whenever the user asks about security, wants a code review, mentions "vibe coding", or when you're writing or reviewing code that handles authentication, payments, database access, API keys, secrets, or user data — even if they don't explicitly mention security. Also trigger when the user says things like "is this safe?", "check my code", "audit this", "review for vulnerabilities", or "can someone hack this?".
+- **xitter** — Interact with X/Twitter via the x-cli terminal client using official X API credentials. Use for posting, reading timelines, searching tweets, liking, retweeting, bookmarks, mentions, and user lookups.
+
+### general/other (219)
+- **1password** — Set up and use 1Password CLI (op). Use when installing the CLI, enabling desktop app integration, signing in, and reading/injecting secrets for commands.
+- **adherence-memory-callback** — Run a consent-based outbound CALL-E medication-adherence phone check-in that remembers each caller across calls, learns side-effect patterns across many callers behind a corroboration gate, and honors "call me back later" by opening the next call with that context.
+- **agy-customizations** — >-
+- **ai-saas-app-playbook** — >-
+- **ai-without-brain-rot** — >-
+- **algorithmic-art** — Creating algorithmic art using p5.js with seeded randomness and interactive parameter exploration. Use this when users request creating art using code, generative art, algorithmic art, flow fields, or particle systems. Create original algorithmic art rather than copying existing artists' work to avoid copyright violations.
+- **alphagenome-single-variant-analysis** — >
+- **apple-notes** — Manage Apple Notes via the memo CLI on macOS (create, view, search, edit).
+- **apple-reminders** — Manage Apple Reminders via remindctl CLI (list, add, complete, delete).
+- **appointment-call-confirm** — Places outbound CALL-E confirmation calls for a batch of upcoming appointments or bookings and returns a structured confirmed / needs-reschedule / declined / no-answer result per recipient, so a business can close its next-day no-show gap without a staff member manually dialing down the list.
+- **appointment-confirm** — Confirm one existing appointment by phone with CALL-E, capture yes/no and time as structured JSON, and leave calendar changes to a human. Dry-run and fixture modes by default.
+- **audiocraft-audio-generation** — PyTorch library for audio generation including text-to-music (MusicGen) and text-to-sound (AudioGen). Use when you need to generate music from text descriptions, create sound effects, or perform melody-conditioned music generation.
+- **autopilot** — >-
+- **ban-type-assertions** — Ban `as` type assertions in a package via the `@typescript-eslint/consistent-type-assertions` lint rule, replacing them with compiler-verified type-safe alternatives. Use when enabling the assertion ban in a new package or fixing violations in an existing one.
+- **blogwatcher** — Monitor blogs and RSS/Atom feeds for updates using the blogwatcher CLI. Add blogs, scan for new articles, and track what you've read.
+- **browser-control** — Inspect and automate Bionic browser tabs, including scripted batch updates, dynamic forms, dialogs, and verification
+- **browser-navigation** — |
+- **bypass-slop** — >
+- **call-rehearsal** — Rehearse a phone call plan against every realistic ending of the call before dialling anyone, and refuse a plan whose automation acts on a call that never reached a consenting human.
+- **call-reminder** — Schedule recurring CALL-E phone-call reminders, scheduled CALL-E calls, call-me-at-a-time requests, and remind-me-by-phone workflows by wrapping the existing one-off CALL-E call workflow in the current client's scheduler or automation system.
+- **call-review** — Review a finished CALL-E call before acting on its result. Checks that every structured-result field is supported by the transcript, derives response latency and silences from turn offsets, flags missing AI disclosure, ignored stop requests and sensitive readbacks, and returns an approve / needs_human / reject verdict with reasons. Read-only; never places a call.
+- **call-state-reconciler** — Work out what actually happened to a CALL-E call by reading the call task, its attempts and its event stream together, and say which field each conclusion came from. Use when a workflow acts on a call result, when a call will not settle, or when the platform's own signals disagree with each other.
+- **call-the-parts** — Call the Parts phones a spare parts shop about one used automotive part and comes back with stock, price, and pickup. Use when someone needs a used part and the shop has to be called.
+- **calle-script-advisor** — Draft and check CALL-E phone-call task text and result schemas for clarity, safety, and extraction quality before any call is placed.
+- **callparity-claimkill** — Compile the next CALL-E call as a leak-scored refute of a quoted freight claim, merge Party B quotes into a claim graph, and preview from fixtures with zero live calls.
+- **canvas** — A canvas is a single `.canvas.tsx` file the IDE compiles so the user can open it beside the chat. Follow the workflow below in order.
+- **capture** — Background knowledge for droid-control workflows -- not invoked directly. Recording lifecycle for terminal and browser sessions.
+- **carecall-missed-appointment** — Recover missed healthcare appointments through a safe administrative CALL-E conversation that verifies the patient, offers available rescheduling slots, confirms the selected slot, and returns a structured recovery outcome for a downstream appointment system.
+- **caveman** — >
+- **chrome-extensions** — >
+- **claude-ad-variation-generator** — ## Workflow
+- **code-slice-hero** — A tiled headline surface flips cell by cell under a sweeping depth field to reveal the rear headline. HyperFrames block, 1920×1080, 8s, 18 variables.
+- **confirmcall-day-board** — Confirm a full day's existing appointments by phone with CALL-E. Plans one disclosed confirmation call per booking, captures yes/no/reschedule as structured JSON, and leaves calendar writes to a human. Fixture/dry-run by default.
+- **create-hook** — >-
+- **create-pr** — Create a pull request with Conventional Commits formatting, a templated body, and local verification. Use when the user asks to create a PR, open a PR, submit changes for review, or put code up for review.
+- **create-rule** — >-
+- **create-workflow** — >
+- **credentials** — >-
+- **cso** — |
+- **customer-onboarding-call** — Place a one-off welcome and onboarding call to a customer who just signed up, capture a structured result such as business type, goal, pain points, sentiment, and activation status, then write that result back to a CRM and queue a human follow-up task when the customer asks for one.
+- **dart-add-unit-test** — Write and organize unit tests for functions, methods, and classes using `package:test`. Use when creating new logic or fixing bugs to ensure code remains correct and regression-free.
+- **dart-collect-coverage** — Collect coverage using the coverage packge and create an LCOV report
+- **dart-fix-runtime-errors** — Uses get_runtime_errors and lsp to fetch an active stack trace, locate the failing line, apply a fix, and verify resolution via hot_reload.
+- **dart-migrate-to-checks-package** — |-
+- **dart-resolve-package-conflicts** — Workflow for fixing package version conflicts. Use this when `pub get` fails due to incompatible package versions.
+- **dart-run-static-analysis** — Execute `dart analyze` to identify warnings and errors, and use `dart fix --apply` to automatically resolve mechanical lint issues. Use during development to ensure code quality and before committing changes.
+- **dart-use-pattern-matching** — Use switch expressions and pattern matching where appropriate
+- **dart-use-primary-constructors** — >
+- **deep-systems-projects** — >-
+- **diagnose** — Disciplined diagnosis loop for hard bugs and performance regressions. Reproduce → minimise → hypothesise → instrument → fix → regression-test. Use when user says "diagnose this" / "debug this", reports a bug, says something is broken/throwing/failing, or describes a performance regression.
+- **diagnosing-commands** — Use to diagnose and fix ZCode custom slash-command (/command) configuration problems in the ZCode client. Applies when a command is missing, is overridden by a higher-precedence command of the same name, has a frontmatter parse error, is dropped for having an empty body, has an invalid name, does not substitute $ARGUMENTS/$1, uses a colon rather than a slash for nested names, has a misspelled frontmatter key, or disappears because the plugin providing it is disabled. Provides the discovery order, how to inspect commands in the client, common pitfalls, and a step-by-step localization and repair workflow.
+- **diagnosing-hooks** — Use to diagnose and fix ZCode hook configuration problems in the ZCode client. Applies when a hook does not trigger, an event name is wrong, a matcher does not match a tool name, a script is not executable, template variables are not expanded, a timeout unit is mistaken (seconds versus milliseconds), the command and process field styles are mixed, a hook's JSON output fails validation, a hook blocks the session unexpectedly, or configuration-file hooks are not enabled. Provides configuration sources, the hooks.json schema, how to inspect hooks in the client, and a step-by-step localization and repair workflow.
+- **distributed-llm-pretraining-torchtitan** — Provides PyTorch-native distributed LLM pretraining using torchtitan with 4D parallelism (FSDP2, TP, PP, CP). Use when pretraining Llama 3.1, DeepSeek V3, or custom models at scale from 8 to 512+ GPUs with Float8, torch.compile, and distributed checkpointing.
+- **docker-management** — Manage Docker containers, images, volumes, networks, and Compose stacks — lifecycle ops, debugging, cleanup, and Dockerfile optimization.
+- **dogfood** — Systematic exploratory QA testing of web applications — find bugs, capture evidence, and generate structured reports
+- **embl-ebi-ols** — >
+- **excalidraw** — Create hand-drawn style diagrams using Excalidraw JSON format. Generate .excalidraw files for architecture diagrams, flowcharts, sequence diagrams, concept maps, and more. Files can be opened at excalidraw.com or uploaded for shareable links.
+- **findmy** — Track Apple devices and AirTags via FindMy.app on macOS using AppleScript and screen capture.
+- **fine-tuning-with-trl** — Fine-tune LLMs using reinforcement learning with TRL - SFT for instruction tuning, DPO for preference alignment, PPO/GRPO for reward optimization, and reward model training. Use when need RLHF, align model with preferences, or train from human feedback. Works with HuggingFace Transformers.
+- **fix-knip-unused-exports** — |
+- **foldseek-structural-search** — >
+- **follow-up-on-pr** — Follow up on an existing PR by rebasing on the base branch, addressing reviewer comments, fixing CI issues, and pushing updates. Use when the user provides a PR URL or number and wants to get it ready for merge.
+- **forgerelay-supplier-clarification** — Use CALL-E to collect missing manufacturing RFQ details from an authorized supplier contact through a bounded, approval-gated phone call, then return structured answers without negotiating or making commitments.
+- **game-asset-core** — >
+- **game-character-consistency** — >
+- **game-tilesets** — >
+- **gccli** — Google Calendar CLI for listing calendars, viewing/creating/updating events, and checking availability.
+- **gdcli** — Google Drive CLI for listing, searching, uploading, downloading, and sharing files and folders.
+- **gif-search** — Search and download GIFs from Tenor using curl. No dependencies beyond curl and jq. Useful for finding reaction GIFs, creating visual content, and sending GIFs in chat.
+- **glaze-browser-window-recipes** — Recipes for creating or configuring Glaze BrowserWindows. Use before writing or changing new BrowserWindow(...), loadURL targets, dragging/chrome, external web page windows, modal/floating/frameless/document windows, or window options.
+- **glaze-file-associations** — Register file type associations so users can open files by double-clicking them, with the app receiving the file path.
+- **gmcli** — Gmail CLI for searching emails, reading threads, sending messages, managing drafts, and handling labels/attachments.
+- **goal** — Set a goal that Cursor will pursue to completion.
+- **heartmula** — Set up and run HeartMuLa, the open-source music generation model family (Suno-like). Generates full songs from lyrics + tags with multilingual support.
+- **himalaya** — CLI to manage emails via IMAP/SMTP. Use himalaya to list, read, write, reply, forward, search, and organize emails from the terminal. Supports multiple accounts and message composition with MML (MIME Meta Language).
+- **holdfast** — Delegate real phone calls that must navigate IVR phone trees, wait on hold, and reach a human or automated service line. Turn a phone-work goal into a planned CALL-E call, navigate menus with DTMF, persist through hold, verify the outcome against transcript evidence, and contribute the discovered phone-tree path back to a shared IVR map library.
+- **holdfor-post-visit-followup** — Place one consent-gated post-appointment check-in phone call to an older patient on behalf of a practice, return five enumerated answers plus a verbatim patient quote, and stop the call rather than answer anything clinical. Then, only after a named human releases it, place a second call into the practice's own booking line carrying that quote and a bounded range of dates. Never books unilaterally, never advises, never asks the patient to confirm personal details.
+- **hook-factory** — >-
+- **human-writing** — |
+- **hyperframes** — >
+- **hyperframes-audio** — >
+- **hyperframes-cli** — >
+- **hyperframes-keyframes** — >
+- **hyperframes-studio** — >
+- **imagine** — >
+- **imessage** — Send and receive iMessages/SMS via the imsg CLI on macOS.
+- **implement** — >-
+- **introspection** — Contains instructions for reading the transcript of this session or other sessions
+- **invoice-payment-chaser** — Chase an overdue cross-border invoice by phone when a written reminder has gone unanswered. Drafts a call goal scaled by the buyer's own learned payment history, places an authorized CALL-E call to the buyer, and returns a structured outcome (confirmed payment date or stated reason for delay) for human review before it is treated as resolved.
+- **jupyter-live-kernel** — >
+- **kaizen-mega** — >
+- **kol-ivr-route** — Verify healthcare claim-status phone call results against transcript evidence and an independent IVR route receipt before any downstream use.
+- **landing-page-rewrite** — >
+- **lark-attendance** — 飞书考勤打卡：查询自己的考勤打卡记录
+- **lark-base** — -- | | `1254064`                                           | 日期格式错误                                                    | 用毫秒时间戳，非字符串 / 秒级
+- **lark-calendar** — 飞书日历（calendar）：提供日历与日程（会议）的全面管理能力。核心场景包括：查看/搜索日程、创建/更新日程、管理参会人、查询忙闲状态及推荐空闲时段、查询/搜索与预定会议室。注意：涉及【预约日程/会议】或【查询/预定会议室】时，必须先读取 references/lark-calendar-schedule-meeting.md 工作流！高频操作请优先使用 Shortcuts：+agenda（快速概览今日/近期行程）、+create（创建日程并按需邀请参会人及预定会议室）、+freebusy（查询用户主日历的忙闲信息和rsvp的状态）、+rsvp（回复日程邀请）
+- **lark-contact** — 飞书通讯录：查询组织架构、人员信息和搜索员工。获取当前用户或指定用户的详细信息、通过关键词搜索员工（姓名/邮箱/手机号）。当用户需要查看个人信息、查找同事 open_id 或联系方式、按姓名搜索员工、查询部门结构时使用。
+- **lark-drive** — 飞书云空间：管理云空间中的文件和文件夹。上传和下载文件、创建文件夹、复制/移动/删除文件、查看文件元数据、管理文档评论、管理文档权限、订阅用户评论变更事件、修改文件标题（docx、sheet、bitable、file、folder、wiki）；也负责把本地 Word/Markdown/Excel/CSV 导入为飞书在线云文档（docx、sheet、bitable）。当用户需要上传或下载文件、整理云空间目录、查看文件详情、管理评论、管理文档权限、修改文件标题、订阅用户评论变更事件，或要把本地文件导入成新版文档、电子表格、多维表格/Base 时使用。
+- **lark-im** — 飞书即时通讯：收发消息和管理群聊。发送和回复消息、搜索聊天记录、管理群聊成员、上传下载图片和文件（支持大文件分片下载）、管理表情回复。当用户需要发消息、查看或搜索聊天记录、下载聊天中的文件、查看群成员时使用。
+- **lark-mail** — -- | | `user_mailboxes.accessible_mailboxes`           | `mail:user_mailbox:readonly`           | | `user_mailboxes.profile`                        | `mail:user_mailbox:readonly`           | | `user_m
+- **lark-shared** — | | user 用户身份 | `--as user` | `lark-cli auth login --recommend`（首次）+ `--scope` 增量 | 访问用户自己的资源（日历、云空间等） | | bot 应用身份  | `--as bot`  | 自动，只需 appId + appSecret                              | 应用级操作,访问bot自
+- **lark-sheets** — 飞书电子表格：创建和操作电子表格。创建表格并写入表头和数据、读取和写入单元格、追加行数据、在已知电子表格中查找单元格内容、导出表格文件。当用户需要创建电子表格、批量读写数据、在已知表格中查找内容、导出或下载表格时使用。若用户是想按名称或关键词搜索云空间里的表格文件，请改用 lark-doc 的 docs +search 先定位资源。
+- **lark-task** — 飞书任务：管理任务和清单。创建待办任务、查看和更新任务状态、拆分子任务、组织任务清单、分配协作成员。当用户需要创建待办事项、查看任务列表、跟踪任务进度、管理项目清单或给他人分配任务时使用。
+- **lark-tools** — >-
+- **lark-vc** — 飞书视频会议：查询会议记录、获取会议纪要产物（总结、待办、章节、逐字稿）。1. 查询已经结束的会议数量或详情时使用本技能(如历史日期｜ 昨天 | 上周 | 今天已经开过的会议等场景)，查询未开始的会议日程使用 lark-calendar 技能。2. 支持通过关键词、时间范围、组织者、参与者、会议室等筛选条件搜索会议记录。3. 获取或整理会议纪要时使用本技能。
+- **lark-whiteboard** — >
+- **lark-whiteboard-cli** — >
+- **lark-wiki** — 飞书知识库：管理知识空间、空间成员和文档节点。创建和查询知识空间、查看和管理空间成员、管理节点层级结构、在知识库中组织文档和快捷方式。当用户需要在知识库中查找或创建文档、浏览知识空间结构、查看或管理空间成员、移动或复制节点时使用。
+- **lark-workflow-meeting-summary** — 会议纪要整理工作流：汇总指定时间范围内的会议纪要并生成结构化报告。当用户需要整理会议纪要、生成会议周报、回顾一段时间内的会议内容时使用。
+- **lark-workflow-standup-report** — 日程待办摘要：编排 calendar +agenda 和 task +get-my-tasks，生成指定日期的日程与未完成任务摘要。适用于了解今天/明天/本周的安排。
+- **learn** — |
+- **learning-recall-call** — Conducts an authorized phone-based active recall session with a learner, asks adaptive questions about a previously studied topic, identifies knowledge gaps and misconceptions, and returns a structured learning assessment.
+- **ledger-collections-call** — HITL outbound collections phone call from overdue JSON (E.164, integer minor units, region); CALL-E create plus poll; structured promise out; dry-run default; never posts to unsupported regions including YE.
+- **literature-search-arxiv** — >
+- **literature-search-biorxiv** — >
+- **literature-search-europepmc** — >
+- **literature-search-openalex** — >
+- **logistics-exception** — Resolve a delayed-shipment dock exception by phone with CALL-E. Calls the driver and receiving dock concurrently with one strict result schema, reconciles terminal results, combines only supported facts into a recovery card, and leaves any call that changes the dock appointment to explicit human approval.
+- **long-running-background-tasks** — >-
+- **loop** — >-
+- **managing-certificates-and-encryption** — Manages TLS certificate and encryption key lifecycle across all tiers. Self-Hosted covers certificate expiry monitoring, node/CA/client cert rotation, and Kubernetes cert management. Advanced/BYOC covers managed TLS (no action) and CMEK (Customer-Managed Encryption Key) rotation in your KMS. Standard and Basic have fully managed TLS and encryption with no customer action. CMEK is only available on Advanced. Use when monitoring cert health, performing rotation, managing CMEK, or responding to key compromise.
+- **mcode-tools-master** — >-
+- **meme-generation** — Generate real meme images by picking a template and overlaying text with Pillow. Produces actual .png meme files.
+- **memento-flashcards** — >-
+- **memory-leak-debugging** — Diagnoses and resolves memory leaks in JavaScript/Node.js applications. Use when a user reports high memory usage, OOM errors, or wants to analyze heapsnapshots or run memory leak detection tools like memlab.
+- **metapelet-elder-checkin** — Place one consent-based outbound CALL-E phone check-in for an older adult using the MetaPelet warm-companion persona (non-medical emotional support), then return structured mood, topics, and repeat-call interest for a family member or coordinator.
+- **micro-interactions** — >
+- **modal** — >
+- **morning** — Render the user's morning brief as a styled HTML artifact, or set it up as a recurring weekday task. Use only when the user explicitly asks to run, see, or set up their morning brief, or if they invoke /morning by name. A question about their day, schedule, or calendar is not by itself a request for the brief; answer it directly instead.
+- **nano-pdf** — Edit PDFs with natural-language instructions using the nano-pdf CLI. Modify text, fix typos, update titles, and make content changes to specific pages without manual editing.
+- **ncbi-sequence-fetch** — >
+- **neon** — >-
+- **neon-postgres** — >-
+- **neon-postgres-branches** — >-
+- **new-repo** — >-
+- **no-use-effect** — >-
+- **obsidian** — Read, search, and create notes in the Obsidian vault.
+- **okx-ai** — >
+- **okx-dapp-discovery** — |
+- **one-three-one-rule** — >
+- **origin** — >-
+- **oss-forensics** — |
+- **outlines** — Guarantee valid JSON/XML/code structure during generation, use Pydantic models for type-safe outputs, support local models (Transformers, vLLM), and maximize inference speed with Outlines - dottxt.ai's structured generation library
+- **oz-finish-task** — Report task completion or failure back to the Oz platform when done with a task.
+- **oz-notify-user** — Send a progress notification to the user who triggered this Oz task (e.g., via Slack or Linear).
+- **oz-report-pr** — Report a pull request back to the Oz platform after creating one.
+- **oz-upload-file** — Upload a local file to the Oz platform as a conversation artifact.
+- **partline-part-sourcing** — Safely source an exact industrial replacement part by calling approved suppliers with CALL-E and returning an evidence-backed comparison for human purchase approval.
+- **peft-fine-tuning** — Parameter-efficient fine-tuning for LLMs using LoRA, QLoRA, and 25+ methods. Use when fine-tuning large models (7B-70B) with limited GPU memory, when you need to train <1% of parameters with minimal accuracy loss, or for multi-adapter serving. HuggingFace's official library integrated with transformers ecosystem.
+- **pharmacy-cash-price** — Call a retail pharmacy and ask what a drug costs in cash with no insurance, returning a structured price, the quantity it covers, or an explicit refusal. Use for price comparison across several pharmacies, never for anything involving a patient or a prescription.
+- **pharmacy-stock-check** — Call a list of pharmacies to find out which one has a specific medication in stock, at what price, and whether they will hold it. Use when someone needs to locate a medication nearby and would otherwise ring round manually. Returns one structured record per pharmacy with a confidence score and the call transcript as evidence.
+- **phone-retrieval** — Call one or more businesses to find out something that is only knowable by asking — stock, price, lead time, opening hours, whether a service is offered — and return one scored answer per business with the transcript as evidence. Use when the answer is not on the web because it lives behind a phone line.
+- **plan** — Plan mode for Hermes — inspect context, write a markdown plan into the active workspace's `.hermes/plans/` directory, and do not execute the work.
+- **playwright-cli** — Automate browser interactions, test web pages and work with Playwright tests.
+- **playwright-trace** — Inspect Playwright trace files from the command line — list actions, view requests, console, errors, snapshots and screenshots.
+- **power-point-processing** — Create, read, edit PowerPoint files
+- **pr-babysit** — >-
+- **pr-review-canvas** — >-
+- **predictingthepast** — >
+- **priority-call-waterfall** — Fill one open opportunity by calling a priority-ordered candidate list with CALL-E, one candidate at a time, until someone accepts — waitlist backfill, shift coverage, on-call escalation, and service dispatch workflows.
+- **procurecall-supplier-sourcing** — Source and qualify suppliers by phone for a buyer's procurement request, collect structured quotes, and return supplier comparisons for human approval.
+- **profiling-statement-fingerprints** — Ranks and analyzes statement fingerprints using aggregated SQL statistics from crdb_internal.statement_statistics to identify slow, resource-intensive, or error-prone query patterns. Use when investigating historical performance trends, identifying optimization opportunities, or diagnosing recurring slowness without DB Console access.
+- **profiling-transaction-fingerprints** — Analyzes transaction fingerprints using aggregated statistics from crdb_internal.transaction_statistics to identify high-retry transactions, contention patterns, and commit latency issues. Provides historical transaction-level analysis to understand which statement combinations are causing retries, contention, or performance degradation. Use when investigating transaction retry storms, analyzing commit latency trends, or understanding statement composition of problematic transactions without DB Console access.
+- **protein-sequence-msa** — >
+- **protein-sequence-similarity-search** — >
+- **pty-capture** — Background knowledge for droid-control workflows -- not invoked directly. Capture ground-truth byte sequences from real terminal emulators.
+- **pymol** — >
+- **rdn-intake-referral** — Conducts a consent-based nutrition support intake by phone and returns a structured summary for Registered Dietitian Nutritionist referral and human follow-up.
+- **rename-chat** — >-
+- **requesting-code-review** — >
+- **resume-claude** — >
+- **resume-cursor** — >
+- **scope-signal** — Prepare and reconcile one explicitly authorized CALL-E phone call that verifies a prospective client's project brief for a freelancer or small agency, while leaving negotiation and acceptance to a human.
+- **sdk** — >-
+- **segment-anything-model** — Foundation model for image segmentation with zero-shot transfer. Use when you need to segment any object in images using points, boxes, or masks as prompts, or automatically generate all object masks in an image.
+- **session-control** — Create projects and sessions, send prompts, and control session queues and lifecycle.
+- **session-navigation** — |
+- **setup-pre-commit** — Set up Husky pre-commit hooks with lint-staged (Prettier), type checking, and tests in the current repo. Use when user wants to add pre-commit hooks, set up Husky, configure lint-staged, or add commit-time formatting/typechecking/testing.
+- **share** — >-
+- **shell** — >-
+- **simplify** — Review recent code changes for reuse, code quality, and efficiency, then directly apply straightforward cleanup improvements. Use when the user wants a post-implementation cleanup pass, pre-PR polish, or asks to simplify/refine recent changes. Invoke with `/simplify` or `/simplify <focus>`.
+- **simpo-training** — Simple Preference Optimization for LLM alignment. Reference-free alternative to DPO with better performance (+6.4 points on AlpacaEval 2.0). No reference model needed, more efficient than DPO. Use for preference alignment when want simpler, faster training than DPO/PPO.
+- **songwriting-and-ai-music** — >
+- **source-command-sc-cleanup** — Systematically clean up code, remove dead code, and optimize project structure
+- **source-command-sc-estimate** — Provide development estimates for tasks, features, or projects with intelligent analysis
+- **source-command-sc-explain** — Provide clear explanations of code, concepts, and system behavior with educational clarity
+- **source-command-sc-git** — Git operations with intelligent commit messages and workflow optimization
+- **source-command-sc-help** — List all available /sc commands and their functionality
+- **source-command-sc-improve** — Apply systematic improvements to code quality, performance, and maintainability
+- **source-command-sc-task** — Execute complex tasks with intelligent workflow management and delegation
+- **source-command-sc-test** — Execute tests with coverage analysis and automated quality reporting
+- **split-to-prs** — >-
+- **standby** — Fill one open shift by calling a standby roster strictly one person at a time and stopping at the first acceptance, for no-show cover, on-call escalation, and shift-swap requests where calling everyone at once would double-book the slot.
+- **statusline** — >-
+- **structured-outcome-followup-call** — Place a goal-driven CALL-E call that collects specific structured answers, score those answers against a deterministic rubric you supply, and conditionally trigger a follow-up action — all runnable in mock mode with zero live calls or credentials.
+- **stuck** — Diagnose frozen, stuck, or slow Qwen Code sessions on this machine. Scans for problematic processes, high CPU/memory usage, hung subprocesses, and debug logs. Use /stuck or /stuck <PID> to focus on a specific process.
+- **systematic-debugging** — Use when encountering any bug, test failure, or unexpected behavior. 4-phase root cause investigation — NO fixes without understanding the problem first.
+- **test-driven-development** — Use when implementing any feature or bugfix, before writing implementation code. Enforces RED-GREEN-REFACTOR cycle with test-first approach.
+- **to-issues** — Break a plan, spec, or PRD into independently-grabbable issues on the project issue tracker using tracer-bullet vertical slices. Use when user wants to convert a plan into issues, create implementation tickets, or break down work into issues.
+- **to-prd** — Turn the current conversation context into a PRD and publish it to the project issue tracker. Use when user wants to create a PRD from the current context.
+- **true-input** — Background knowledge for droid-control workflows -- not invoked directly. True-input driver mechanics for real terminal emulator automation via headless Wayland compositor.
+- **typer** — Typer best practices and conventions. Use when working with Typer CLIs. Keeps Typer code clean and up to date with the latest features and patterns, updated with new versions. Write new code or refactor and update old code.
+- **ucsc-conservation-and-tfbs** — >
+- **update-cli-config** — >-
+- **update-cursor-settings** — >-
+- **urgent-help-escalation-call** — When a vulnerable person asks for help inside an app, ring the human responsible for them and say only what is needed — who asked, and when. Returns whether the message actually landed and whether anyone confirmed they are going. Use for panic and help buttons, lone-worker duress alarms, fall and inactivity alerts, post-discharge escalation, care-home call bells, and any "the notification is not enough, phone someone" workflow.
+- **uv** — >-
+- **verify** — Background knowledge for droid-control workflows -- not invoked directly. Deliverable verification against commitments.
+- **verify-contact-claim** — Check whether an institution really did contact somebody. Places one CALL-E phone call to the number printed on the customer's own card or bill and asks whether they made contact in the last hour, then reports the verdict with the words the person on the line actually said. Use after a suspicious call, a voicemail or a text that asks for a call back.
+- **verity-verification-core** — Gate a CALL-E phone task's task_completed claim behind an independent transcript read-back before any real-world action. Use after a confirm, reschedule, or book call to decide ALLOW or BLOCK, catch a mid-sentence self-correction, a voicemail, or a value the caller never actually confirmed, and get the exact value to re-confirm on a second channel. Deterministic, no network, fail-closed.
+- **veyra-campaign-planner** — Turn a plain-language outbound phone-call process into an approval-ready Veyra campaign brief, review its generated workflow, and gate any live dispatch behind an exact recipient preview.
+- **visual-page** — >
+- **voice-extractor** — >-
+- **voice-preflight** — Hear a CALL-E phone call task spoken by your own text-to-speech provider before a real person does, then refuse a script whose critical line would not survive being spoken.
+- **vscode** — VS Code integration for viewing diffs and comparing files. Use when showing file differences to the user.
+- **web-pentest** — Authorized web pentest: recon, proof-based exploits, report.
+- **weights-and-biases** — Track ML experiments with automatic logging, visualize training in real-time, optimize hyperparameters with sweeps, and manage model registry with W&B - collaborative MLOps platform
+- **whisper** — OpenAI's general-purpose speech recognition model. Supports 99 languages, transcription, translation to English, and language identification. Six model sizes from tiny (39M params) to large (1550M params). Use for speech-to-text, podcast transcription, or multilingual audio processing. Best for robust, multilingual ASR.
+- **wiki** — |
